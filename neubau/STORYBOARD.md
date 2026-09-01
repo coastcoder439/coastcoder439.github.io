@@ -5,6 +5,11 @@
 > Auftrag (NGO) → durch die IT-Welt mit der Frage „Was zählt wirklich?" →
 > daraus eine Methodik → ihre Beweise → für dich. Reihenfolge, Sektions-Brücken
 > und Abschluss sind darauf neu geschrieben.
+> v4.1 [Owner 02.09.]: zweite 3D-Boxen-Reihe in der Methodik (was aus den vier
+> Disziplinen ENTSTEHT: Websites · Apps · Funnels · Automations — das Template
+> trug die Boxen ohnehin zweimal); zwei beim v4-Umbau verlorene v3-Sätze
+> zurückgeholt (Keel: „Disziplin steckt im Code, nicht im Prompt"; Profil:
+> „Ich denke in Systemen, nicht in Einzelteilen").
 
 ## Das Konzept in drei Sätzen
 
@@ -59,10 +64,10 @@ Systeme entstanden direkt für sie."
    einer YAML als einziger Wahrheitsquelle. Python verteilt die Ablage-Regeln und
    meldet Drift — 233 Dateien nach Plan migriert."
 
-### 3 · Methodik — „Was zählt wirklich?" (die 3D-Boxen)
+### 3 · Methodik — „Was zählt wirklich?" (die 3D-Boxen, ZWEI Reihen)
 **Copy:** „Die Frage, die mich durch die IT-Welt führte, wurde Methodik — vier
 Disziplinen, mit denen ich KI-Systeme baue, die halten."
-Die vier 3D-Boxen (Kernfokus-Element der Vorversion bleibt):
+**Reihe 1 — die Disziplinen** (Kernfokus-Element der Vorversion):
 1. **Prompt Engineering** — „Anweisungen, die ein Modell wirklich befolgt —
    präzise statt blumig."
 2. **Context Engineering** — „Das richtige Wissen zur richtigen Zeit im Fenster —
@@ -71,6 +76,16 @@ Die vier 3D-Boxen (Kernfokus-Element der Vorversion bleibt):
    Gates, Messwerte."
 4. **Skill Engineering** — „Wiederkehrendes Können als abrufbares Paket — einmal
    sauber gebaut, immer verfügbar."
+**Reihe 2 — was daraus entsteht** (zweites Boxen-Element des Templates;
+Überleitung: „Daraus entsteht:"):
+1. **Websites** — „Seiten, die eine Geschichte erzählen statt Kacheln zu stapeln
+   — wie die Radtour für den E-Bike-Verleih."
+2. **Apps** — „Werkzeuge mit Oberfläche: vom Diktat-Overlay bis zur begehbaren
+   3D-Simulation."
+3. **Funnels** — „Strecken, die aus Besuchern Anfragen machen — vom ersten Klick
+   bis zum Gespräch."
+4. **Automations** — „Abläufe, die ohne Zuruf laufen: Ablage-Regeln, Agenten,
+   Prüfschritte."
 
 ### 4 · Kundenarbeit — „Für Kunden gebaut."
 **Copy (Brücke zur Methodik):** „Dieselbe Methodik auf fremdem Terrain: eine
@@ -82,16 +97,17 @@ Scroll-Zustand per Screenshot, jede Zahl bis auf 0,00 Euro in der GuV."
 
 ### 5 · Keel — „Regeln statt Vertrauen."
 **Copy (Brücke zur Methodik):** „Was zählt wirklich — in Code gegossen:
-Wächter-Hooks, Dauer-Regeln und ein eigenes Mess-Dashboard. Die Oberfläche lässt
-sich ohne Anmeldung durchklicken, der Bausatz installiert sich mit einem Befehl."
+Wächter-Hooks, Dauer-Regeln und ein eigenes Mess-Dashboard; die Disziplin steckt
+im Code, nicht im Prompt. Die Oberfläche lässt sich ohne Anmeldung durchklicken,
+der Bausatz installiert sich mit einem Befehl."
 1. **Keel Showcase** [3 Bilder + LIVE] — Zweizeiler unverändert (v2).
 2. **Keel-Harness** [1 Bild + Repo] — Zweizeiler unverändert (v2).
 3. **FlowVoice** [1 Bild] — Zweizeiler unverändert (v2).
 
 ### 6 · Profil — „Muster erkennen. Systeme bauen."
-**Arbeitsweise (an die Frage angeschlossen):** „»Was zählt wirklich?«
-funktioniert überall: Muster aus einem Bereich lösen Probleme im nächsten.
-Vertrieb, Verein, Verleih, Versand — vier Welten, ein Handwerk."
+**Arbeitsweise (v3-Kern zurückgeholt):** „Ich denke in Systemen, nicht in
+Einzelteilen — Muster aus einem Bereich lösen Probleme im nächsten. Vertrieb,
+Verein, Verleih, Versand: vier Welten, ein Handwerk."
 **Zertifikate — ehrlich als „laufend":** „Vier Nachweise sind in Arbeit — hier
 stehen sie, sobald sie bestanden und online prüfbar sind."
 1. EU AI Act Essentials (KI-Campus) — laufend
