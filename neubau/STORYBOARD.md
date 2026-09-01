@@ -8,8 +8,16 @@
 > v4.1 [Owner 02.09.]: zweite 3D-Boxen-Reihe in der Methodik (was aus den vier
 > Disziplinen ENTSTEHT: Websites · Apps · Funnels · Automations — das Template
 > trug die Boxen ohnehin zweimal); zwei beim v4-Umbau verlorene v3-Sätze
-> zurückgeholt (Keel: „Disziplin steckt im Code, nicht im Prompt"; Profil:
-> „Ich denke in Systemen, nicht in Einzelteilen").
+> zurückgeholt.
+> v4.2 [Owner-Rüge 02.09.: „Aussagen nicht an der Realität geprüft"] —
+> Fakten-Korrektur: Mitgründung statt Alleingründung; CRM-RLS war nur Konzept
+> (raus), CRM ehrlich als getesteter Prototyp; Nordwind ehrlich als Demo;
+> Harness-Install ist ein Satz an den Agenten, kein Befehl; Keel-Satz ohne
+> Prompt-Widerspruch („erzwungen statt erhofft"); FlowVoice „vier Engines"
+> präzisiert. Belegt: 233 (MANIFEST.md), 96/0,00 € (demo/README.md), 272-MB-glb
+> (285.729.896 Bytes), Playwright-verify (README), Showcase-Module (README),
+> React 19 (package.json), 4 Engine-Dateien (V3/engines/). NEU: Sektion
+> Fakten-Checkliste — biografische Aussagen bestätigt nur der Owner.
 
 ## Das Konzept in drei Sätzen
 
@@ -24,9 +32,9 @@ oder einen Fakt.
 ## Der Hero — ENTSCHIEDEN [Owner 02.09.]
 
 **Headline:** „**Technik mit Auftrag.**"
-**Subline:** „Eine NGO-Gründung brachte mich zum KI-Systembau, eine Frage durch
-die IT-Welt: Was zählt wirklich? Heute ist das meine Methodik — deinen Weg finden
-und ihn gemeinsam gehen."
+**Subline:** „Die Mitgründung einer NGO brachte mich zum KI-Systembau, eine Frage
+durch die IT-Welt: Was zählt wirklich? Heute ist das meine Methodik — deinen Weg
+finden und ihn gemeinsam gehen."
 **Bild:** Headline raumhoch in Glanz-Typografie, ruhiger Lichtstreif; dahinter
 abgedunkelt das drehende Gewächshaus-Modell aus dem Oasis Simulator (der Auftrag
 ist im Bild von Sekunde 1 sichtbar).
@@ -51,15 +59,17 @@ Profil · Kontakt · CV-Button. Preloader unter 1,5 s mit „Technik mit Auftrag
 statt „Hallo".
 
 ### 2 · Ursprung — „Kein Auftrag. Ein Antrieb." (WEE = wo alles begann)
-**Copy:** „World Eden Era ist meine gemeinnützige UG für nachhaltige Ernährung
-durch Aquaponik — die Gründung, die mich zum Systembau brachte. Die ersten drei
-Systeme entstanden direkt für sie."
+**Copy:** „World Eden Era ist die gemeinnützige UG, die ich mitgegründet habe —
+nachhaltige Ernährung durch Aquaponik, und der Auftrag, der mich zum Systembau
+brachte. Die ersten drei Systeme entstanden direkt für sie — gebaut von mir,
+getragen vom Team." *(Formulierung „getragen vom Team" → Fakten-Checkliste F3)*
 1. **Oasis Simulator** [2 Bilder + LIVE] — „Die Aquaponik-Oase als begehbare
    3D-Simulation im Browser, mit Wetter-Layer. Das Gewächshaus kommt als
    272-MB-Modell aus Blender — live auf world-eden-era.org."
-2. **WEE CRM** [ehrlich ohne Bild] — „Fundraising-CRM der gUG: Kontakte, Spenden,
-   CSV-Import, Audit-Log. React 19, Supabase mit Row-Level-Security — kein
-   Screenshot, dafür Tests."
+2. **WEE CRM** [ehrlich ohne Bild] — „Fundraising-CRM der gUG, im Aufbau:
+   Kontakte, Spenden, CSV-Import, Audit-Log auf React 19 und Supabase. Kein
+   Screenshot — der Stand ist ein getesteter Prototyp."
+   *(Korrektur v4.2: Row-Level-Security war laut `docs/briefing.md` nur Konzept)*
 3. **Drive-Automatisierung** [ehrlich als Text] — „Der Vereins-Drive gehorcht
    einer YAML als einziger Wahrheitsquelle. Python verteilt die Ablage-Regeln und
    meldet Drift — 233 Dateien nach Plan migriert."
@@ -90,19 +100,35 @@ Disziplinen, mit denen ich KI-Systeme baue, die halten."
 ### 4 · Kundenarbeit — „Für Kunden gebaut."
 **Copy (Brücke zur Methodik):** „Dieselbe Methodik auf fremdem Terrain: eine
 Scroll-Story für den E-Bike-Verleih in Wusterhusen, ein Commerce-Cockpit mit
-sieben KI-Agenten für einen Print-on-Demand-Shop. Beides geprüft — jeder
-Scroll-Zustand per Screenshot, jede Zahl bis auf 0,00 Euro in der GuV."
-1. **WL Bike Rental** [5 Bilder] — Zweizeiler unverändert (v2).
-2. **Nordwind Studio** [1 Bild + Repo] — Zweizeiler unverändert (v2).
+sieben KI-Agenten für Print-on-Demand. Beides geprüft — jeder Scroll-Zustand per
+Screenshot, jede Zahl bis auf 0,00 Euro in der GuV."
+1. **WL Bike Rental** [5 Bilder] — „Scroll-Story für den E-Bike-Verleih in
+   Wusterhusen: eine Radtour von Wald über Bodden bis Strand, jedes Angebot eine
+   Station. Gebaut in Next.js — jeder Scroll-Zustand per Playwright-Screenshot
+   verifiziert." *(belegt: README `npm run verify`)*
+2. **Nordwind Studio** [1 Bild + Repo] — „Klickbares Cockpit für einen
+   Print-on-Demand-Shop auf Shopify: sieben KI-Agenten von Designfreigabe bis
+   USt-Voranmeldung — als Demo im Browser bedienbar, ohne Server. 96 Belege
+   treffen die GuV auf 0,00 Euro genau." *(Korrektur v4.2: ehrlich als Demo;
+   96/0,00 belegt in `demo/README.md`)*
 
 ### 5 · Keel — „Regeln statt Vertrauen."
 **Copy (Brücke zur Methodik):** „Was zählt wirklich — in Code gegossen:
-Wächter-Hooks, Dauer-Regeln und ein eigenes Mess-Dashboard; die Disziplin steckt
-im Code, nicht im Prompt. Die Oberfläche lässt sich ohne Anmeldung durchklicken,
-der Bausatz installiert sich mit einem Befehl."
-1. **Keel Showcase** [3 Bilder + LIVE] — Zweizeiler unverändert (v2).
-2. **Keel-Harness** [1 Bild + Repo] — Zweizeiler unverändert (v2).
-3. **FlowVoice** [1 Bild] — Zweizeiler unverändert (v2).
+Wächter-Hooks, Dauer-Regeln und ein eigenes Mess-Dashboard; Disziplin, die
+erzwungen wird statt erhofft. Die Oberfläche lässt sich ohne Anmeldung
+durchklicken, der Bausatz zieht mit einem Satz an den Agenten ein."
+*(Korrektur v4.2: kein Widerspruch mehr zu Prompt/Context Engineering als
+Disziplinen; Install-Behauptung an README angepasst)*
+1. **Keel Showcase** [3 Bilder + LIVE] — „Die Keel-Oberfläche zum Durchklicken:
+   Website-Builder, Social Media, Commerce. Ohne Server, ohne Anmeldung — live
+   auf keel-showcase.vercel.app." *(Module belegt: README-Tabelle)*
+2. **Keel-Harness** [1 Bild + Repo] — „Ein Bausatz, der KI-Agenten diszipliniert
+   arbeiten lässt: Wächter-Hooks, Dauer-Regeln, Mess-Dashboard. Ein Satz an den
+   Agenten installiert ihn in jeden Projektordner." *(Korrektur v4.2: README
+   sagt „schreib dazu: Installiere diesen Harness." — kein Befehl)*
+3. **FlowVoice** [1 Bild] — „Diktat für Windows: Hotkey drücken, sprechen — der
+   Text steht im aktiven Fenster. Vier Erkennungs-Engines zur Wahl, von komplett
+   lokal bis Groq." *(belegt: 4 Dateien in `V3/engines/`)*
 
 ### 6 · Profil — „Muster erkennen. Systeme bauen."
 **Arbeitsweise (v3-Kern zurückgeholt):** „Ich denke in Systemen, nicht in
@@ -134,7 +160,27 @@ wir über deinen. LinkedIn, GitHub coastcoder439, oder der Lebenslauf als PDF."
 1. Basis `neubau/app` (Next.js 16); chirurgischer Umbau; Inhalte aus Daten-Dateien.
 2. Feste Nav ab Sekunde 1 · Skip-Link · `prefers-reduced-motion`-Fallback.
 
-## Offene Owner-Fragen
+## Fakten-Checkliste — bestätigt nur der Owner [neu v4.2]
+
+Diese Aussagen stehen im Storyboard und sind aus keinem Repo prüfbar. Je Punkt:
+JA, oder die korrekte Fassung.
+1. **F1 Hero:** „Die Mitgründung einer NGO brachte mich zum KI-Systembau" —
+   stimmt so?
+2. **F2 Oasis:** Simulator von dir entwickelt, mit Hilfe der Orga — trägt die
+   Produktzeile zu Recht kein „wir"?
+3. **F3 Team-Formel:** „gebaut von mir, getragen vom Team" — richtig, oder wie
+   soll der Team-Anteil heißen?
+4. **F4 CRM + Drive:** allein gebaut oder mit anderen?
+5. **F5 Kundenlage:** WL Bike Rental = echter, bezahlter Kundenauftrag mit
+   Nenn-Erlaubnis (Wusterhusen)? Nordwind = eigenes Projekt ohne Kunde — darf es
+   unter „Für Kunden gebaut." stehen, oder Sektion umbenennen (z. B. „Im
+   Einsatz.")?
+6. **F6 Profil:** „Ich komme aus dem Vertrieb" und „Vertrieb, Verein, Verleih,
+   Versand" — stimmen beide als Selbstbeschreibung?
+7. **F7 Funnels-Box:** Es gibt noch keinen gelieferten Funnel als Beleg — Box als
+   Angebot ohne Referenz in Ordnung, oder raus?
+
+## Offene Owner-Fragen (unverändert)
 
 1. **E-Mail** im Abschluss — oder nur LinkedIn/GitHub/CV (aktueller Stand)?
 2. **Private Repos** (oasis, wee-crm, voiceai, wl-bikerental): öffentlich stellen
