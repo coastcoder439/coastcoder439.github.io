@@ -1,135 +1,141 @@
-# Storyboard v2 — Klare Kante (Portfolio-Neubau)
+# Storyboard v3 — Klare Kante (Portfolio-Neubau)
 
-> Gate-Dokument, ersetzt v1 (Tauchfahrt — verworfen [Owner 01.09.2026]; v1 liegt in
-> git, Commit 3858077). Gebaut wird erst nach Owner-OK. Grundlage: Owner-Diagnose
-> 01.09. (Vorversion = richtige Basis, ABER Header zu verspielt, Texte zu viele/zu
-> schlecht/zu kindlich, 3 Slider, kein Ablauf) + Nord-Ton-Workflow (Ton aus alter
-> Live-Seite und wl-bikerental destilliert, 2 Texter, Ton-Kritiker waehlte).
+> Gate-Dokument, ersetzt v2 (git: b73f866; v1 Tauchfahrt: 3858077). Gebaut wird
+> erst nach Owner-OK. Neu in v3 [Owner-Input 01.09. abends]: Hero in Richtung
+> „Technik mit Auftrag." mit erzählender Subline (Wege-Satz), die 3D-Boxen bleiben
+> und tragen die vier Engineering-Disziplinen, Profil-Sektion mit holistischer
+> Sichtweise/Mustererkennung/Praxisbreite, Zertifikate ehrlich als „laufend"
+> [Owner-Entscheid 01.09.].
 
 ## Das Konzept in drei Sätzen
 
 **Problem:** Die Vorversion hat Qualität und Motion, aber einen verspielten Header,
-zu viele kindlich-generische Texte, drei redundante Slider und keinen Ablauf.
-**Intent:** Dieselbe visuelle Qualität mit dem Ton der alten Live-Seite und von
-WL Bike Rental — knapp, direkt, norddeutsch — und einem Ablauf, der führt.
-**Goal:** Fünf Abschnitte, jedes Produkt genau einmal als Showcase-Block, jeder
-Text besteht den Test „könnte das auf einer fremden Seite stehen?" mit Nein.
+generische Texte, drei Slider und keinen Ablauf; meine v2-Hero-Vorschläge waren
+Ansagen ohne Seele. **Intent:** Dieselbe visuelle Qualität mit Sätzen, die
+Geschichte erzählen — Auftrag und Weg — im Ton der alten Seite. **Goal:** Sieben
+Abschnitte, jedes Produkt genau einmal, jeder Satz trägt Haltung oder einen Fakt.
 
-## Der Ton-Kontrakt (destilliert aus deinen eigenen Seiten)
+## Der Ton-Kontrakt (unverändert aus v2)
 
-1. Ein Gedanke pro Satz; Zwei-Wort-Sätze tragen Überschriften („Technik mit Auftrag.").
+1. Ein Gedanke pro Satz; Zwei-Wort-Sätze tragen Überschriften.
 2. Haltung über Kontrast („nicht X, sondern Y"), nie über Selbstlob.
-3. Bedienschritte und Ergebnisse statt Eigenschaftswörter („F8 drücken, sprechen,
-   und der Text steht im Feld.").
-4. Zahlen tragen das Versprechen, ehrliche Einschränkung direkt daneben.
+3. Bedienschritte und Ergebnisse statt Eigenschaftswörter.
+4. Zahlen tragen das Versprechen, ehrliche Einschränkung daneben.
 5. Verboten: Emojis, Superlative, Denglisch-Buzzwords, Ausrufezeichen,
-   Weichspüler-Konjunktiv, Wortspiel-Jingles, kumpelhafte Anbiederung.
+   Weichspüler-Konjunktiv, Wortspiel-Jingles.
 
-## Der neue Hero (Empfehlung + 2 Alternativen — du wählst)
+## Der Hero — Richtung „Technik mit Auftrag." (du wählst)
 
-**Empfehlung:** „**Nicht reden. Bauen.**"
-Subline: „Acht Systeme auf dieser Seite, vom Diktat-Hotkey bis zur begehbaren
-Aquaponik-Simulation." · Bild: Headline raumhoch in Glanz-Typografie (text-shiny
-bleibt), ein Lichtstreif zieht ruhig über die Buchstaben, dahinter abgedunkelt das
-drehende Gewächshaus-Modell aus dem Oasis Simulator. Keine Emojis, keine Icons in
-Wörtern.
+**Empfehlung:** „**Technik mit Auftrag.**" — dein eigener Satz von der alten Seite,
+er hat sich bewährt und trägt die ganze Geschichte (WEE ist der Auftrag).
+Subline (dein Wege-Satz): „Wege zu deinem Ziel gibt es viele. Ich finde den
+richtigen für dich — und gehe ihn gemeinsam mit dir."
+Bild: Headline raumhoch in Glanz-Typografie, ein ruhiger Lichtstreif; dahinter
+abgedunkelt das drehende Gewächshaus-Modell aus dem Oasis Simulator.
 
-**Alternative 1:** „**Früher verkauft. Heute gebaut.**" — Subline: „Ich rede nicht
-über KI, sondern baue damit — acht Projekte auf dieser Seite belegen das." ·
-„Früher verkauft." blendet matt zurück, „Heute gebaut." schiebt sich mit
-wandernder Glanzkante darüber.
+**Alternative 1:** „**Kein Werkzeug ohne Warum.**" — gleiche DNA (Auftrag vor
+Technik), Kontrast-Formel; Subline: der Wege-Satz.
 
-**Alternative 2:** „**Gebaut, geprüft, live.**" — Subline: „96 Belege auf 0,00 Euro
-genau, jeder Scroll-Zustand per Screenshot verifiziert — Prüfung ist Teil des
-Baus." · Die drei Wörter rasten nacheinander wie Prüfschritte ein.
+**Alternative 2:** „**Technik, die ankommt.**" — lakonischer Doppelsinn
+(funktioniert + erreicht Menschen); Subline: der Wege-Satz.
 
-## Der Ablauf — fünf Abschnitte, finale Texte
+Subline-Feinschliff zur Wahl: dein Original („…für dich und gehe ihn gemeinsam mit
+dir") oder gestrafft („Ich finde den richtigen — und gehe ihn mit dir."). Beides
+liegt im Ton; das Original ist wärmer, die Straffung härter.
+
+## Der Ablauf — sieben Abschnitte
 
 ### 1 · Hero
-Gewählte Variante (oben). Feste Nav ab Sekunde 1: Start · Warum · Produkte ·
-Kontakt · CV-Button.
+Gewählte Variante. Feste Nav ab Sekunde 1: Start · Warum · Produkte · Profil ·
+Kontakt · CV-Button. Preloader unter 1,5 s mit der Hero-Headline statt „Hallo".
 
-### 2 · Warum — „Kein Auftrag. Ein Antrieb."
+### 2 · Kernfokus — die vier Disziplinen (die 3D-Boxen bleiben)
+Die 3D-Boxen der Vorversion (KERNFOKUS-Element) bleiben als Bauteil — Inhalt neu,
+VIER Boxen. Kurzzeilen-Entwurf (Feinschliff im Bau, jede Zeile Ton-Kontrakt):
+1. **Prompt Engineering** — „Anweisungen, die ein Modell wirklich befolgt —
+   präzise statt blumig."
+2. **Context Engineering** — „Das richtige Wissen zur richtigen Zeit im Fenster —
+   nicht alles auf einmal."
+3. **Harness-Engineering** — „Der Rahmen, der Agenten ehrlich hält: Wächter,
+   Gates, Messwerte."
+4. **Skill Engineering** — „Wiederkehrendes Können als abrufbares Paket — einmal
+   sauber gebaut, immer verfügbar."
+
+### 3 · Warum — „Kein Auftrag. Ein Antrieb."
 „World Eden Era ist eine gemeinnützige UG für nachhaltige Ernährung durch
 Aquaponik. Dafür baue ich — drei der Werkzeuge auf dieser Seite sind direkt dafür
 entstanden."
-Direkt darunter die drei WEE-Werkzeuge als Showcase-Blöcke (kein Slider):
-1. **Oasis Simulator** [2 Bilder + LIVE world-eden-era.org] — „Die Aquaponik-Oase
-   als begehbare 3D-Simulation im Browser, mit Wetter-Layer. Das Gewächshaus kommt
-   als 272-MB-Modell aus Blender — live auf world-eden-era.org."
-2. **WEE CRM** [ehrlich ohne Bild; Screenshot beschaffbar] — „Fundraising-CRM der
-   gUG: Kontakte, Spenden, CSV-Import, Audit-Log. React 19, Supabase mit
-   Row-Level-Security — kein Screenshot, dafür Tests."
-3. **Drive-Automatisierung** [ehrlich als Text] — „Der Vereins-Drive gehorcht einer
-   YAML als einziger Wahrheitsquelle. Python verteilt die Ablage-Regeln und meldet
-   Drift — 233 Dateien nach Plan migriert."
+1. **Oasis Simulator** [2 Bilder + LIVE] — „Die Aquaponik-Oase als begehbare
+   3D-Simulation im Browser, mit Wetter-Layer. Das Gewächshaus kommt als
+   272-MB-Modell aus Blender — live auf world-eden-era.org."
+2. **WEE CRM** [ehrlich ohne Bild] — „Fundraising-CRM der gUG: Kontakte, Spenden,
+   CSV-Import, Audit-Log. React 19, Supabase mit Row-Level-Security — kein
+   Screenshot, dafür Tests."
+3. **Drive-Automatisierung** [ehrlich als Text] — „Der Vereins-Drive gehorcht
+   einer YAML als einziger Wahrheitsquelle. Python verteilt die Ablage-Regeln und
+   meldet Drift — 233 Dateien nach Plan migriert."
 
-### 3 · Kundenprojekte — „Für Kunden gebaut."
+### 4 · Kundenprojekte — „Für Kunden gebaut."
 „Eine Scroll-Story für den E-Bike-Verleih in Wusterhusen, ein Commerce-Cockpit mit
 sieben KI-Agenten für einen Print-on-Demand-Shop. Beides geprüft — jeder
 Scroll-Zustand per Screenshot, jede Zahl bis auf 0,00 Euro in der GuV."
-1. **WL Bike Rental** [5 Bilder] — „Scroll-Story für den E-Bike-Verleih in
-   Wusterhusen: eine Radtour von Wald über Bodden bis Strand, jedes Angebot eine
-   Station. Gebaut in Next.js — jeder Scroll-Zustand per Playwright-Screenshot
-   verifiziert."
-2. **Nordwind Studio** [1 Bild + Repo] — „Sieben KI-Agenten führen einen
-   Print-on-Demand-Shop auf Shopify — von der Designfreigabe bis zur
-   USt-Voranmeldung. 96 Belege treffen die GuV auf 0,00 Euro genau."
+1. **WL Bike Rental** [5 Bilder] — Zweizeiler wie v2.
+2. **Nordwind Studio** [1 Bild + Repo] — Zweizeiler wie v2.
 
-### 4 · Keel — „Regeln statt Vertrauen."
-„Wächter-Hooks, Dauer-Regeln und ein eigenes Mess-Dashboard — die Disziplin steckt
-im Code, nicht im Prompt. Die Oberfläche lässt sich ohne Anmeldung durchklicken,
-der Bausatz installiert sich mit einem Befehl."
-1. **Keel Showcase** [3 Bilder + LIVE keel-showcase.vercel.app] — „Die
-   Keel-Oberfläche zum Durchklicken: Website-Builder, Social Media, Commerce. Ohne
-   Server, ohne Anmeldung — live auf keel-showcase.vercel.app."
-2. **Keel-Harness** [1 Bild + Repo] — „Ein Bausatz, der KI-Agenten diszipliniert
-   arbeiten lässt: Wächter-Hooks, Dauer-Regeln, Mess-Dashboard. Ein Befehl
-   installiert ihn in jeden Projektordner."
-3. **FlowVoice** [1 Bild; Overlay-Screenshot beschaffbar] — „Diktat für Windows:
-   Hotkey drücken, sprechen — der Text steht im aktiven Fenster. Vier
-   Whisper-Engines zur Wahl, von komplett lokal bis Groq."
+### 5 · Keel — „Regeln statt Vertrauen."
+Copy und drei Produkte (Showcase [LIVE], Harness, FlowVoice) unverändert aus v2.
 
-### 5 · Für wen + Abschluss
-**„Für wen das passt."** — „Für Teams, die kein Konzeptpapier brauchen, sondern ein
-laufendes System. Ich komme aus dem Vertrieb, also rede ich in Ergebnissen —
-Details im Lebenslauf, Code auf GitHub." + CV-Download-Button.
-**„Auf ein Gespräch."** — „Schreiben Sie über LinkedIn, prüfen Sie den Code unter
-GitHub coastcoder439 — oder laden Sie den Lebenslauf als PDF herunter."
+### 6 · Profil — „Muster erkennen. Systeme bauen."
+**Arbeitsweise (Entwurf):** „Ich denke in Systemen, nicht in Einzelteilen — Muster
+aus einem Bereich lösen Probleme im nächsten. Vertrieb, Verein, Verleih, Versand:
+vier Welten, ein Handwerk."
+**Zertifikate — ehrlich als laufend [Owner-Entscheid 01.09.]:**
+„Vier Nachweise sind in Arbeit — hier stehen sie, sobald sie bestanden und online
+prüfbar sind." Vier Karten mit Status-Label „laufend":
+1. EU AI Act Essentials (KI-Campus)
+2. SC-900 Security Fundamentals (Microsoft)
+3. ENISA-Grundlagen (EU Academy)
+4. Cybersecurity Fundamentals (IBM)
+Beim Bestehen wird nur das Label getauscht und das Nachweis-PDF verlinkt
+(`karriereplanung/zertifikate/nachweise/`).
+**Für wen:** „Für Teams, die kein Konzeptpapier brauchen, sondern ein laufendes
+System. Ich komme aus dem Vertrieb, also rede ich in Ergebnissen — Details im
+Lebenslauf, Code auf GitHub." + CV-Download.
 
-## Was von der Vorversion bleibt (Motion und Gefühl)
+### 7 · Abschluss — „Auf ein Gespräch."
+„Schreiben Sie über LinkedIn, prüfen Sie den Code unter GitHub coastcoder439 —
+oder laden Sie den Lebenslauf als PDF herunter."
 
-1. Spotlight-Hintergrund, Punktraster, gestaffelte GSAP/Framer-Reveals,
-   Glanz-Typografie (`text-shiny`), Dark/Light-Umschalter.
-2. Der Preloader bleibt als Moment — Vorschlag: statt „Hallo" die gewählte
-   Hero-Headline als kurzer Auftakt (unter 1,5 s).
-3. RAUS: HeroVisual mit Emoji-Icons, alle drei Slider (ScrollAdventure,
-   ArgentLoopInfiniteSlider, doppelte StatsSection), Follow-Cursor-Spielereien.
+## Was von der Vorversion bleibt / rausfliegt
 
-## Technik
+1. BLEIBT: Spotlight, Punktraster, GSAP/Framer-Reveals, Glanz-Typografie,
+   Dark/Light, Preloader-Moment, **die 3D-Boxen (KERNFOKUS-Element)**.
+2. RAUS: Emoji-Hero, alle drei Slider, doppelte StatsSection,
+   Follow-Cursor-Spielereien, jeder austauschbare Text.
 
-Basis bleibt `neubau/app` (Next.js 16, läuft). Der Umbau ist chirurgisch: neuer
-Hero ersetzt `HeroVisual`, die Slider-Sektionen fliegen aus `page.tsx`, die
-Produkt-Blöcke rendern aus einer Daten-Datei (`src/data/portfolio.ts`), Texte wie
-oben. Kein Strudel, kein Paradigmen-Wechsel — deutlich kleinerer Eingriff als v1.
+## Technik (unverändert v2)
+
+Basis `neubau/app` (Next.js 16, läuft); chirurgischer Umbau: Hero neu, Slider raus,
+Produkte/Boxen/Zertifikate aus Daten-Dateien, Texte wie oben.
 
 ## Schnellspur (Pflicht, unverändert)
 
-1. Feste Nav ab Sekunde 1, jeder Punkt springt direkt.
-2. Skip-Link „Direkt zu Lebenslauf & Kontakt" als erstes fokussierbares Element.
+1. Feste Nav ab Sekunde 1.
+2. Skip-Link „Direkt zu Lebenslauf & Kontakt".
 3. `prefers-reduced-motion`: gleiche Inhalte ohne Animationsfahrten.
 
-## Offene Owner-Fragen (blockieren das OK nicht)
+## Offene Owner-Fragen
 
-1. **Hero-Wahl:** Empfehlung, Alternative 1 oder 2?
-2. **E-Mail** im Abschluss — oder bewusst nur LinkedIn/GitHub/CV (so steht es jetzt)?
-3. **Private Repos** (oasis, wee-crm, voiceai, wl-bikerental): öffentlich stellen
-   oder ohne Repo-Link zeigen?
+1. **Hero-Wahl:** „Technik mit Auftrag." (Empfehlung) — oder Alternative 1 / 2?
+2. **Subline:** dein Original oder die Straffung?
+3. **E-Mail** im Abschluss — oder nur LinkedIn/GitHub/CV (aktueller Stand)?
+4. **Private Repos** öffentlich stellen oder ohne Repo-Link zeigen?
 
 ## Abnahme
 
-1. Owner-OK zu Hero-Wahl, Ablauf und Texten.
-2. Bau in Abschnitten 1→5; nach jedem Abschnitt Live-Abnahme im Browser durch den
-   Owner + Screenshot hell/dunkel.
-3. Kritiker-Gauntlet vor Ship: gegen alte Live-Seite UND gegen dieses Storyboard
-   (jede Zeile gegen den Ton-Kontrakt).
+1. Owner-OK zu Hero, Subline, Boxen-Texten und Ablauf.
+2. Bau in Abschnitten 1→7; je Abschnitt Live-Abnahme im Browser + Screenshot
+   hell/dunkel.
+3. Kritiker-Gauntlet vor Ship: jede Zeile gegen Ton-Kontrakt und alte Live-Seite;
+   Zertifikats-Sektion zusätzlich gegen `zertifikate.md` (nichts Unbestandenes
+   ohne „laufend"-Label).
