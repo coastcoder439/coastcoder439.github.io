@@ -28,20 +28,23 @@ Abschnitte, jedes Produkt genau einmal, jeder Satz trägt Haltung oder einen Fak
 
 **Empfehlung:** „**Technik mit Auftrag.**" — dein eigener Satz von der alten Seite,
 er hat sich bewährt und trägt die ganze Geschichte (WEE ist der Auftrag).
-Subline (dein Wege-Satz): „Wege zu deinem Ziel gibt es viele. Ich finde den
-richtigen für dich — und gehe ihn gemeinsam mit dir."
+Subline (angepasst, dein Wege-Motiv als Brücke Auftrag→Weg): „Dein Ziel ist der
+Auftrag. Wege dorthin gibt es viele — ich finde den richtigen und gehe ihn
+gemeinsam mit dir."
 Bild: Headline raumhoch in Glanz-Typografie, ein ruhiger Lichtstreif; dahinter
 abgedunkelt das drehende Gewächshaus-Modell aus dem Oasis Simulator.
 
 **Alternative 1:** „**Kein Werkzeug ohne Warum.**" — gleiche DNA (Auftrag vor
-Technik), Kontrast-Formel; Subline: der Wege-Satz.
+Technik), Kontrast-Formel. Subline (Brücke Warum→Weg): „Erst dein Warum, dann
+mein Werkzeug — und den Weg dazwischen gehen wir gemeinsam."
 
 **Alternative 2:** „**Technik, die ankommt.**" — lakonischer Doppelsinn
-(funktioniert + erreicht Menschen); Subline: der Wege-Satz.
+(funktioniert + erreicht Menschen). Subline (doppelt ihr „ankommen"): „Wege zu
+deinem Ziel gibt es viele. Ich finde den, der ankommt — und gehe ihn gemeinsam
+mit dir."
 
-Subline-Feinschliff zur Wahl: dein Original („…für dich und gehe ihn gemeinsam mit
-dir") oder gestrafft („Ich finde den richtigen — und gehe ihn mit dir."). Beides
-liegt im Ton; das Original ist wärmer, die Straffung härter.
+Jede Subline ist an ihre Headline gebaut [Owner-Korrektur 01.09.: Subline muss
+zur Empfehlung passen] — das Wege-Motiv bleibt in allen drei der Kern.
 
 ## Der Ablauf — sieben Abschnitte
 
