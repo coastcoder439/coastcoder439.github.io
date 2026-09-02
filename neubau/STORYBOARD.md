@@ -1,5 +1,11 @@
 # Storyboard v4.6 — Klare Kante (Portfolio-Neubau)
 
+> **GATE PASSIERT — Owner-Gesamt-OK 02.09.2026 („jo!").** Owner-Freigabe: fehlende
+> Vercel-Showcases per Subagenten in den Projekten nachziehen; WEE CRM und
+> Oasis-Simulator mit Goal-Prompt. Damit bekommt auch der Oasis-**Simulator**
+> selbst einen Vercel-Showcase (Matrix-Zeile wird nach dem Deploy mit URL
+> ergänzt). Bestehendes Vercel-Projekt wl-bikerental wird nur geprüft, nie neu
+> deployt.
 > Gate-Dokument. Historie: v1 Tauchfahrt (verworfen) · v2 Nord-Ton · v3
 > Owner-Input · v4 Chronologie · v4.1 Doppel-Boxen · v4.2 Fakten · v4.3
 > Owner-Antworten · v4.4 Kritiker-Panel · v4.5 Abgleich aller Owner-Nachrichten

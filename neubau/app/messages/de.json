@@ -1,0 +1,493 @@
+{
+  "navigation": {
+    "home": "Start",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "experience": "Erfahrung",
+    "skills": "Kompetenzen",
+    "achievements": "Meilensteine",
+    "blog": "Notizen",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "resume": "Lebenslauf",
+    "tools": "Werkzeuge",
+    "menu": {
+      "achievements": "Meilensteine",
+      "achievementsDesc": "Veröffentlichungen und Produktstände",
+      "skills": "Kompetenzen",
+      "skillsDesc": "Technologien und Werkzeuge",
+      "experience": "Erfahrung",
+      "experienceDesc": "Mein Weg vom Vertrieb zum Systembauer",
+      "projects": "Projekte",
+      "projectsDesc": "Acht echte Produkte im Überblick",
+      "blog": "Notizen",
+      "blogDesc": "Einblicke in Produkte und Technik",
+      "gallery": "Galerie",
+      "galleryDesc": "Echte Oberflächen aus den Repositories"
+    },
+    "shortcuts": {
+      "volume1": "Band I: Identität",
+      "volume2": "Band II: Erfahrung",
+      "volume3": "Band III: Kompetenzen",
+      "volume4": "Band IV: Produkte",
+      "preview": "Vorschaumodus",
+      "idRef": "REFERENZ"
+    }
+  },
+  "hero": {
+    "greeting": "Willkommen in meinem digitalen Arbeitsraum",
+    "subtitle": "KI-Systeme, Automatisierung, Webentwicklung",
+    "cta": {
+      "primary": "Projekte entdecken",
+      "secondary": "Auf ein Gespräch",
+      "exploreMore": "Mehr entdecken"
+    },
+    "badge": "Offen für Austausch",
+    "scroll": "Weiter scrollen",
+    "role": "Fullstack-Entwickler & KI-Systembauer",
+    "description": "Ich baue belastbare <span class='text-primary font-semibold'>KI-Systeme</span>, <span class='text-secondary font-semibold'>Automatisierungen</span> und <span class='text-accent font-semibold'>Webprodukte</span>."
+  },
+  "about": {
+    "title": "Über mich",
+    "subtitle": "Vom Vertrieb zum Systembauer",
+    "description": "Ich rede nicht über KI, ich baue damit. Mein Fokus liegt auf nutzbaren Systemen, nachvollziehbaren Abläufen und echten Produktoberflächen.",
+    "stats": {
+      "experience": "Jahre Aufbau",
+      "projects": "Echte Produkte",
+      "certifications": "Veröffentlichungen",
+      "competitions": "Live-Systeme"
+    },
+    "identity": "Identität verbunden",
+    "architecting": "Ich entwickle",
+    "digitalReality": "digitale Systeme",
+    "leadIn": {
+      "label": "WAS ICH BAUE",
+      "tagline": "KERNFOKUS",
+      "headlineAI": "Angewandte KI.",
+      "headlineData": "Klare Abläufe.",
+      "headlineSoftware": "Belastbare Software",
+      "thesis": "Ich baue intelligente Systeme und die <span class='text-primary italic font-serif-elegant font-normal'>Infrastruktur</span>, die sie im Alltag verlässlich macht.",
+      "scope": "Mein Fokus: KI-Systeme, Automatisierung und Webentwicklung mit echten Repositories, geprüften Oberflächen und nachvollziehbaren Ergebnissen.",
+      "bridging": "Von der Idee zum nutzbaren System.",
+      "integration": "Ich verbinde Produktoberfläche, Backend, Daten und Automatisierung zu einem belastbaren Ganzen.",
+      "signature": "Leon",
+      "role": "Fullstack-Entwickler & KI-Systembauer",
+      "aboutMe": "Über mich",
+      "scroll": "Weiter entdecken",
+      "shortStory": "Meine kurze Geschichte"
+    },
+    "coreEngineering": {
+      "label": "Systementwicklung",
+      "title": "Echter <span class='text-primary italic font-serif font-light lowercase'>Code.</span> <br /> Belegbare <span class='italic font-serif font-light text-foreground'>Produkte.</span>",
+      "p1": "Ich entwickle KI- und Automatisierungssysteme mit Python, lokalen Modellen, APIs und kontrollierten Abläufen.",
+      "p2": "Die Produktoberflächen entstehen mit TypeScript, React und Next.js und werden als nutzbare Systeme gedacht.",
+      "p3": "Repositories, Builds und echte Screenshots belegen den jeweiligen Stand.",
+      "gpa": "Automatisierte Elemente",
+      "projects": "Echte Produkte",
+      "years": "Live-Systeme"
+    },
+    "emergingResearch": {
+      "label": "Nächste Ausbaustufe",
+      "title": "AGENTENSYSTEME <span class='italic font-serif font-light text-primary lowercase'>&</span> AUTOMATISIERUNG",
+      "agentic": {
+        "title": "KONTROLLIERTE AGENTEN",
+        "desc": "Keel-Harness macht Ausführung, Status und Zugriff lokaler Agentensysteme sichtbar und nachvollziehbar."
+      },
+      "web3": {
+        "title": "PRODUKTIONSNAHE WORKFLOWS",
+        "desc": "Automatisierung wird mit klaren Quellen, Prüfphasen und belastbaren Abschlussständen umgesetzt."
+      }
+    },
+    "profile": {
+      "title": "Systeme bauen, <br /> die im Alltag bestehen.",
+      "narrativeLabel": "Kernidee",
+      "narrative": "Vom Vertrieb zum Systembauer: Ich übersetze reale Aufgaben in Software, Automatisierung und KI-gestützte Arbeitsabläufe.",
+      "narrative2": "Meine Arbeit verbindet pragmatische Produktentscheidungen mit sauberer technischer Umsetzung und ehrlicher Dokumentation.",
+      "pillars": {
+        "reliable": {
+          "title": "Belastbar entworfen",
+          "desc": "Mit klaren Zuständen, Zugriffen und Fehlerwegen."
+        },
+        "optimized": {
+          "title": "Nutzbar gebaut",
+          "desc": "Vom Repository bis zur echten Produktoberfläche."
+        },
+        "maintainable": {
+          "title": "Nachvollziehbar",
+          "desc": "Entscheidungen und Ergebnisse bleiben prüfbar."
+        },
+        "evolvable": {
+          "title": "Weiterentwickelbar",
+          "desc": "Architekturen wachsen mit Produkt und Aufgabe."
+        }
+      }
+    },
+    "closing": {
+      "experience": {
+        "label": "HINTERGRUND",
+        "title1": "MEIN",
+        "title2": "WEG",
+        "viewMore": "Erfahrung ansehen"
+      },
+      "projects": {
+        "label": "PORTFOLIO",
+        "title1": "ECHTE",
+        "title2": "PRODUKTE",
+        "viewMore": "Alle Projekte"
+      },
+      "experiencesList": [
+        {
+          "company": "Keel",
+          "role": "FULLSTACK-ENTWICKLER & KI-SYSTEMBAUER",
+          "desc": "Konzeption und Umsetzung echter KI-, Automatisierungs- und Webprodukte."
+        }
+      ],
+      "projectsList": [
+        {
+          "title": "Oasis Simulator",
+          "desc": "Interaktive Klimasimulation mit Karten-, Wetter- und Szenariolayern."
+        },
+        {
+          "title": "Keel-Harness",
+          "desc": "Lokales Agenten-Harness mit echtem Dashboard und Zugriffsschutz."
+        },
+        {
+          "title": "Keel Showcase",
+          "desc": "Live-Suite für Website-, Social- und Commerce-Oberflächen."
+        },
+        {
+          "title": "E-Bike-Vermietung",
+          "desc": "Buchungsstrecke und operative Zentrale in einem Produktfluss."
+        },
+        {
+          "title": "FlowVoice",
+          "desc": "Windows-Sprachassistent mit lokaler Verarbeitung und Wellenansicht."
+        }
+      ],
+      "discoverMore": "Mehr entdecken"
+    }
+  },
+  "projects": {
+    "title": "Projekte",
+    "subtitle": "Acht echte Produkte mit belegtem Repository-Material",
+    "search": "Projekte durchsuchen …",
+    "viewAll": "Alle Projekte",
+    "viewProject": "Projekt ansehen",
+    "liveDemo": "Live ansehen",
+    "sourceCode": "Quellcode",
+    "techStack": "Technologien",
+    "tools": "Werkzeuge",
+    "highlights": "Höhepunkte",
+    "challenges": "Herausforderungen",
+    "filters": {
+      "all": "Alle",
+      "ongoing": "In Entwicklung",
+      "completed": "Abgeschlossen"
+    },
+    "sections": {
+      "missionBrief": "Projektauftrag",
+      "keyFeatures": "Kernfunktionen",
+      "engineeringChronicles": "Entwicklung",
+      "visualGallery": "Echte Produktansichten",
+      "installation": "Installation",
+      "projectAccess": "Projektzugang",
+      "technologies": "Technologien",
+      "contents": "Inhalt",
+      "moreProjects": "Weitere Projekte",
+      "backToProjects": "Zurück zu den Projekten",
+      "viewMore": "Mehr anzeigen",
+      "viewLess": "Weniger anzeigen",
+      "solution": "Lösung",
+      "liveDemo": "Live ansehen",
+      "sourceCode": "Quellcode"
+    },
+    "status": {
+      "ongoing": "Aktive Entwicklung",
+      "completed": "Abgeschlossenes Projekt"
+    },
+    "metadata": {
+      "role": "Rolle",
+      "timeline": "Zeitraum",
+      "team": "Team",
+      "techStack": "Technologien",
+      "roleValue": "Fullstack-Entwicklung",
+      "teamValue": "Eigenständig",
+      "techStackValue": "{count} Technologien"
+    }
+  },
+  "experience": {
+    "title": "Erfahrung",
+    "subtitle": "Mein Weg vom Vertrieb zum Systembauer",
+    "showDetail": "Details anzeigen",
+    "hideDetail": "Details ausblenden",
+    "tasks": "AUFGABEN",
+    "learned": "ERKENNTNISSE",
+    "impact": "WIRKUNG",
+    "present": "Heute",
+    "responsibilities": "Verantwortung",
+    "skills": "Eingesetzte Kompetenzen",
+    "month": "Monat",
+    "months": "Monate",
+    "year": "Jahr",
+    "years": "Jahre",
+    "type": {
+      "full-time": "Vollzeit",
+      "part-time": "Teilzeit",
+      "internship": "Praktikum",
+      "freelance": "Freiberuflich",
+      "contract": "Projektvertrag",
+      "apprenticeship": "Ausbildung",
+      "volunteer": "Ehrenamtlich",
+      "self-employed": "Selbstständig"
+    },
+    "filters": {
+      "all": "Alle",
+      "latest": "Neueste",
+      "oldest": "Älteste",
+      "ongoing": "Aktuell"
+    },
+    "education": {
+      "title": "Ausbildung"
+    }
+  },
+  "expertise": {
+    "title": "Kernkompetenzen",
+    "subtitle": "Technologien und Methoden für belastbare digitale Produkte",
+    "dragHint": "Ziehen oder scrollen"
+  },
+  "skills": {
+    "title": "Kompetenzen & Werkzeuge",
+    "subtitle": "Technologien und Methoden aus den gezeigten Produkten",
+    "hard": "Fachkompetenzen",
+    "soft": "Arbeitsweise",
+    "technical": "Technische Praxis",
+    "tools": "Werkzeuge & Software",
+    "pillars": "Schwerpunkte",
+    "achievements": "Belegte Ergebnisse",
+    "level": {
+      "beginner": "Grundlagen",
+      "intermediate": "Fortgeschritten",
+      "advanced": "Sehr sicher",
+      "expert": "Experte"
+    }
+  },
+  "achievements": {
+    "title": "Meilensteine",
+    "subtitle": "Veröffentlichte und belegte Produktstände",
+    "search": "Meilensteine durchsuchen …",
+    "viewCredential": "Nachweis ansehen",
+    "category": {
+      "all": "Alle",
+      "certification": "Zertifizierung",
+      "award": "Auszeichnung",
+      "publication": "Veröffentlichung",
+      "competition": "Wettbewerb",
+      "recognition": "Anerkennung"
+    },
+    "sort": {
+      "newest": "Neueste",
+      "oldest": "Älteste"
+    },
+    "stats": {
+      "total": "Meilensteine gesamt",
+      "awards": "Auszeichnungen",
+      "certifications": "Zertifizierungen"
+    }
+  },
+  "contact": {
+    "title": "Auf ein Gespräch",
+    "subtitle": "Lass uns über ein System sprechen, das wirklich gebraucht wird.",
+    "form": {
+      "name": "Dein Name",
+      "email": "Deine E-Mail",
+      "subject": "Thema",
+      "message": "Deine Nachricht",
+      "messagePlaceholder": "Worum geht es bei deinem Projekt?",
+      "send": "Nachricht senden",
+      "submit": "NACHRICHT SENDEN",
+      "sending": "WIRD GESENDET …",
+      "sent": "GESENDET",
+      "success": "Nachricht wurde gesendet.",
+      "error": "Das hat nicht funktioniert. Bitte versuche es erneut."
+    },
+    "social": {
+      "title": "Direkt verbinden"
+    },
+    "faq": {
+      "title": "Häufige Fragen"
+    },
+    "info": {
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "location": "Standort",
+      "availability": "Offen für Austausch"
+    },
+    "hero": {
+      "title": "LASS UNS REDEN",
+      "subtitle": "Eine Idee ist da? Lass uns daraus ein belastbares System bauen.",
+      "ticker": {
+        "build": "Gemeinsam etwas Reales bauen · ",
+        "freelance": "Offen für Projekte · "
+      }
+    },
+    "faqData": [
+      {
+        "q": "Was ist dein Schwerpunkt?",
+        "a": "Ich baue KI-Systeme, Automatisierungen und Fullstack-Webprodukte mit React, Next.js, TypeScript und Python."
+      },
+      {
+        "q": "Kann ich die Projekte wirklich ansehen?",
+        "a": "Wo ein öffentlicher Build oder Quellcode belegt ist, ist er direkt verlinkt. Nicht öffentliche Projekte bleiben bewusst ohne erfundenen Link."
+      },
+      {
+        "q": "Was ist Keel?",
+        "a": "Keel ist die Marke, unter der ich belastbare Produkt- und Agentensysteme entwickle."
+      },
+      {
+        "q": "Verwendest du Mockups?",
+        "a": "Nein. Die Projektansichten stammen aus den jeweiligen Repositories oder dokumentierten Abnahmeständen."
+      },
+      {
+        "q": "Wie starten wir ein Gespräch?",
+        "a": "Am schnellsten über mein verlinktes LinkedIn-Profil. Die öffentliche E-Mail-Adresse wird nach Freigabe ergänzt."
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "Alle Rechte vorbehalten.",
+    "madeWith": "Gebaut mit",
+    "more": "Mehr",
+    "marquee": [
+      "Offen für Austausch",
+      "Fullstack-Entwicklung",
+      "KI-Systeme",
+      "Automatisierung",
+      "Produktdesign",
+      "Systemarchitektur"
+    ],
+    "cta": {
+      "title": "Lass uns",
+      "titleHighlight": "sprechen",
+      "subtitle": "Du hast eine reale Aufgabe? Lass uns daraus ein belastbares Produkt bauen."
+    },
+    "links": "LINKS",
+    "socials": "PROFILE",
+    "localTime": "ORTSZEIT",
+    "version": "VERSION",
+    "versionEdition": "Ausgabe 2026"
+  },
+  "ctaSection": {
+    "title": "Lass uns etwas",
+    "together": "Reales bauen",
+    "subtitle": "Offen für Gespräche über KI-Systeme, Automatisierung und skalierbare Fullstack-Produkte.",
+    "start": "Auf ein Gespräch",
+    "work": "Lebenslauf ansehen",
+    "words": {
+      "amazing": "Belastbares",
+      "innovative": "Nützliches",
+      "intelligent": "Intelligentes",
+      "creative": "Klares"
+    },
+    "ribbon1": "Next.js • React • Python • TypeScript • Node.js • Automatisierung • APIs • Git",
+    "ribbon2": "KI-Systeme • Fullstack-Entwicklung • Produktdesign • Automatisierung • Systemarchitektur"
+  },
+  "stats": {
+    "systemStatus": "Systemstatus: Produkte online",
+    "portfolio": "Produktkennzahlen",
+    "totalPulse": "Aktivität gesamt",
+    "peakActivity": "Höchste Aktivität",
+    "dailyAverage": "Tagesdurchschnitt",
+    "currentSprint": "Aktueller Stand",
+    "engageFlow": "Arbeitsfluss",
+    "weeklyEffort": "Wöchentliche Entwicklung",
+    "processSpeed": "Prozessgeschwindigkeit",
+    "avgPerf": "Durchschnitt",
+    "latency": "STATUS: DIREKT",
+    "system": "SYSTEM: KEEL",
+    "scanning": "ECHTE PRODUKTE WERDEN GELADEN",
+    "engineering": "PRODUKT",
+    "metrics": "EINBLICKE",
+    "analyticsSub": "SYSTEME / OBERFLÄCHEN / ENTWICKLUNG",
+    "statusOnline": "STATUS: ONLINE",
+    "loadStable": "SYSTEMLAST: STABIL"
+  },
+  "projectHeader": {
+    "title": "Echte Systeme. Echte Oberflächen.",
+    "subtitle": "Acht belegte Produkte aus <span class='font-bold text-foreground'>KI-Systemen</span>, Automatisierung und Webentwicklung."
+  },
+  "common": {
+    "loading": "Wird geladen …",
+    "error": "Etwas ist schiefgelaufen",
+    "notFound": "Seite nicht gefunden",
+    "backHome": "Zur Startseite",
+    "viewMore": "Mehr anzeigen",
+    "readMore": "Weiterlesen",
+    "close": "Schließen",
+    "download": "Herunterladen",
+    "share": "Teilen",
+    "scrollAudit": "Zum Entdecken scrollen"
+  },
+  "technical": {
+    "github": {
+      "title": "GitHub-Aktivität",
+      "description": "Öffentliche Aktivität von coastcoder439.",
+      "total": "Gesamt",
+      "thisWeek": "Diese Woche",
+      "best": "Bester Tag",
+      "average": "Durchschnitt",
+      "less": "Weniger",
+      "more": "Mehr"
+    },
+    "wakatime": {
+      "title": "WakaTime",
+      "description": "Nur bei echter Konfiguration verfügbar.",
+      "lastUpdate": "Letzte Aktualisierung",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum",
+      "dailyAverage": "Tagesdurchschnitt",
+      "totalWeek": "Diese Woche",
+      "bestDay": "Bester Tag",
+      "totalSince": "Gesamt seit Start",
+      "topLanguages": "Sprachen"
+    }
+  },
+  "blog": {
+    "title": "Produktnotizen",
+    "subtitle": "Kurze Einblicke in reale Systeme, Oberflächen und technische Entscheidungen.",
+    "sectionBadge": "Das Produktarchiv",
+    "search": "Notizen durchsuchen …",
+    "readTime": "Min. Lesezeit",
+    "readMore": "Notiz lesen",
+    "back": "Zurück zu den Notizen",
+    "noResults": "Keine Notizen gefunden",
+    "categories": {
+      "applied-ai": "KI-Systeme",
+      "software-development": "Software",
+      "about-me": "Über mich",
+      "more": "Mehr"
+    }
+  },
+  "gallery": {
+    "title": "Produktgalerie",
+    "subtitle": "Echte Oberflächen aus den gezeigten Repositories und dokumentierten Abnahmeständen.",
+    "filter": {
+      "all": "Alle Medien",
+      "image": "Bilder",
+      "video": "Videos"
+    },
+    "viewMedia": "Ansicht öffnen"
+  },
+  "chatbot": {
+    "title": "Assistent",
+    "subtitle": "Nicht konfiguriert",
+    "placeholder": "Nachricht eingeben …",
+    "greeting": "Der Assistent ist derzeit nicht konfiguriert.",
+    "suggestions": [],
+    "error": "Der Assistent ist nicht verfügbar.",
+    "invalidResponse": "Keine gültige Antwort.",
+    "unknownError": "Unbekannter Fehler.",
+    "retry": "Erneut versuchen",
+    "inputHint": "Eingabetaste zum Senden",
+    "close": "Chat schließen"
+  }
+}

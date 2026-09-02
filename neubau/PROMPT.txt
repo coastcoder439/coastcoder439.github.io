@@ -1,9 +1,17 @@
-Baue Leon Pöskens Portfolio-/Bewerbungsseite from scratch nach coastcoder439.github.io/neubau/index.html. Zeig nur echte Produkte mit echtem Material direkt aus ihren Repos, kein Demo und kein Mockup — Oasis Simulator, WEE CRM, Drive-Automatisierung, keel-showcase, Keel-Harness mit Dashboard, FlowVoice, E-Bike, Shopify; Keel-System und Brain raus; Marke „Keel", nie „Flowcode"; Projekte je Rubrik als horizontale Side-Scroller; Lebenslauf-Download und Kontakt „Auf ein Gespräch". Führ dabei die Skills aus: DESIGN-SKILL.md (bencium innovative) und die 21st-CLI. Du hast vollen Harness-Zugriff: alle Repos, Shell, deinen Browser, 21st.
+Adaptiere die echte arfazrll-Next.js-Vorlage zu Leon Pöskens Fullstack-Portfolio. Die Vorlage liegt im Bau-Ordner unter `app/` (Next.js, React Three Fiber/3D, GSAP, Framer Motion, next-intl, next-themes). Das DESIGN bleibt vollständig erhalten — du tauschst nur INHALT und Assets und machst die Seite deutsch. Du hast vollen Harness-Zugriff: alle Repos, Shell, npm/Netzwerk, deinen Browser (rendern+screenshotten). Entscheide alles selbst, keine Rückfragen.
 
-Die Latte ist das arfazrll-Portfolio (arfazrll-preview.png im Bau-Ordner; live https://21st.dev/@serafimcloud/templates/arfazrll-portfolio). Hol dir das echte Bild zuerst und vergleiche direkt dagegen, nicht gegen eine Beschreibung. Erreiche oder übertriff seine knalligen matten Farben und seine Design-Qualität, aber ohne vertikalen Slider.
+Lies zuerst im Bau-Ordner: content-spec.md (verbindlich: welche echten Produkte, welches Repo-Material, welche Sprache, was RAUS). Lies dann die Vorlage: app/README.md, app/TEMPLATE_SETUP.md, app/src/data/portfolio.ts, app/messages/.
 
-Zerlege die Seite in die kleinsten einzeln bewertbaren Teile. Für jedes Teil einen Builder und einen separaten Kritiker mit frischem Kontext: der Kritiker rendert und screenshottet unseren Output, legt ihn blind neben arfazrll, sagt welcher besser ist und nennt die eine größte verbleibende Lücke, dann zurück zum Builder. Der Kritiker ist hart, Lob ist nutzlos.
+Aufgabe:
+1. Inhalt: app/src/data/portfolio.ts komplett mit Leons echten Projekten/Bio/Kontakt füllen (aus content-spec.md). Nur ECHTE Produkte mit ECHTEM Repo-Material als App-Previews (Screenshot + Live-Link), kein Demo/Mockup. Keel-System und Brain RAUS, Keel-Harness mit Dashboard REIN. Marke „Keel", nie „Flowcode".
+2. Assets: app/public/** Projekt-/Foto-Assets durch Leons echte Produkt-Screenshots ersetzen (aus den Repos ziehen und einbinden). Lebenslauf-Download auf Leon-Poesken-Lebenslauf.pdf.
+3. Sprache: messages/de.json anlegen und Default auf Deutsch; id.json (Indonesisch) entfernen. Alle UI-Texte deutsch.
+4. Integrationen: GitHub-User coastcoder439 setzen; WakaTime/Kaggle/Chatbot ohne Keys sauber ausblenden statt zu faken.
+5. `npm install` und `npm run build` müssen durchlaufen; die App startet fehlerfrei.
 
-Loop auf jedem Teil, bis der Kritiker blind unseren wählt. Vorher nicht stoppen. Führe eine Live-Fortschrittsseite build-notes.md. Keep looping until the critic picks ours. Run the builders and critics as parallel subagents.
+GAUNTLET (du fährst ihn selbst, mit echtem Browser):
+- Starte die App lokal (npm run dev/build+start), rendere sie in deinem Browser und screenshotte sie (Desktop + Mobil, Hell + Dunkel).
+- Als separater, harter Kritiker mit frischem Kontext: vergleiche deinen Screenshot mit `arfazrll-preview.png` — hält deine Adaption die Design-Qualität und Ästhetik der Vorlage? UND trägt sie Leons echte Inhalte korrekt (echte Produkte, deutsch, Keel statt Flowcode, CV-Download, kein Mockup)? Benenne die eine größte Lücke, zurück an den Builder.
+- Loop je Sektion, bis Design UND Inhalt sitzen. Protokolliere in build-notes.md.
 
-Referenz-Material im Bau-Ordner und in den Repos: DESIGN-SKILL.md; arfazrll-preview.png; Leon-Poesken-Lebenslauf.pdf; Keel-Harness keel-harness-standalone-setup/payload/dashboard; WEE CRM wee-crm/drive-inhalt (echtes Frontend) → eigener Unterordner projekte/wee-crm; keel-showcase live keel-showcase.vercel.app + keel-showcase/abnahme/2026-08-21/screenshots; Oasis live world-eden-era.org + oasis-simulation-app; Drive google-drive-management; FlowVoice voiceai; E-Bike wl-bikerental; Shopify shopify-x-paperclip; LinkedIn https://www.linkedin.com/in/leonpoesken/. Self-contained, deutsch, responsive, Hell/Dunkel, barrierearm.
+Fertig, wenn die App gebaut ist, im Browser fehlerfrei läuft, aussieht wie ein arfazrll-Klon mit Leons echten Produkten, und der Blindvergleich besteht. Fan Builder und Kritiker als parallele Subagenten.

@@ -1,76 +1,135 @@
-# Bauprotokoll · Leon Pösken Portfolio
+# Build- und Gauntlet-Protokoll
 
 Stand: 29. August 2026
 
-## Ziel
+## Ergebnis
 
-Eine eigenständige, deutsche Portfolio-/Bewerbungsseite für Leon Pösken, gebaut ausschließlich aus belegbarem Material der vorhandenen Produkt-Repositories. Visuelle Messlatte ist die echte Datei `arfazrll-preview.png`; keine Demos, keine Mockups, kein Keel-System/Brain, Marke ausschließlich **Keel**.
+Die echte arfazrll-Next.js-Vorlage in `app/` wurde in Leons deutschsprachiges Fullstack-Portfolio überführt. Das visuelle System der Vorlage blieb erhalten: großformatige Typografie, matte Flächen, asymmetrische Komposition, 3D/WebGL, GSAP, Framer Motion, Hell-/Dunkelmodus und die vorhandene Seitenarchitektur. Geändert wurden Inhalte, Projektquellen, Assets, Sprache und integrationsabhängige Sichtbarkeit.
 
-## Qualitätsregeln
+Der vertikale Projekt-Slider wurde entsprechend der Owner-Notiz durch eine responsive Grid-/Collage-Darstellung ersetzt. Das Grid verwendet echte Produktoberflächen; Projekte ohne belastbares Bildmaterial bleiben bewusst textbasiert.
 
-- Referenz zuerst visuell geprüft: 1600 × 1000 px, tiefschwarze Bühne, ultrabreite typografische Hauptgeste, rote Haarlinien, harte Weiß/Grau-Kontraste, editorialer Mix aus Grotesk und Kursiv-Serif.
-- Jede sichtbare Produktabbildung stammt aus einem benannten Repository oder einer verifizierten Live-Produktseite.
-- Jede Rubrik erhält einen horizontalen, per Tastatur und Touch bedienbaren Side-Scroller; kein vertikaler Slider.
-- Hell und Dunkel, reduzierte Bewegung, Fokuszustände, semantische Landmarken und 44-px-Ziele werden mitgeprüft.
-- Kritiker urteilen anhand echter Renderings und nennen genau eine größte verbleibende Lücke. Eine Einheit gilt erst als abgeschlossen, wenn unser Rendering im Blindvergleich gewählt wird.
+## Verbindlicher Inhalt
 
-## Zerlegung und Live-Status
+- Person: Leon Pösken, Leipzig; Fokus auf KI-Systeme, Automatisierung und Webentwicklung.
+- Leitmotiv: „Vom Vertrieb zum Systembauer. Ich rede nicht über KI, ich baue damit.“
+- Marke: ausschließlich **Keel**; keine sichtbare Verwendung von Flowcode.
+- Kontakt: LinkedIn, GitHub `coastcoder439` und der vorgegebene E-Mail-Platzhalter.
+- Lebenslauf: `/Leon-Poesken-Lebenslauf.pdf` mit Downloadnamen `Leon-Poesken-Lebenslauf.pdf`.
+- Ausgeschlossen: Keel-System/Paperclip-Fork, Brain, enerbolt, whitelabel-web-base, website-stefan-heine, interne Labore sowie frühere Template-/Demo-Projekte.
+- Erfundenes GPA, erfundene Projektzahlen, Fake-Socials, Fake-Statistiken und zufällige Placeholder-Bilder wurden entfernt.
 
-| Einheit | Builder | Kritiker | Schleife | Status | größte offene Lücke |
-| --- | --- | --- | ---: | --- | --- |
-| 01 · Design-Tokens (Farbe, Typo, Linien, Radius, Schatten) | Main Builder + 21st | Blind-Kritiker | 1 | **bestanden** | Blindvergleich B gewählt |
-| 02 · Seitenschale und Skip-Link | Main Builder | Blind-Kritiker | 1 | **bestanden** | im Hero-Gesamtbild enthalten |
-| 03 · Kopfzeile/Navigation | Main Builder | Blind-Kritiker | 1 | **bestanden** | im Hero-Gesamtbild enthalten |
-| 04 · Hero: Name, Rolle, Positionierung | Main Builder | Blind-Kritiker | 1 | **bestanden** | Kritiker wählt unser B |
-| 05 · Hero-Faktenleiste/CTA | Main Builder | Blind-Kritiker | 1 | **bestanden** | im Hero-Gesamtbild enthalten |
-| 06 · Rubrikkopf „Simulation & Systeme“ | Rails-Builder + Main Builder | frischer Systeme-Kritiker | 1 | **bestanden** | Blindtest wählt unser A |
-| 07 · Oasis-Projektkarte | Material-Builder + Main Builder | frischer Systeme-Kritiker | 1 | **bestanden** | echter Wetter-/Klima-Screenshot |
-| 08 · WEE-CRM-Projektkarte | Material-Builder + Main Builder | frischer Systeme-Kritiker | 1 | **bestanden** | Modulstruktur ohne Personen-/Spendendaten |
-| 09 · Rubrikkopf „Automatisierung & Infrastruktur“ | Rails-Builder + Main Builder | frischer Automatisierungs-Kritiker | 1 | **bestanden** | Blindtest wählt unser B |
-| 10 · Drive-Automatisierung-Projektkarte | Material-Builder + Main Builder | frischer Automatisierungs-Kritiker | 1 | **bestanden** | 235/39/1 direkt aus Review-Datei |
-| 11 · keel-showcase-Projektkarte | Material-Builder + Main Builder | frischer Automatisierungs-Kritiker | 1 | **bestanden** | nur Website Builder, Social, Commerce |
-| 12 · Keel-Harness/Dashboard-Projektkarte | Main Builder + echter Generator | frischer Automatisierungs-Kritiker | 1 | **bestanden** | Dashboard live erzeugt und gefiltert |
-| 13 · Rubrikkopf „Produkte & Commerce“ | Rails-Builder + Main Builder | frischer Produkte-Kritiker | 1 | **bestanden** | Blindtest wählt unser A |
-| 14 · FlowVoice-Projektkarte | Main Builder + V3-Renderer | frischer Produkte-Kritiker | 1 | **bestanden** | Welle direkt durch Produktcode erzeugt |
-| 15 · E-Bike-Projektkarte | Material-Builder + Main Builder | frischer Produkte-Kritiker | 1 | **bestanden** | zwei echte Produktansichten |
-| 16 · Shopify-Projektkarte | Material-Builder + Main Builder | frischer Produkte-Kritiker | 1 | **bestanden** | synthetische Daten klar benannt, keine Integrationsbehauptung |
-| 17 · Side-Scroller-Steuerung | Rails-Builder + Main Builder | Browser-Verifikation | 2 | **bestanden** | Touch, Buttons, Snap, Fortschritt, sichtbare Scrollbar |
-| 18 · Projekt-Detailmuster | Main Builder | frischer WEE-Kritiker | 1 | **bestanden** | Blindtest wählt unser B; eigener echter Pfad |
-| 19 · Lebenslauf-Download | Content-Builder + Main Builder | Browser-Verifikation | 1 | **bestanden** | statisches PDF-Ziel lädt unter `/neubau/` |
-| 20 · Kontaktblock „Auf ein Gespräch“ | Content-Builder + Main Builder | frischer Kontakt-Kritiker | 1 | **bestanden** | Blindtest wählt unser A |
-| 21 · Footer/LinkedIn | Content-Builder + Main Builder | frischer Kontakt-Kritiker | 1 | **bestanden** | CTA und LinkedIn-Ziel sichtbar |
-| 22 · Hell/Dunkel-Schalter | Main Builder | Browser-Verifikation | 1 | **bestanden** | Systemstart, Umschaltung und Persistenz geprüft |
-| 23 · Mobile/Tablet/Desktop | Main Builder | CDP-Verifikation | 1 | **bestanden** | 390 × 844 und 1600 × 1000 ohne Seiten-Overflow |
-| 24 · Barrierefreiheit | Main Builder | Oxlint + CDP | 1 | **bestanden** | Skip-Link, Fokus, Landmarken, 44-px-Ziele, Reduced Motion |
-| 25 · Performance/Assetgewicht | Main Builder | Build-Prüfung | 1 | **bestanden** | lokale WOFF2, lokale Produktbilder, lazy decoding |
-| 26 · Gesamtseite gegen arfazrll | Main Builder | sieben frische Blind-Kritiker | 1 | **bestanden** | Hero, drei Rubriken, Profil, Kontakt und WEE jeweils gewählt |
+## Projekt- und Quellenmatrix
 
-## Laufende Entscheidungen
+| Portfolioeintrag | Beleg aus dem Repository | Darstellung | Öffentlicher Zugang |
+| --- | --- | --- | --- |
+| Oasis Simulator | `oasis-simulation-app`, echte Übersichts- und Wetteransichten | Zwei Repo-Screenshots | Live: `https://world-eden-era.org`; privater Repo-Link ausgeblendet |
+| WEE CRM | `wee-crm/drive-inhalt/`, echter React-Frontend-Stand; kein belastbarer Screenshot oder öffentlicher Build | Ehrliche Textkarte, kein Mockup | Kein erfundener Link |
+| Drive-Automatisierung | `google-drive-management`, echte Skripte, YAML-/Inventur- und Konfliktberichte; keine Bildquelle | Ehrliche Textkarte, kein Mockup | Privater Repo-Link ausgeblendet |
+| Keel Showcase | `keel-showcase/abnahme/2026-08-21/screenshots/` | Drei echte Abnahme-Screenshots | Live: `https://keel-showcase.vercel.app`; privater Repo-Link ausgeblendet |
+| Keel-Harness | `keel-harness-standalone-setup/payload/dashboard` | Dashboard aus dem echten lokalen Harness | Öffentliches Repository, anonym HTTP 200 |
+| FlowVoice | `voiceai`, V3-Wave-Renderer | Ausgabe des echten Renderers | Kein Deploy behauptet; privater Repo-Link ausgeblendet |
+| E-Bike-Vermietung | `wl-bikerental` | Echte V3-Buchungs- und Zentralenansicht | Live: `https://wl-bikerental.vercel.app/v3`; privater Repo-Link ausgeblendet |
+| Shopify-Shop | `shopify-x-paperclip`, echte Preview-Bilder | Repo-Preview; synthetische Vorschauwerte ausdrücklich gekennzeichnet | Live: `https://keel-showcase.vercel.app/KL/commerce`; öffentliches Repository, anonym HTTP 200 |
 
-- Ästhetische Richtung: **editorialer Industrie-Katalog mit matter Signalpalette** – sachlich genug für eine Bewerbung, farblich kompromisslos genug, um die Referenz zu übertreffen.
-- Keine erfundenen UI-Screens. Screenshots werden lediglich beschnitten/komprimiert, nicht als Mockup in Geräte-Rahmen gesetzt.
-- Die Projektkarten führen zu echten Detailflächen bzw. belegten Live-/Repo-Zielen; WEE CRM erhält ausdrücklich den eigenen Unterordner `projekte/wee-crm`.
-- Der Sites-/Vinext-Quellstand lebt in `neubau/app`; die eigenständig lauffähige GitHub-Pages-Ausgabe wird daraus nach `neubau/index.html` und `neubau/projekte/wee-crm/index.html` gebaut.
+Es bleiben exakt acht Portfolio-Projekte. Nur die zwei anonym erreichbaren GitHub-Repositories rendern einen „Quellcode“-Button. Die vier vorhandenen Live-Ziele antworteten im finalen Audit mit HTTP 200.
 
-## Prüfprotokoll
+## Assets
 
-- 13:48 · `DESIGN-SKILL.md` vollständig gelesen und auf Boldness, charaktervolle Typografie, WCAG, responsive Gestaltung und Materialehrlichkeit festgelegt.
-- 13:49 · `arfazrll-preview.png` in Originalauflösung visuell geprüft.
-- 13:51 · Eingebettete Browser-Sitzung nicht verfügbar; lokaler Browser-Runner als Render-/Screenshot-Weg vorbereitet.
-- 13:53 · Drei getrennte Agenten gestartet: Material-Builder, Content-Builder, Referenz-Kritiker.
-- 13:56 · Sites-Projekt mit shadcn initialisiert; charaktervolle lokale Schriften: Archivo, IBM Plex Sans, Instrument Serif.
-- 14:00 · Erster sinnvoller Ausschnitt kompiliert: Navigation, Hero, CTA, CV-Download und echte Oasis-Karte.
-- 14:12 · Referenz-Kritiker misst: 94,32 % Fast-Schwarz, 1,83 % helle Pixel, 0,068 % Rot; größte Gefahr ist eine überfüllte Komponenten-Galerie.
-- 14:13 · 21st-CLI real ausgeführt; `.21st/design.json` und `.21st/DESIGN.md` aus dem aktuellen Quellstand erzeugt. Katalogsuche verlangte eine separate Anmeldung, der lokale Design-/Review-Workflow bleibt verfügbar.
-- 14:14 · Blindbild `comparisons/blind-hero-v1.png`: A = arfazrll, B = unser Hero. Frischer Kritiker entscheidet **Sieger B**; Einheit 01–05 damit in Schleife 1 bestanden.
-- 14:20 · Standalone-Keel-Dashboard gegen den echten Harness erzeugt; der Ausgabe-Wächter schreibt den gefilterten 3,9-MB-Stand, daraus stammt `projects/keel-harness/dashboard.png`.
-- 14:23 · FlowVoice-Visual direkt mit `V3/wave_renderer.py` und `wave_config.py` gerendert; keine UI-Nachzeichnung.
-- 14:35 · Drei parallele Blindtests: Systeme wählt unser A, Automatisierung unser B, Produkte unser A. Jeweilige Referenzlücke: keine konkrete Produktinszenierung.
-- 14:38 · Drei weitere Blindtests: Profil wählt unser B, Kontakt unser A, WEE CRM unser B.
-- 14:42 · `npm run lint` ohne Befund; `npm run build` erfolgreich für `/` und `/projekte/wee-crm`.
-- 14:47 · Statische GitHub-Pages-Ausgabe mit lokalen Assets, lokalen WOFF2-Schriften und `.nojekyll` erzeugt.
-- 14:49 · Produktions-Preview geprüft: Startseite und WEE-Unterseite laden ohne Overlay, Konsolen-, Runtime-, Netzwerk- oder Bildfehler.
-- 14:50 · Interaktionsprüfung bei 1600 × 1000 und 390 × 844: Theme persistiert, Rail bewegt sich, Ziele stimmen, keine Untermaß-Touchziele und kein Seiten-Overflow.
-- 14:51 · 21st-CLI Strict Review auf finalem Quellstand: 0 Fehler; bewusst gesetzte Produktfarben werden als Design-Hinweise gemeldet, unnötige Hover-Skalierung entfernt.
-- 15:06 · Exakter Sites-Quellstand `b859cc4f101f` als Version 1 gespeichert und privat produktiv unter `leon-poesken-portfolio.coastcoder.chatgpt.site` veröffentlicht.
-- 15:07 · Bereinigte statische Ausgabe erneut per CDP geprüft: Startseite und WEE-CRM-Detailseite ohne Konsolen-, Runtime-, Netzwerk- oder Bildfehler.
+Die alten Template-Projektbilder und Identitätsassets (rund 42 MiB) wurden entfernt. In `app/public/projects/` liegen zwölf belegte Produktansichten:
+
+- Oasis: `uebersicht-banner.jpeg`, `wetter-layer-abnahme.jpeg`
+- Keel Showcase: `dashboard.png`, `social-media.png`, `website-builder.png`
+- Keel-Harness: `dashboard.png`
+- FlowVoice: `wave.png`
+- E-Bike: `praesentation-kopf.png`, `zentrale-heute.png`
+- Commerce: `keel-commerce.png`, `preview-viewport.jpeg`, `preview-fullpage.jpeg`
+
+Neutrale Template-Bestandteile, die das Design tragen (Lanyard-3D-Modell, Textur, Grid/Noise/Mask), blieben erhalten. Der öffentliche Lebenslauf ist eine bytegleiche Kopie der gelieferten PDF; SHA-256: `7D9FFE7ED96412B172AA51A9D63D950DBA3CFB5E771B2C3EEAAADB736D1AC799`.
+
+## Sprache und Integrationen
+
+- `messages/de.json` ist die einzige Message-Datei und Deutsch ist die Default-Locale.
+- `id.json` und indonesische Locale-/Datumsreste wurden entfernt; sichtbare Navigation, Kalender, Tooltips, Fehlerseite, PDF-Steuerung, Projekte und Artikel sind deutsch.
+- GitHub verwendet `coastcoder439`; die öffentlichen GitHub-API-Routen liefern echte Daten.
+- WakaTime bleibt nur mit `WAKATIME_API_KEY` aktiv. Ohne Key antworten die Routen mit `configured: false`/404 und es erscheint keine Karte.
+- Kaggle und Chatbot antworten ohne Konfiguration ehrlich mit 404/`configured: false`; es gibt keine sichtbaren Fake-Daten.
+- Unsplash/Picsum und weitere zufällige Remote-Placeholder wurden entfernt.
+
+## Installation und Produktionsbuild
+
+Ausgeführt in `app/`:
+
+```text
+npm.cmd --cache .npm-cache install
+→ 735 Pakete geprüft, 0 Schwachstellen
+
+npm.cmd --cache .npm-cache run build
+→ Next.js 16.3.3
+→ Compile erfolgreich
+→ TypeScript erfolgreich
+→ 28/28 Seiten generiert
+→ Exit-Code 0
+
+npm.cmd --cache .npm-cache run start -- -p 3001
+→ Ready; finaler Produktionsbuild lokal ausgeliefert
+```
+
+Der letzte Build erfolgte nach der Korrektur der privaten Repository-Links.
+
+## Browser-Gauntlet
+
+Getestet wurde der Produktionsbuild in echtem Chromium, nicht nur per DOM-/Unit-Test.
+
+### Screenshots
+
+| Ansicht | Artefakt |
+| --- | --- |
+| Desktop, dunkel, 1600 × 1000 | [`gauntlet/desktop-dark.png`](gauntlet/desktop-dark.png) |
+| Desktop, hell, 1600 × 1000 | [`gauntlet/desktop-light.png`](gauntlet/desktop-light.png) |
+| Mobil, dunkel, 390 × 844 | [`gauntlet/mobile-dark.png`](gauntlet/mobile-dark.png) |
+| Mobil, hell, 390 × 844 | [`gauntlet/mobile-light.png`](gauntlet/mobile-light.png) |
+| Projekt-Collage | [`gauntlet/projects-desktop-dark.png`](gauntlet/projects-desktop-dark.png) |
+| Projektkarten inklusive Textkarten | [`gauntlet/projects-cards-dark.png`](gauntlet/projects-cards-dark.png) |
+| Echter Lebenslauf im PDF-Viewer | [`gauntlet/resume-dark.png`](gauntlet/resume-dark.png) |
+
+### Geprüfte Routen
+
+- `/`, `/projects` und alle acht Projektdetails
+- `/contact`, `/experience`, `/skills`, `/achievements`, `/gallery`
+- `/blog` und alle sechs Artikeldetails
+- `/resume`
+- unbekannte Route mit deutscher 404-Seite
+
+Alle geprüften Seiten liefen ohne Browserfehler. Die PDF-Seite musste einmal korrigiert werden, weil `DOMMatrix` im serverseitigen Renderpfad nicht existiert; der Viewer wird nun korrekt clientseitig geladen. `/Leon-Poesken-Lebenslauf.pdf` liefert HTTP 200, `application/pdf`, 673109 Byte. Der Download-Link besitzt den verlangten Dateinamen.
+
+API-Prüfung im laufenden Produktionsbuild:
+
+| Route | Ergebnis |
+| --- | --- |
+| `/api/github-stats` | 200, echte öffentliche Daten für `coastcoder439` |
+| `/api/github-languages` | 200, echte öffentliche Sprachdaten |
+| `/api/chat` | 404, ehrlich nicht konfiguriert |
+| `/api/kaggle-stats` | 404, ehrlich nicht konfiguriert |
+| `/api/wakatime`, `/api/wakatime-stats` | 404 ohne Key, ehrlich nicht konfiguriert |
+
+Die Browser-Fehlerliste blieb leer. Ein nicht blockierender Konsolenhinweis `updating from 115 to 122` stammt aus `@splinetool/runtime`, das das eingebettete Spline-Szenenschema beim Laden auf die aktuelle Runtime-Version migriert; daraus entsteht kein Seiten- oder Renderfehler.
+
+## Unabhängige Kritikschleife
+
+Ein separater Kritiker verglich die finalen Desktop-/Mobil- und Hell-/Dunkel-Screenshots blind mit `arfazrll-preview.png` und prüfte zusätzlich die Inhaltsregeln.
+
+1. **Runde 1 — FAIL:** Designqualität, Responsivität, Deutsch, echte Assets, Textkarten, Keel-Harness, Ausschlüsse, CV und Integrationen bestanden. Größte Lücke: fünf sichtbare „Quellcode“-Buttons zeigten auf private GitHub-Repositories und lieferten anonym 404.
+2. **Builder-Korrektur:** `repoUrl` für Oasis, Drive, Keel Showcase, FlowVoice und E-Bike entfernt; vorhandene Live-Links unverändert gelassen; zwei Aussagen über angeblich öffentlichen Quellcode berichtigt. Nur Keel-Harness und Shopify behalten anonym erreichbare Repo-Links.
+3. **Produktionsprüfung:** Betroffene Detailseiten im neu gestarteten finalen Build geprüft. Die fünf privaten Buttons fehlen; echte Live-Buttons und beide öffentlichen Repo-Buttons bleiben. Browserfehler: keine.
+4. **Runde 2 — PASS:** Alle vier Live-Ziele und beide verbleibenden Repo-Ziele HTTP 200. Referenzästhetik, responsive Hell-/Dunkelansichten, deutsche Leon-/Keel-Inhalte, ehrliche Textkarten, echtes Dashboard, CV und Integrationsregeln bestanden. Urteil: **keine materielle Lücke**.
+
+## Abschlussstatus
+
+- Inhalt: bestanden
+- Echtheit/Quellen: bestanden
+- Sprache: bestanden
+- Integrationen: bestanden
+- `npm install`: bestanden
+- Produktionsbuild: bestanden
+- Echter Browser Desktop/Mobil und Hell/Dunkel: bestanden
+- Unabhängiger Blindvergleich: **PASS**

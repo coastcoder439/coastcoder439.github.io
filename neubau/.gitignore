@@ -1,5 +1,9 @@
-# Local build caches and verification artifacts
-.npm-cache/
-.sites-package-*.tar.gz
-build-codex.log
-comparisons/
+# Codex-Bau-Logs (68 + 85 MB) und Gauntlet-Pruefbilder: lokale Belege, nie ins Repo
+*.log
+gauntlet/
+app/gauntlet/
+app/debug.log
+
+# Prototyp-Screenshots der Software: Owner-Regel 02.09.2026 -- nie zeigen, nie
+# veroeffentlichen (dieses Repo ist oeffentlich, GitHub Pages)
+app/public/projects/
