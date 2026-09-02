@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { ArrowUpRight, Github, Linkedin } from 'lucide-react';
-import { githubUrl, linkedinUrl } from '@/data/leon-portfolio';
+import { ArrowUpRight, Linkedin } from 'lucide-react';
+import { linkedinUrl, resumeUrl } from '@/data/portfolio-content';
 
+// Storyboard v4.6: kein GitHub, kein Repo-Link. Anker statt eigener Routen.
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -10,13 +10,15 @@ export function Footer() {
       <div className="leon-shell leon-footer__grid">
         <div className="leon-footer__brand">
           <strong>Leon Pösken</strong>
-          <span>Vom Vertrieb zum Systembauer.</span>
+          <span>Technik mit Auftrag.</span>
         </div>
         <div className="leon-footer__nav" aria-label="Fußnavigation">
-          <Link href="/">Start</Link>
-          <Link href="/projects">Produkte</Link>
-          <Link href="/contact">Auf ein Gespräch</Link>
-          <Link href="/resume">Lebenslauf</Link>
+          <a href="#start">Start</a>
+          <a href="#ursprung">Ursprung</a>
+          <a href="#methodik">Methodik</a>
+          <a href="#praxis">Praxis</a>
+          <a href="#profil">Profil</a>
+          <a href="#kontakt">Auf ein Gespräch</a>
         </div>
         <div className="leon-footer__socials">
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">
@@ -24,9 +26,8 @@ export function Footer() {
             LinkedIn
             <ArrowUpRight aria-hidden="true" />
           </a>
-          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-            <Github aria-hidden="true" />
-            coastcoder439
+          <a href={resumeUrl} download="Leon-Poesken-Lebenslauf.pdf">
+            Lebenslauf (PDF)
             <ArrowUpRight aria-hidden="true" />
           </a>
         </div>

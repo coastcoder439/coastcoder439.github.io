@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, Download } from 'lucide-react';
 import { Spotlight } from '@/components/ui/spotlight-new';
-import { resumeUrl } from '@/data/leon-portfolio';
+import { resumeUrl } from '@/data/portfolio-content';
 
 // Abschnitt 1 nach Storyboard v4.6: Headline und Subline sind Owner-Text,
 // Look aus der Vorversion (Spotlight, Punktraster, Glanz-Typografie), keine

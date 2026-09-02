@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Download, Menu, X } from 'lucide-react';
 import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
-import { resumeUrl } from '@/data/leon-portfolio';
+import { resumeUrl } from '@/data/portfolio-content';
 
 // Storyboard v4.6, Abschnitt 1: feste Nav ab Sekunde 1 — alle Ziele sind Anker auf einer Seite.
 const navItems = [
