@@ -53,21 +53,25 @@ Gewächshaus-Modells existiert (das Original hat 272 MB) — sonst Typo allein.
 
 ## Showcase-Matrix — genau eine Form je Produkt
 
-| Produkt | Showcase-Form | Stand |
+| Produkt | Showcase-Form | Stand (02.09.2026, je unabhängig verifiziert: HTTP 200, einbettbar, 0 Secrets) |
 |---|---|---|
-| Keel Showcase | iframe `https://keel-showcase.vercel.app` | vorhanden (HTTP 200) |
-| Oasis (3D-Präsentation) | iframe `https://world-eden-era.org/project-oasis/` | vorhanden; Einbettbarkeit (X-Frame-Options) beim Bau prüfen — sonst Link-Kachel ohne Bild |
-| WL Bike Rental | iframe Vercel-Prototyp | **Deploy nötig** (bisher nur Branch-Previews) — stabile Prototyp-URL |
-| Nordwind Studio | iframe Vercel-Demo (`demo/` ist statisch, ohne Server) | **Deploy nötig** |
-| Funnel Desk | iframe Vercel-Prototyp (Next.js, „Sofortstart ohne externe Dienste") | **Deploy nötig** |
-| WEE CRM | iframe Vercel-Prototyp mit Demo-Auth (`VITE_ENABLE_DEMO_AUTH`) | **Deploy nötig** — sonst nur Text |
+| Keel Showcase | iframe `https://keel-showcase.vercel.app` | vorhanden |
+| Oasis-Simulator | iframe `https://showcase-oasis-simulator.vercel.app` (Startseite → Simulations-Webapp + drehbare 3D-Szene; Modell 272 MB → 4,88 MB dezimiert) | **DEPLOYT** (Projekt-Commit 228d321) |
+| WL Bike Rental | iframe **nur** `https://wl-bikerental.vercel.app/v3/` mit `sandbox="allow-scripts allow-same-origin"` (ohne top-navigation/popups), Klick-zum-Laden-Overlay | bestehendes Projekt, **unverändert**; `/`, `/angebot/`, `/zentrale/`, `/v3/tourenplan-demo/` nie zeigen |
+| Nordwind Studio | iframe `https://showcase-nordwind.vercel.app` (Badge „Demo · alle Zahlen erfunden") | **DEPLOYT** (Projekt-Commit 8ac59fa) |
+| Funnel Desk | iframe `https://showcase-funnel-desk.vercel.app/dashboard` (Wurzel leitet 307 dorthin; Demo-User ohne Login) | **DEPLOYT**; Beschriftung „Prototyp — keine echten Daten eingeben" (öffentlicher Funnel nimmt Name/E-Mail in-memory an) |
+| WEE CRM | iframe `https://showcase-wee-crm.vercel.app` (synthetischer Seed: 7 Kontakte, 12 Spenden, Audit-Log, Demo-CSV) | **DEPLOYT** |
 | Keel-Harness | nur Text (lokales Werkzeug; Mess-Dashboard ist lokales HTML) | — |
 | FlowVoice | nur Text (Windows-Desktop-App) | — |
 | Drive-Automatisierung | nur Text | — |
 
-Deploy-Regel: Vercel-Projekte unter dem Owner-Konto, Prototyp-Stände, ohne
-Kundendaten; Live-Seiten Dritter werden nie eingebettet. Die vorhandenen PNGs
-unter `public/projects/` werden auf der Seite NICHT verwendet.
+Alle neuen Deploys: eigene Vercel-Projekte `showcase-*` im Owner-Team, CSP
+`frame-ancestors 'self' https://coastcoder439.github.io`, kein Git-Push, keine
+Secrets, keine Kundendaten; die 8 Bestandsprojekte unverändert. Die vorhandenen
+PNGs unter `public/projects/` werden auf der Seite NICHT verwendet.
+Bau-Hinweise aus der Verifikation: Funnel Desk und WEE CRM halten Zustand nur
+in-memory/localStorage (Demo); Oasis-3D wirft beim ersten Frame einen
+folgenlosen TypeError (Originalcode); Nordwind/Oasis laden CDNs unversioniert.
 
 ## Der Ablauf — sieben Abschnitte, als Chronologie der Geschichte
 
