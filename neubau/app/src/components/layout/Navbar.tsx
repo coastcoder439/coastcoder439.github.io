@@ -7,11 +7,14 @@ import { Download, Menu, X } from 'lucide-react';
 import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
 import { resumeUrl } from '@/data/leon-portfolio';
 
+// Storyboard v4.6, Abschnitt 1: feste Nav ab Sekunde 1 — alle Ziele sind Anker auf einer Seite.
 const navItems = [
   { href: '/', label: 'Start' },
-  { href: '/#warum', label: 'Warum' },
-  { href: '/projects', label: 'Produkte' },
-  { href: '/contact', label: 'Kontakt' },
+  { href: '/#ursprung', label: 'Ursprung' },
+  { href: '/#methodik', label: 'Methodik' },
+  { href: '/#praxis', label: 'Praxis' },
+  { href: '/#profil', label: 'Profil' },
+  { href: '/#kontakt', label: 'Kontakt' },
 ];
 
 export function Navbar() {
@@ -45,9 +48,7 @@ export function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              aria-current={
-                item.href !== '/#warum' && pathname === item.href ? 'page' : undefined
-              }
+              aria-current={item.href === '/' && pathname === '/' ? 'page' : undefined}
             >
               {item.label}
             </Link>

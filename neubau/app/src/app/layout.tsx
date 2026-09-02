@@ -26,11 +26,11 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Leon Pösken | Vom Vertrieb zum Systembauer',
+    default: 'Leon Pösken | Technik mit Auftrag.',
     template: '%s | Leon Pösken',
   },
   description:
-    'Leon Pösken baut KI-Systeme, Automatisierungen und Webprodukte — belegt durch acht reale Produktstände aus World Eden Era, Keel und Kundenarbeit.',
+    'Leon Pösken baut KI-Systeme, Automatisierungen und Webprodukte. Von der Mitgründung einer NGO zur Methodik: Was zählt wirklich?',
   keywords: [
     'Leon Pösken',
     'Keel',
@@ -45,15 +45,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'de_DE',
-    title: 'Leon Pösken | Vom Vertrieb zum Systembauer',
+    title: 'Leon Pösken | Technik mit Auftrag.',
     description:
-      'Ich rede nicht über KI. Ich baue damit — acht belegte Produkte aus World Eden Era, Keel und Kundenarbeit.',
-    siteName: 'Leon Pösken Portfolio',
+      'Von der Mitgründung einer NGO zum KI-Systembau — deinen Weg finden und ihn gemeinsam gehen.',
+    siteName: 'Leon Pösken',
   },
   twitter: {
     card: 'summary',
-    title: 'Leon Pösken | Vom Vertrieb zum Systembauer',
-    description: 'Acht belegte Produkte aus KI-Systemen, Automatisierung und Webentwicklung.',
+    title: 'Leon Pösken | Technik mit Auftrag.',
+    description: 'KI-Systeme, Automatisierungen und Webprodukte — was zählt wirklich?',
   },
   robots: {
     index: true,
