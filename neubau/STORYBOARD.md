@@ -18,6 +18,12 @@
 > (285.729.896 Bytes), Playwright-verify (README), Showcase-Module (README),
 > React 19 (package.json), 4 Engine-Dateien (V3/engines/). NEU: Sektion
 > Fakten-Checkliste — biografische Aussagen bestätigt nur der Owner.
+> v4.3 [Owner-Antworten 02.09., F1–F7 beantwortet]: Sektion 4 heißt „Echte
+> Probleme, echte Lösungen." — NIE „bezahlt/beauftragt" (Arbeitsamt-Risiko),
+> nur Prototyp-Screens, Prototyp-Vermerk nebensächlich; Funnel Desk wird
+> drittes Projekt (Showcase verifiziert: docs/screenshots, README 6 Stufen);
+> Oasis = Herzensprojekt, ursprünglich vom Owner, heute vom Team
+> weiterentwickelt; CRM/Drive allein (CRM mit Praktikant Sumit Mor).
 
 ## Das Konzept in drei Sätzen
 
@@ -61,11 +67,15 @@ statt „Hallo".
 ### 2 · Ursprung — „Kein Auftrag. Ein Antrieb." (WEE = wo alles begann)
 **Copy:** „World Eden Era ist die gemeinnützige UG, die ich mitgegründet habe —
 nachhaltige Ernährung durch Aquaponik, und der Auftrag, der mich zum Systembau
-brachte. Die ersten drei Systeme entstanden direkt für sie — gebaut von mir,
-getragen vom Team." *(Formulierung „getragen vom Team" → Fakten-Checkliste F3)*
-1. **Oasis Simulator** [2 Bilder + LIVE] — „Die Aquaponik-Oase als begehbare
-   3D-Simulation im Browser, mit Wetter-Layer. Das Gewächshaus kommt als
-   272-MB-Modell aus Blender — live auf world-eden-era.org."
+brachte. Die ersten Systeme entstanden direkt für sie — von mir entwickelt,
+heute vom Team weitergetragen." *(F3/F4 beantwortet: deckt Oasis
+[Team entwickelt weiter], CRM [Hilfe von Praktikant Sumit Mor] und Drive
+[allein] ehrlich ab; Namen bleiben aus der Seiten-Copy draußen)*
+1. **Oasis Simulator** [2 Bilder + LIVE] — „Mein Herzensprojekt: die
+   Aquaponik-Oase als begehbare 3D-Simulation im Browser, mit Wetter-Layer.
+   Das Gewächshaus kommt als 272-MB-Modell aus Blender — live auf
+   world-eden-era.org." *(F2: ursprünglich vom Owner entwickelt; Oasis nicht
+   überbetonen [Owner])*
 2. **WEE CRM** [ehrlich ohne Bild] — „Fundraising-CRM der gUG, im Aufbau:
    Kontakte, Spenden, CSV-Import, Audit-Log auf React 19 und Supabase. Kein
    Screenshot — der Stand ist ein getesteter Prototyp."
@@ -92,25 +102,38 @@ Disziplinen, mit denen ich KI-Systeme baue, die halten."
    — wie die Radtour für den E-Bike-Verleih."
 2. **Apps** — „Werkzeuge mit Oberfläche: vom Diktat-Overlay bis zur begehbaren
    3D-Simulation."
-3. **Funnels** — „Strecken, die aus Besuchern Anfragen machen — vom ersten Klick
-   bis zum Gespräch."
+3. **Funnels** — „Strecken, die aus Besuchern Anfragen machen — ein kompletter
+   Funnel-Builder entsteht gerade als Prototyp." *(F7: Beleg = Funnel Desk,
+   Abschnitt 4)*
 4. **Automations** — „Abläufe, die ohne Zuruf laufen: Ablage-Regeln, Agenten,
    Prüfschritte."
 
-### 4 · Kundenarbeit — „Für Kunden gebaut."
-**Copy (Brücke zur Methodik):** „Dieselbe Methodik auf fremdem Terrain: eine
-Scroll-Story für den E-Bike-Verleih in Wusterhusen, ein Commerce-Cockpit mit
-sieben KI-Agenten für Print-on-Demand. Beides geprüft — jeder Scroll-Zustand per
-Screenshot, jede Zahl bis auf 0,00 Euro in der GuV."
-1. **WL Bike Rental** [5 Bilder] — „Scroll-Story für den E-Bike-Verleih in
-   Wusterhusen: eine Radtour von Wald über Bodden bis Strand, jedes Angebot eine
-   Station. Gebaut in Next.js — jeder Scroll-Zustand per Playwright-Screenshot
-   verifiziert." *(belegt: README `npm run verify`)*
-2. **Nordwind Studio** [1 Bild + Repo] — „Klickbares Cockpit für einen
+### 4 · Praxis — „Echte Probleme, echte Lösungen." [Owner-Wortlaut, F5]
+**REGEL [Owner 02.09., bindend]:** Nirgends „bezahlt", „Auftrag" oder
+Auftrags-Implikation (Arbeitsamt-Risiko). Es werden ausschließlich
+Prototyp-Screens gezeigt, nie Kunden-Live-Seiten. Jede Projektbeschreibung
+trägt nebensächlich — als letzten Satz — den Prototyp-Vermerk.
+**Copy (Brücke zur Methodik):** „Dieselbe Methodik an drei echten Problemen:
+ein E-Bike-Verleih an der Ostsee, ein Print-on-Demand-Shop, ein
+Akquise-Trichter. Alles geprüft — jeder Scroll-Zustand per Screenshot, jede
+Zahl bis auf 0,00 Euro in der GuV."
+1. **WL Bike Rental** [5 Prototyp-Bilder] — „Scroll-Story für einen
+   E-Bike-Verleih in Wusterhusen: eine Radtour von Wald über Bodden bis Strand,
+   jedes Angebot eine Station. Gebaut in Next.js, jeder Scroll-Zustand per
+   Playwright-Screenshot verifiziert — der Stand: ein Prototyp." *(belegt:
+   README `npm run verify`)*
+2. **Nordwind Studio** [1 Bild + Repo] — „Cockpit für einen
    Print-on-Demand-Shop auf Shopify: sieben KI-Agenten von Designfreigabe bis
-   USt-Voranmeldung — als Demo im Browser bedienbar, ohne Server. 96 Belege
-   treffen die GuV auf 0,00 Euro genau." *(Korrektur v4.2: ehrlich als Demo;
-   96/0,00 belegt in `demo/README.md`)*
+   USt-Voranmeldung, im Browser durchklickbar ohne Server. 96 Belege treffen
+   die GuV auf 0,00 Euro genau — der Stand: ein Prototyp." *(96/0,00 belegt in
+   `demo/README.md`)*
+3. **Funnel Desk** [4 Prototyp-Bilder, `keel-plugin-funnel-desk/docs/screenshots/`
+   → nach `public/projects/funnel-desk/` kopieren] — „Akquise-Trichter im
+   Vergleich: mehrere Kundengruppen nebeneinander, dieselben sechs Stufen von
+   Reichweite bis Bindung, Betreiber-Dashboard plus mobile Auslieferung.
+   Gedacht im Verbund mit Social-Dashboard und CRM — der Stand: ein Prototyp."
+   *(belegt: README „Funnel Desk v1", 6 Stufen, /dashboard + /f/[slug];
+   Verbund-Planung = Owner-Aussage F7)*
 
 ### 5 · Keel — „Regeln statt Vertrauen."
 **Copy (Brücke zur Methodik):** „Was zählt wirklich — in Code gegossen:
@@ -160,25 +183,22 @@ wir über deinen. LinkedIn, GitHub coastcoder439, oder der Lebenslauf als PDF."
 1. Basis `neubau/app` (Next.js 16); chirurgischer Umbau; Inhalte aus Daten-Dateien.
 2. Feste Nav ab Sekunde 1 · Skip-Link · `prefers-reduced-motion`-Fallback.
 
-## Fakten-Checkliste — bestätigt nur der Owner [neu v4.2]
+## Fakten-Checkliste — BEANTWORTET [Owner 02.09.2026]
 
-Diese Aussagen stehen im Storyboard und sind aus keinem Repo prüfbar. Je Punkt:
-JA, oder die korrekte Fassung.
-1. **F1 Hero:** „Die Mitgründung einer NGO brachte mich zum KI-Systembau" —
-   stimmt so?
-2. **F2 Oasis:** Simulator von dir entwickelt, mit Hilfe der Orga — trägt die
-   Produktzeile zu Recht kein „wir"?
-3. **F3 Team-Formel:** „gebaut von mir, getragen vom Team" — richtig, oder wie
-   soll der Team-Anteil heißen?
-4. **F4 CRM + Drive:** allein gebaut oder mit anderen?
-5. **F5 Kundenlage:** WL Bike Rental = echter, bezahlter Kundenauftrag mit
-   Nenn-Erlaubnis (Wusterhusen)? Nordwind = eigenes Projekt ohne Kunde — darf es
-   unter „Für Kunden gebaut." stehen, oder Sektion umbenennen (z. B. „Im
-   Einsatz.")?
-6. **F6 Profil:** „Ich komme aus dem Vertrieb" und „Vertrieb, Verein, Verleih,
-   Versand" — stimmen beide als Selbstbeschreibung?
-7. **F7 Funnels-Box:** Es gibt noch keinen gelieferten Funnel als Beleg — Box als
-   Angebot ohne Referenz in Ordnung, oder raus?
+1. **F1 Hero (Mitgründung):** bestätigt.
+2. **F2 Oasis:** Herzensprojekt, ursprünglich vom Owner entwickelt, heute vom
+   Team weiterentwickelt — Produktzeile sagt „Mein Herzensprojekt", die
+   Team-Weiterentwicklung trägt die Sektions-Copy. Nicht überbetonen.
+3. **F3 Team-Formel:** „von mir entwickelt, heute vom Team weitergetragen".
+4. **F4 CRM + Drive:** allein gebaut; CRM mit Hilfe des Praktikanten Sumit Mor
+   (Name nur hier, nicht in der Seiten-Copy).
+5. **F5 Kundenlage:** NIE „bezahlt/beauftragt" (Arbeitsamt-Risiko); nur
+   Prototyp-Screens; Prototyp-Vermerk nebensächlich; Sektion heißt „Echte
+   Probleme, echte Lösungen."
+6. **F6 Profil:** beide Aussagen bestätigt.
+7. **F7 Funnels:** Funnel Desk ist reales Projekt in Planung (Verbund mit
+   Social-Dashboard + CRM), Showcase vorhanden — wird drittes Projekt in
+   Abschnitt 4, Ergebnisbox damit belegt.
 
 ## Offene Owner-Fragen (unverändert)
 
