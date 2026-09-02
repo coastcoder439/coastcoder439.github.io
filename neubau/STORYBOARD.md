@@ -56,13 +56,16 @@ statt „Hallo".
 **Copy:** „World Eden Era ist die gemeinnützige UG, die ich mitgegründet habe —
 nachhaltige Ernährung durch Aquaponik. Dieser Antrieb brachte mich zum
 Systembau. Die ersten Systeme entstanden direkt für sie."
-*(Hintergrund, NICHT Copy [Owner 02.09.]: Oasis ursprünglich vom Owner
-entwickelt, heute vom Team weiterentwickelt; CRM mit Hilfe des Praktikanten
-Sumit Mor; Drive allein. Die Seite zeigt Coding, nicht Verhältnisse.)*
-1. **Oasis** [2 Bilder + Präsentation LIVE] — „Die Aquaponik-Oase als drehbares
-   3D-Modell im Browser — 272 MB aus Blender — plus eine Simulation, die Wetter
-   und Klima in Ertrag und Kosten einrechnet. Die 3D-Präsentation dazu läuft
-   live auf world-eden-era.org." *(Belege: glb 285.729.896 Bytes; OrbitControls;
+*(Owner 02.09., klargestellt: Project Oasis nicht zum THEMA machen — aber beim
+Oasis-Simulator MUSS stehen, dass es sein Herzensprojekt ist, gemeinsam mit
+der Orga weiterentwickelt, sonst fehlt der Zusammenhang. CRM-Praktikant und
+Drive-Alleinbau bleiben Hintergrund.)*
+1. **Oasis-Simulator** [2 Bilder + Präsentation LIVE] — „Mein Herzensprojekt —
+   ursprünglich von mir entwickelt, heute gemeinsam mit meiner Orga
+   weiterentwickelt: die Aquaponik-Oase als drehbares 3D-Modell im Browser (272
+   MB aus Blender) plus eine Simulation, die Wetter und Klima in Ertrag und
+   Kosten einrechnet. Die 3D-Präsentation dazu läuft live auf
+   world-eden-era.org." *(Belege: glb 285.729.896 Bytes; OrbitControls;
    simulation.js „Wetter & Klima"; /project-oasis/ live)*
 2. **WEE CRM** [ehrlich ohne Bild] — „Fundraising-CRM der gUG, im Aufbau:
    Kontakte, Spenden, CSV-Import, Audit-Log auf React 19 und Supabase. Kein
@@ -215,9 +218,12 @@ GitHub coastcoder439, oder der Lebenslauf als PDF."
 16. „kompletter Funnelbuilder verbunden mit Social Media Dashboard und CRM, in
     Planung, Showcase vorhanden, genauso wie WL Bike und Nordwind" → Sektion 4
     Projekt 3 + Ergebnisbox → UMGESETZT.
-17. „CRM und Drive allein gebaut, CRM mit Praktikant (Sumit Mor); Oasis
-    ursprünglich von mir, heute vom Team" → Hintergrund, NICHT Copy („Es geht
-    hier um Coding pur") → in v4.5 aus der Copy ENTFERNT.
+17. „Schreib, dass es mein Herzensprojekt ist, ursprünglich von mir entwickelt,
+    mittlerweile durch die Teammitglieder weiterentwickelt" + Klarstellung
+    „auf Project Oasis nicht eingehen, aber beim Oasis-Simulator nennen, sonst
+    weiß man nicht, womit das zusammenhängt" → Oasis-Produktzeile → UMGESETZT
+    (v4.5 hatte es fälschlich ganz entfernt — korrigiert). CRM-Praktikant und
+    Drive-Alleinbau: Hintergrund, keine Copy.
 18. Subline-Text 02.09. („Durch die IT-Welt begleitete mich eine Frage … mehr
     als nur eine Methodik geworden") → Hero → UMGESETZT.
 19. „Vertrieb, Verein, Verleih, Versand? Nein. Das hab ich nie gesagt." →
