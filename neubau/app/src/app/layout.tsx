@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google';
 import { getLocale, getMessages } from 'next-intl/server';
 import { ConditionalNavigation } from '@/components/layout/ConditionalNavigation';
+import { PreloadReady } from '@/components/layout/PreloadReady';
 import { I18nProvider } from '@/providers/I18nProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import '@/styles/globals.css';
@@ -84,7 +85,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       >
         <ThemeProvider>
           <I18nProvider locale={locale} messages={messages}>
-            <ConditionalNavigation>{children}</ConditionalNavigation>
+            <PreloadReady>
+              <ConditionalNavigation>{children}</ConditionalNavigation>
+            </PreloadReady>
           </I18nProvider>
         </ThemeProvider>
       </body>
