@@ -1,0 +1,17 @@
+REVIEW UND FIX von Leon Pöskens Portfolio. Die Next.js-App liegt im Bau-Ordner unter `app/` (arfazrll-Vorlage, mit Leons Inhalten befüllt). Der Owner hat den aktuellen Stand gesehen und klar abgelehnt: Darstellung schlecht, Screenshots schlecht, Texte generisch, KEINE klare Kundenreise, Inhalt wurde blind in die Vorlage eingefügt, seine Vorlieben missachtet. Deine bisherige Selbstabnahme war zu weich und hat genau das durchgewunken.
+
+Verbindliche Messlatte ist `LEON-BRIEF.md` im Bau-Ordner — lies ihn ZUERST vollständig. Jeder Punkt ist ein Owner-Auftrag.
+
+Du hast vollen Harness-Zugriff: alle Repos, Shell, npm/Netzwerk, deinen Browser (rendern+screenshotten). Entscheide alles selbst, keine Rückfragen.
+
+SCHRITT 1 — REVIEW (ehrlich, brutal): Starte die App (`cd app && npm run dev` oder build+start), öffne sie in deinem Browser, rendere und screenshotte die echten Seiten (Start, Projekte/Detailseiten, Kontakt; Desktop+Mobil, Hell+Dunkel). Gehe `LEON-BRIEF.md` Punkt für Punkt (A Kundenreise, B Texte, C Screenshots/Layout, D echtes Material, E Layout-Vorlieben, F Formales) durch und schreibe `review.md`: pro Punkt PASS/FAIL mit konkretem Beleg aus dem gerenderten Screenshot (was genau ist generisch/schlecht/blind). Sei hart: „sieht ok aus" ist kein Beleg.
+
+SCHRITT 2 — FIX: Behebe JEDEN FAIL an der Wurzel:
+- Kundenreise (A): baue den Erzählbogen (Haltung → World Eden Era Warum → echte Produkte als Beweis → zwei Zielgruppen Kunde/Arbeitgeber → CTA + CV), Besucher wird geführt.
+- Texte (B): jede generische/Vorlagen-Zeile durch spezifische, konkrete deutsche Copy für Leon und das jeweilige echte Produkt ersetzen.
+- Screenshots/Layout (C): echte Produkt-Screenshots sauber integrieren (Größe, Zuschnitt, im Layout), Darstellung auf arfazrll-Niveau, kein Overflow/keine kaputten Karten.
+- D/E/F: echte Produkte + Keel-Naming + Side-Scroller statt vertikalem Slider + CV/Kontakt/Links wie im Brief.
+
+SCHRITT 3 — Verifiziere per Render+Screenshot als SEPARATER, harter Kritiker gegen `LEON-BRIEF.md` und gegen die arfazrll-Design-Qualität (arfazrll-preview.png). Loop, bis ALLE Brief-Punkte belegt PASS sind. Protokolliere Runden und Screenshot-Pfade in `review.md`.
+
+`npm run build` muss am Ende sauber durchlaufen. Fan Builder und Kritiker als parallele Subagenten.
