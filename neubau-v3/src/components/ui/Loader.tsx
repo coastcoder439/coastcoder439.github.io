@@ -15,9 +15,9 @@ interface LoaderProps {
   activeFace?: number;
 }
 
-// Die vier Y-Seiten liegen auf 0°, 90°, 180°, 270°. Damit bringt eine Drehung des
-// Würfels auf -90° * index genau Seite [index] nach vorn — Schritt 1 bis 4 in einer
-// durchgehenden Vierteldrehung, ohne Rückwärtssprung.
+// Die vier Schritte liegen NICHT alle auf der Hochachse, sondern verteilt:
+// Schritt 1 vorne, Schritt 2 OBEN, Schritt 3 rechts, Schritt 4 UNTEN. Dadurch kippt der
+// Würfel beim Umschalten nach oben oder unten, statt immer nur seitlich zu schwenken.
 // WICHTIG: Diese Liste bleibt bei vier Einträgen — `faceColors` färbt damit die vier
 // Ablauf-Schritte. Deckel und Boden stehen getrennt darunter.
 const config: Record<LoaderType, { icon: any; label: string; color: string }[]> = {
@@ -50,15 +50,20 @@ const deckel: Record<LoaderType, { icon: any; label: string; color: string }[]> 
 
 export const faceColors = (type: LoaderType) => config[type].map((f) => f.color);
 
+// Wohin der Würfel gedreht werden muss, damit Schritt [i] zur Kamera zeigt.
+// Schritt 2 und 4 liegen auf Deckel und Boden — dorthin KIPPT er (X), zu Schritt 3
+// DREHT er (Y). So bewegt sich der Würfel räumlich statt nur nach links und rechts.
+const ZIEL_ROTATION = [
+  { x: 0, y: 0 },     // Schritt 1 — vorne
+  { x: -90, y: 0 },   // Schritt 2 — oben
+  { x: 0, y: -90 },   // Schritt 3 — rechts
+  { x: 90, y: 0 },    // Schritt 4 — unten
+];
+
 const Loader = ({ type = 'disziplinen', activeFace }: LoaderProps) => {
   const stageRef = useRef<HTMLDivElement>(null);
   const cubeRef = useRef<HTMLDivElement>(null);
   const shadowRef = useRef<HTMLDivElement>(null);
-  // Merkt sich die absolute Drehung, damit der Würfel von Seite 4 auf Seite 1
-  // nicht rückwärts durch alle Seiten rauscht.
-  const drehung = useRef(0);
-  const letzterIndex = useRef(0);
-
   const faces = config[type];
   const kappen = deckel[type];
   const gesteuert = typeof activeFace === 'number';
@@ -103,32 +108,21 @@ const Loader = ({ type = 'disziplinen', activeFace }: LoaderProps) => {
     };
   }, [gesteuert]);
 
-  // Gesteuerte Drehung: kürzester Weg zur gewünschten Seite — und dabei kippt der
-  // Würfel kurz nach vorn, sodass die Oberseite sichtbar wird. So ist der Wechsel eine
-  // räumliche Drehung statt eines flachen Schwenks nach rechts.
+  // Gesteuerte Drehung: der Würfel dreht sich dorthin, wo der gewählte Schritt liegt.
+  // Weil Schritt 2 oben und Schritt 4 unten sitzt, ist das je nach Ziel ein Kippen (X)
+  // oder ein Drehen (Y) — und zwischen zwei schrägen Zielen beides zugleich.
   useEffect(() => {
     if (!gesteuert || !cubeRef.current) return;
     const ziel = ((activeFace as number) % 4 + 4) % 4;
-    let schritte = ziel - letzterIndex.current;
-    if (schritte > 2) schritte -= 4;
-    if (schritte < -2) schritte += 4;
-    letzterIndex.current = ziel;
-    drehung.current -= schritte * 90;
-
+    const r = ZIEL_ROTATION[ziel];
     const sanft =
       typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     gsap.to(cubeRef.current, {
-      rotateY: drehung.current,
-      duration: sanft ? 0.3 : 0.95,
-      ease: 'power3.out',
+      rotateX: r.x,
+      rotateY: r.y,
+      duration: sanft ? 0.3 : 1.05,
+      ease: 'power3.inOut',
     });
-    if (!sanft) {
-      gsap
-        .timeline()
-        .to(cubeRef.current, { rotateX: 32, duration: 0.42, ease: 'power2.out' })
-        .to(cubeRef.current, { rotateX: 0, duration: 0.58, ease: 'power2.inOut' });
-    }
   }, [activeFace, gesteuert]);
 
   return (
@@ -140,13 +134,18 @@ const Loader = ({ type = 'disziplinen', activeFace }: LoaderProps) => {
       <div className="relative flex items-center justify-center">
         <div ref={stageRef} className="relative h-[180px] w-[180px]" style={{ transformStyle: 'preserve-3d' }}>
           <div ref={cubeRef} className="absolute inset-0" style={{ transformStyle: 'preserve-3d' }}>
+            {/* Schritt 1 — vorne */}
             <Face {...faces[0]} transform="rotateY(0deg) translateZ(90px)" />
-            <Face {...faces[1]} transform="rotateY(90deg) translateZ(90px)" />
-            <Face {...faces[2]} transform="rotateY(180deg) translateZ(90px)" />
-            <Face {...faces[3]} transform="rotateY(270deg) translateZ(90px)" />
-            {/* Deckel und Boden: gleiche Machart wie die Seiten, eigenes Feld. */}
-            <Face {...kappen[0]} licht={1.18} transform="rotateX(90deg) translateZ(90px)" />
-            <Face {...kappen[1]} licht={0.62} transform="rotateX(-90deg) translateZ(90px)" />
+            {/* Schritt 2 — OBEN: dorthin kippt der Würfel */}
+            <Face {...faces[1]} transform="rotateX(90deg) translateZ(90px)" />
+            {/* Schritt 3 — rechts */}
+            <Face {...faces[2]} transform="rotateY(90deg) translateZ(90px)" />
+            {/* Schritt 4 — UNTEN: dorthin kippt er in die andere Richtung */}
+            <Face {...faces[3]} transform="rotateX(-90deg) translateZ(90px)" />
+            {/* Zusatzfelder auf den beiden Seiten, die kein Schritt belegt. Sie stehen
+                nie vorn, darum dürfen sie dauerhaft etwas zurückgenommen sein. */}
+            <Face {...kappen[0]} licht={0.82} transform="rotateY(180deg) translateZ(90px)" />
+            <Face {...kappen[1]} licht={0.82} transform="rotateY(270deg) translateZ(90px)" />
           </div>
         </div>
 

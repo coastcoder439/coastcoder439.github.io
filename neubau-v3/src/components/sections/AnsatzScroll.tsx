@@ -17,7 +17,7 @@ import { Clock, Inbox, ClipboardCheck, LayoutDashboard, ShieldCheck, Sparkles, A
 
 type Ersparnis = "Zeit" | "Geld" | "Nerven";
 
-const KARTEN: { icon: React.ComponentType<{ className?: string }>; spart: Ersparnis; titel: string; text: string }[] = [
+const KARTEN: { icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; spart: Ersparnis; titel: string; text: string }[] = [
   { icon: Clock, spart: "Zeit", titel: "Deine Woche hat wieder Luft", text: "Die immer gleichen Handgriffe erledigt ein Ablauf im Hintergrund. Du kümmerst dich um das, wofür dich niemand ersetzen kann." },
   { icon: Inbox, spart: "Nerven", titel: "Keine Anfrage bleibt liegen", text: "Jede Nachricht bekommt sofort eine Antwort, auch wenn du beim Kunden bist oder längst Feierabend hast." },
   { icon: ClipboardCheck, spart: "Zeit", titel: "Schluss mit Abtippen", text: "Was in einem Programm steht, steht von allein auch im nächsten. Kein Copy-Paste, keine Zahlendreher." },
@@ -26,30 +26,36 @@ const KARTEN: { icon: React.ComponentType<{ className?: string }>; spart: Erspar
   { icon: Sparkles, spart: "Nerven", titel: "Die lästigste Aufgabe nie wieder", text: "Sag mir, was dich am meisten nervt. Die Chancen stehen gut, dass genau das sich automatisieren lässt." },
 ];
 
-// akzent = Farbe des Icons/Tags/oberen Streifens je Ersparnis (bringt Farbe in die Karten).
-const akzent: Record<Ersparnis, { icon: string; tag: string; strip: string; glow: string }> = {
-  Zeit: { icon: "text-sky-500", tag: "text-sky-600 dark:text-sky-400 border-sky-500/40 bg-sky-500/10", strip: "bg-sky-500", glow: "bg-sky-500/15" },
-  Geld: { icon: "text-emerald-500", tag: "text-emerald-600 dark:text-emerald-400 border-emerald-500/40 bg-emerald-500/10", strip: "bg-emerald-500", glow: "bg-emerald-500/15" },
-  Nerven: { icon: "text-amber-500", tag: "text-amber-600 dark:text-amber-400 border-amber-500/40 bg-amber-500/10", strip: "bg-amber-500", glow: "bg-amber-500/15" },
+// akzent = Farbe je Ersparnis. Kein Pill-Stil mehr — die Ersparnis steht als reiner
+// Text da, nicht als Knopf, der keiner ist.
+const akzent: Record<Ersparnis, { icon: string; kicker: string; strip: string; glow: string }> = {
+  Zeit: { icon: "text-sky-500", kicker: "text-sky-600 dark:text-sky-400", strip: "bg-sky-500", glow: "bg-sky-500/15" },
+  Geld: { icon: "text-emerald-500", kicker: "text-emerald-600 dark:text-emerald-400", strip: "bg-emerald-500", glow: "bg-emerald-500/15" },
+  Nerven: { icon: "text-amber-500", kicker: "text-amber-600 dark:text-amber-400", strip: "bg-amber-500", glow: "bg-amber-500/15" },
 };
 
 function AffiKarte({ karte }: { karte: (typeof KARTEN)[number] }) {
   const Icon = karte.icon;
   const a = akzent[karte.spart];
   return (
-    <div className="group relative flex h-[62vh] max-h-[440px] w-[78vw] max-w-[340px] flex-shrink-0 flex-col justify-between overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-b from-foreground/[0.06] to-foreground/[0.01] p-8 shadow-xl transition-transform duration-500 hover:-translate-y-1 sm:w-[320px] md:w-[340px]">
+    <div className="group relative flex h-[62vh] max-h-[440px] w-[78vw] max-w-[340px] flex-shrink-0 flex-col justify-end overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-b from-foreground/[0.06] to-foreground/[0.01] p-8 shadow-xl transition-transform duration-500 hover:-translate-y-1 sm:w-[320px] md:w-[340px]">
       <div className={`absolute inset-x-0 top-0 h-1.5 ${a.strip}`} />
-      <div className={`pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full ${a.glow} blur-2xl`} />
-      <div className="flex items-center justify-between">
-        <span className="grid h-14 w-14 place-content-center rounded-2xl border border-foreground/10 bg-background">
-          <Icon className={`h-7 w-7 ${a.icon}`} />
-        </span>
-        <span className={`rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-wider ${a.tag}`}>
-          spart {karte.spart}
-        </span>
-      </div>
-      <div>
-        <h3 className="text-2xl font-black leading-tight tracking-tight text-foreground md:text-[26px]">{karte.titel}</h3>
+      <div className={`pointer-events-none absolute -right-14 -top-14 h-44 w-44 rounded-full ${a.glow} blur-2xl`} />
+
+      {/* Das Symbol trägt die Karte als großes, ruhiges Zeichen — statt klein in einem
+          gerahmten Kästchen zu sitzen, wie es jede zweite Seite macht. */}
+      <Icon
+        className={`pointer-events-none absolute -bottom-6 -right-8 h-48 w-48 ${a.icon} opacity-[0.10] transition-transform duration-700 group-hover:scale-105`}
+        strokeWidth={1.1}
+      />
+
+      {/* Die Ersparnis als Kicker, nicht als Knopf. */}
+      <span className={`absolute left-8 top-9 font-mono text-[10px] font-bold uppercase tracking-[0.28em] ${a.kicker}`}>
+        spart {karte.spart}
+      </span>
+
+      <div className="relative z-10">
+        <h3 className="text-2xl font-black leading-[1.1] tracking-tight text-foreground md:text-[27px]">{karte.titel}</h3>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">{karte.text}</p>
       </div>
     </div>
