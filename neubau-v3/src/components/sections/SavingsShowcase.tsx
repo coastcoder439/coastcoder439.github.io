@@ -2,20 +2,24 @@
 
 /**
  * SavingsShowcase — eigene Sektion (#beispiele) NACH der horizontalen Affirmations-
- * Strecke. Die Spar-Beispiele laufen hier als vertikaler Sticky-Stack (ShowcaseStack
- * aus dem Template): man scrollt top-down, die Boxen stapeln sich übereinander — genau
- * wie die Original-Showcase-Boxen (github-/kaggle-showcase) im Template. Inhalt = Leons
- * Automatisierungs-Beispiele; die Zahlen sind BEISPIEL-Platzhalter, bis der Owner die
- * echten Kästchen schickt.
+ * Strecke. Ihr Kopf („Was das konkret bringt / Fünf Beispiele, ganz konkret") wird noch
+ * horizontal in der Strecke hereingeschoben (SektionsWechsel in AnsatzScroll); hier
+ * folgt direkt der vertikale Sticky-Stack: man scrollt top-down, die Boxen stapeln sich
+ * übereinander — wie die Original-Showcase-Boxen (github-/kaggle-showcase) im Template.
+ *
+ * Die Zahlen sind RECHENBEISPIELE, keine Zusagen: jeder Kicker sagt „Beispiel · …" und
+ * jede Geld-Zahl trägt ihre Rechengrundlage im Label. Der Owner ersetzt sie durch seine
+ * echten Kästchen-Inhalte.
  */
 
 import React from "react";
-import { FileText, MessageSquareReply } from "lucide-react";
+import { FileText, MessageSquareReply, CalendarClock, Receipt, BellRing } from "lucide-react";
 import { ShowcaseStack } from "@/components/ui/showcase-stack";
 import { ShowcaseBox, type ShowcaseInhalt } from "@/components/ui/showcase-box";
 
-// Erste Box im „GitHub Ecosystem"-Grün (#39d353), zweite im „Kaggle Intelligence"-Blau
-// (#20beff) — die Original-Akzentfarben der Template-Boxen.
+// Akzentfarben aus der Template-Palette (github-showcase #39d353, kaggle-showcase
+// #20beff / #a855f7 / #fb923c); die letzte auf Rose gezogen, weil das Template-Gelb
+// auf weißem Grund nicht lesbar wäre.
 const BEISPIELE: ShowcaseInhalt[] = [
   {
     accent: "#39d353",
@@ -47,19 +51,56 @@ const BEISPIELE: ShowcaseInhalt[] = [
     beschreibung:
       "Eine erste Antwort geht raus, während du noch beim Kunden bist. Passende Termine schlägt das System selbst vor.",
   },
+  {
+    accent: "#a855f7",
+    icon: CalendarClock,
+    kicker: "Beispiel · Termine",
+    titel: "Termine buchen sich",
+    titelZweite: "",
+    akzent: "von selbst.",
+    stats: [
+      { prefix: "~", value: 6, suffix: " Std", label: "frei pro Woche" },
+      { prefix: "≈ ", value: 1300, suffix: " €", label: "pro Monat, bei 50 € Stundensatz" },
+      { value: 0, label: "Telefonrunden zur Absprache" },
+    ],
+    beschreibung:
+      "Kunden sehen freie Zeiten und buchen direkt. Erinnerungen gehen automatisch raus, abgesagte Termine rücken nach.",
+  },
+  {
+    accent: "#fb923c",
+    icon: Receipt,
+    kicker: "Beispiel · Belege & Buchhaltung",
+    titel: "Belege sortieren sich",
+    titelZweite: "",
+    akzent: "von allein.",
+    stats: [
+      { prefix: "~", value: 8, suffix: " Std", label: "weniger pro Monat" },
+      { prefix: "≈ ", value: 400, suffix: " €", label: "weniger Vorbereitung beim Steuerbüro" },
+      { value: 0, label: "verlorene Belege" },
+    ],
+    beschreibung:
+      "Ein Foto genügt: Betrag, Datum und Kategorie liest das System aus und legt den Beleg dorthin, wo er hingehört.",
+  },
+  {
+    accent: "#f43f5e",
+    icon: BellRing,
+    kicker: "Beispiel · Zahlungen",
+    titel: "Kein Geld bleibt",
+    titelZweite: "",
+    akzent: "liegen.",
+    stats: [
+      { value: 12, suffix: " Tage", label: "schneller bezahlt" },
+      { prefix: "≈ ", value: 2400, suffix: " €", label: "weniger offene Posten im Schnitt" },
+      { value: 0, label: "vergessene Erinnerungen" },
+    ],
+    beschreibung:
+      "Zahlungserinnerungen gehen freundlich und pünktlich raus, ohne dass du jemandem hinterhertelefonierst.",
+  },
 ];
 
 export function SavingsShowcase() {
   return (
-    <section id="beispiele" className="relative bg-background pt-24 md:pt-32">
-      <div className="mx-auto mb-4 max-w-3xl px-6 text-center md:mb-8">
-        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-primary md:text-xs">
-          Was das konkret bringt
-        </span>
-        <h2 className="mt-4 text-3xl font-black leading-[0.95] tracking-tighter text-foreground md:text-5xl">
-          Zwei Beispiele, ganz konkret
-        </h2>
-      </div>
+    <section id="beispiele" className="relative bg-background">
       <ShowcaseStack>
         {BEISPIELE.map((b) => (
           <ShowcaseBox key={b.kicker} inhalt={b} />

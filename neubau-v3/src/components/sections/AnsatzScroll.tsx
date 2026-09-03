@@ -13,7 +13,7 @@
 
 import React from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { Clock, Inbox, ClipboardCheck, LayoutDashboard, ShieldCheck, Sparkles } from "lucide-react";
+import { Clock, Inbox, ClipboardCheck, LayoutDashboard, ShieldCheck, Sparkles, ArrowDown } from "lucide-react";
 
 type Ersparnis = "Zeit" | "Geld" | "Nerven";
 
@@ -111,6 +111,32 @@ function RevealTitel() {
   );
 }
 
+// Letztes Panel der horizontalen Strecke: der Kopf der NÄCHSTEN Sektion wird noch von
+// rechts hereingeschoben (der Sektionswechsel folgt damit der Slider-Bewegung, statt sie
+// zu brechen). Erst danach geht es vertikal weiter durch die Spar-Beispiele.
+function SektionsWechsel() {
+  return (
+    <div className="flex h-[62vh] max-h-[460px] w-[88vw] max-w-[860px] flex-shrink-0 flex-col justify-center pl-4 md:pl-10">
+      <span className="mb-5 font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-primary md:text-xs">
+        Was das konkret bringt
+      </span>
+      <h2 className="text-4xl font-black leading-[0.95] tracking-tighter text-foreground md:text-6xl lg:text-7xl">
+        Fünf Beispiele,
+        <br />
+        ganz konkret.
+      </h2>
+      <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-muted-foreground">
+        Was eine Automatisierung an Zeit und Geld zurückholt. Die Zahlen sind Rechenbeispiele,
+        keine Versprechen.
+      </p>
+      <span className="mt-8 inline-flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-muted-foreground md:text-xs">
+        <ArrowDown className="h-4 w-4 animate-bounce" />
+        weiter nach unten
+      </span>
+    </div>
+  );
+}
+
 export function AnsatzScroll() {
   const ref = React.useRef<HTMLElement>(null);
   const trackRef = React.useRef<HTMLDivElement>(null);
@@ -136,13 +162,14 @@ export function AnsatzScroll() {
   const x = useTransform(scrollYProgress, [0, 1], [0, -ueberbreite]);
 
   return (
-    <section ref={ref} id="ansatz" className="relative h-[260vh] bg-background">
+    <section ref={ref} id="ansatz" className="relative h-[380vh] bg-background">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div ref={trackRef} style={{ x }} className="flex w-max items-center gap-6 px-6 md:gap-8 md:px-24">
           <RevealTitel />
           {KARTEN.map((k) => (
             <AffiKarte key={k.titel} karte={k} />
           ))}
+          <SektionsWechsel />
         </motion.div>
       </div>
     </section>
