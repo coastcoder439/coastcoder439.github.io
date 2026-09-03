@@ -1,17 +1,22 @@
 "use client";
 
 /**
- * SnapZone — führt den Scroll durch die beiden zusammenhängenden Sektionen:
- * die horizontale Karten-Strecke (#ansatz) und den Beispiel-Stapel (#beispiele).
+ * SnapZone — führt den Scroll durch die zusammenhängende Strecke:
+ * horizontale Karten (#ansatz) → Sektionskopf → Beispiel-Stapel (#beispiele) → Buchen.
  *
- * Ohne das treibt der Scroll frei und bleibt irgendwo zwischen zwei Karten stehen.
- * Mit Snap wird er angestoßen und gleitet dann weich bis zum nächsten Punkt: ein Punkt
- * je Panel der Strecke (jede Karte, der Sektionskopf) und ein Punkt je Box im Stapel.
+ * Ein Anstoß, dann gleitet die Seite weich bis zum nächsten Punkt und hält dort.
  *
- * Genutzt wird `lenis/snap`, das Lenis selbst mitbringt — kein Eigenbau. Die Punkte
- * werden aus dem echten Layout gerechnet (Panel-Offsets, Karten-Höhen) und bei jedem
- * Resize neu, damit sie auf jedem Viewport sitzen. Außerhalb dieser beiden Sektionen
- * gibt es keine Punkte, dort scrollt die Seite unverändert frei.
+ * Zwei Dinge sind dabei entscheidend, sonst ruckelt es:
+ *  1. `debounce` muss LÄNGER sein als die Pausen zwischen zwei Radbewegungen. Sonst
+ *     feuert der Snap mitten im Scrollen und kämpft gegen die Hand am Rad.
+ *  2. `mandatory` statt `proximity`: proximity hat bei dicht liegenden Punkten mehrere
+ *     Kandidaten gleichzeitig im Einzugsbereich und zieht mal vor, mal zurück.
+ *     mandatory nimmt immer eindeutig den nächsten.
+ *
+ * Damit `mandatory` nicht die ganze Seite an sich reißt, ist der Snap NUR zwischen dem
+ * Anfang der Karten-Strecke und der Buchen-Sektion scharf; darüber und darunter wird er
+ * abgeschaltet. Buchen selbst ist der letzte Punkt — so gleitet man sauber hinaus statt
+ * am Stapelende festzuhängen.
  */
 
 import { useEffect } from "react";
@@ -20,6 +25,8 @@ import { getLenis } from "@/lib/scroll";
 
 type SnapLike = {
   add: (value: number) => () => void;
+  start: () => void;
+  stop: () => void;
   destroy: () => void;
 };
 
@@ -27,60 +34,94 @@ export function SnapZone() {
   useEffect(() => {
     const lenis = getLenis() as ConstructorParameters<typeof Snap>[0] | null;
     if (!lenis) return;
-    // Wer weniger Bewegung will, bekommt keinen gleitenden Zwangs-Scroll.
+    // Wer weniger Bewegung eingestellt hat, bekommt keinen geführten Scroll.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const snap = new Snap(lenis, {
-      type: "proximity",
-      // weich und ruhig, kein Schnappen
-      duration: 1.1,
+      type: "mandatory",
+      duration: 0.9,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
-      // großzügig, damit es innerhalb der Strecke immer einen Punkt findet
-      distanceThreshold: "60%",
-      debounce: 250,
+      // lang genug, dass er erst greift, wenn die Hand vom Rad ist
+      debounce: 550,
     }) as unknown as SnapLike;
 
     let entfernen: Array<() => void> = [];
+    let zoneStart = Number.POSITIVE_INFINITY;
+    let zoneEnde = Number.NEGATIVE_INFINITY;
+    let scharf = false;
+
+    snap.stop(); // startet aus; erst in der Zone scharf
 
     const punkteSetzen = () => {
       entfernen.forEach((weg) => weg());
       entfernen = [];
       const vh = window.innerHeight;
 
-      // 1) Horizontale Strecke: je Panel der Scrollstand, bei dem es links anliegt.
       const ansatz = document.getElementById("ansatz");
+      const beispiele = document.getElementById("beispiele");
+      const buchen = document.getElementById("buchen");
       const track = document.querySelector<HTMLElement>("[data-ansatz-track]");
-      if (ansatz && track && track.parentElement) {
-        const oben = ansatz.getBoundingClientRect().top + window.scrollY;
+      if (!ansatz || !beispiele) return;
+
+      const ansatzOben = ansatz.getBoundingClientRect().top + window.scrollY;
+
+      // 1) Horizontale Strecke: je Panel der Scrollstand, bei dem es links anliegt.
+      if (track && track.parentElement) {
         const strecke = Math.max(1, ansatz.offsetHeight - vh);
         const ueberbreite = Math.max(1, track.scrollWidth - track.parentElement.clientWidth);
         const padLinks = parseFloat(getComputedStyle(track).paddingLeft) || 0;
         Array.from(track.children).forEach((kind) => {
           const links = (kind as HTMLElement).offsetLeft - padLinks;
           const anteil = Math.min(1, Math.max(0, links / ueberbreite));
-          entfernen.push(snap.add(Math.round(oben + anteil * strecke)));
+          entfernen.push(snap.add(Math.round(ansatzOben + anteil * strecke)));
         });
       }
 
       // 2) Beispiel-Stapel: je Box ein Punkt (jede Karte ist einen Bildschirm hoch).
-      const beispiele = document.getElementById("beispiele");
-      if (beispiele) {
-        const oben = beispiele.getBoundingClientRect().top + window.scrollY;
-        const karten = beispiele.querySelectorAll("[data-stack-card]");
-        karten.forEach((_, i) => {
-          entfernen.push(snap.add(Math.round(oben + i * vh)));
-        });
+      const beispieleOben = beispiele.getBoundingClientRect().top + window.scrollY;
+      const karten = beispiele.querySelectorAll("[data-stack-card]");
+      karten.forEach((_, i) => {
+        entfernen.push(snap.add(Math.round(beispieleOben + i * vh)));
+      });
+
+      // 3) Buchen als letzter Punkt — sonst zieht es am Stapelende zurück.
+      const buchenOben = buchen ? buchen.getBoundingClientRect().top + window.scrollY : null;
+      if (buchenOben !== null) entfernen.push(snap.add(Math.round(buchenOben)));
+
+      zoneStart = ansatzOben;
+      zoneEnde = buchenOben ?? beispieleOben + beispiele.offsetHeight;
+    };
+
+    const zonePruefen = () => {
+      const y = window.scrollY;
+      const drin = y >= zoneStart - 4 && y <= zoneEnde + 4;
+      if (drin && !scharf) {
+        snap.start();
+        scharf = true;
+      } else if (!drin && scharf) {
+        snap.stop();
+        scharf = false;
       }
     };
 
     punkteSetzen();
+    zonePruefen();
     // Nach Schriften/Bildern sitzt das Layout erst richtig.
-    const nachmessen = setTimeout(punkteSetzen, 700);
-    window.addEventListener("resize", punkteSetzen);
+    const nachmessen = setTimeout(() => {
+      punkteSetzen();
+      zonePruefen();
+    }, 700);
+    const beiResize = () => {
+      punkteSetzen();
+      zonePruefen();
+    };
+    window.addEventListener("scroll", zonePruefen, { passive: true });
+    window.addEventListener("resize", beiResize);
 
     return () => {
       clearTimeout(nachmessen);
-      window.removeEventListener("resize", punkteSetzen);
+      window.removeEventListener("scroll", zonePruefen);
+      window.removeEventListener("resize", beiResize);
       entfernen.forEach((weg) => weg());
       snap.destroy();
     };

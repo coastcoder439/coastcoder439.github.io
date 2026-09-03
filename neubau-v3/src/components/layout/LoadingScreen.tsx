@@ -9,9 +9,9 @@ interface LoadingScreenProps {
     duration?: number;
 }
 
-// Preloader-Wort aus „Klare Kante": „Technik mit Auftrag." statt „Hallo",
-// unter 1,5 s. Gleiche Bewegungsidee wie zuvor (Reveal, dann Exit nach oben).
-const WORDS = ['Leon', 'Pösken'];
+// Ladebildschirm OHNE Schriftzug (Owner): kein Name, kein Motto — nur die Bewegung
+// und der ruhige Punkt. Ohne Text muss auch niemand mehr lesen, darum steht er kürzer.
+const WORDS: string[] = [];
 
 export function LoadingScreen({ onComplete, onExitStart, duration }: LoadingScreenProps) {
     const [isLoading, setIsLoading] = useState(true);
@@ -28,8 +28,8 @@ export function LoadingScreen({ onComplete, onExitStart, duration }: LoadingScre
     };
 
     useEffect(() => {
-        // Schriftzug ist nach ~1,3 s vollstaendig — dann Exit einleiten.
-        const t = setTimeout(handleAnimationComplete, 1300);
+        // Ohne Schriftzug gibt es nichts zu lesen — kurz halten, dann Exit einleiten.
+        const t = setTimeout(handleAnimationComplete, 850);
         return () => clearTimeout(t);
     }, []);
 

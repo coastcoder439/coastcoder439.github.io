@@ -87,14 +87,9 @@ export function Navbar() {
                         )}
                         layout
                     >
-                        <Link
-                            href="/"
-                            onClick={(e) => onNav(e, '')}
-                            aria-label="Leon Pösken — zum Seitenanfang"
-                            className="relative group min-w-[120px] rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
-                        >
-                            <span aria-hidden="true" className="grid h-9 w-9 place-content-center rounded-lg bg-foreground font-black text-sm text-background">LP</span>
-                        </Link>
+                        {/* Kein Logo (Owner): nur ein Platzhalter, damit die Navigation
+                            mittig bleibt. Zum Seitenanfang führt der Knopf unten rechts. */}
+                        <span aria-hidden="true" className="block h-9 min-w-[120px]" />
 
                         {/* Desktop Nav */}
                         <div className="hidden lg:flex items-center gap-1">

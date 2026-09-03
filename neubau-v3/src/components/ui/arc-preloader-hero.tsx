@@ -90,15 +90,15 @@ export function ArcRevealHero({
     }
   }, [phase, children]);
 
-  // Titel je Seite. Unbekannte Adressen (404) bekommen bewusst den Namen und
-  // nicht das eingetippte Wort — sonst stand "Gibtsnicht" riesig auf dem Schirm.
+  // Titel je Seite. Die Startseite bleibt bewusst OHNE Text (Owner): dort läuft nur die
+  // Animation. Unbekannte Adressen (404) bekommen ebenfalls nichts statt des eingetippten
+  // Wortes — sonst stand "Gibtsnicht" riesig auf dem Schirm.
   const title = React.useMemo(() => {
     const SEITEN: Record<string, string> = {
-      '/': 'Leon Pösken',
-      '/impressum': 'Impressum',
+      '/': '',
       '/datenschutz': 'Datenschutz',
     };
-    return SEITEN[pathname] ?? 'Leon Pösken';
+    return SEITEN[pathname] ?? '';
   }, [pathname]);
 
   const activeGreetings = greetings || [{ text: title }];
