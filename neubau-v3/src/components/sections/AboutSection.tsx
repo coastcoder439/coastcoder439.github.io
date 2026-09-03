@@ -16,6 +16,7 @@ import Bucket from "@/components/ui/bucket";
 import { AblaufSection, ProjekteSection } from "@/components/sections/StoryContent";
 import { AnsatzScroll } from "@/components/sections/AnsatzScroll";
 import { SavingsShowcase } from "@/components/sections/SavingsShowcase";
+import { SnapZone } from "@/components/ui/snap-zone";
 
 // Programme, die man automatisiert (verschiedene Branchen) — NICHT der Coding-Stack
 // (der steht schon im Banner). Diese fliegen beim Mausbewegen in die Box.
@@ -91,6 +92,8 @@ export default function AboutSection() {
       <ProjekteSection />
       <AnsatzScroll />
       <SavingsShowcase />
+      {/* Führt den Scroll durch Strecke + Stapel (Snap-Punkte), rendert nichts. */}
+      <SnapZone />
     </section>
   );
 }

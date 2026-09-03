@@ -8,9 +8,16 @@
 type LenisLike = { scrollTo: (target: number | string | HTMLElement, opts?: Record<string, unknown>) => void };
 
 let lenis: LenisLike | null = null;
+let rohInstanz: unknown = null;
 
 export function registerLenis(instance: unknown) {
+    rohInstanz = instance ?? null;
     lenis = instance && typeof (instance as LenisLike).scrollTo === 'function' ? (instance as LenisLike) : null;
+}
+
+/** Die laufende Lenis-Instanz selbst — für Erweiterungen wie `lenis/snap`. */
+export function getLenis(): unknown {
+    return rohInstanz;
 }
 
 /** Abstand der festen Kopfleiste, damit die Überschrift nicht darunter verschwindet. */

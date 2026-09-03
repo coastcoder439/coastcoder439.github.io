@@ -167,7 +167,7 @@ export function AnsatzScroll() {
   return (
     <section ref={ref} id="ansatz" className="relative h-[440vh] bg-background">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div ref={trackRef} style={{ x }} className="flex w-max items-center gap-6 px-6 md:gap-8 md:px-24">
+        <motion.div ref={trackRef} data-ansatz-track style={{ x }} className="flex w-max items-center gap-6 px-6 md:gap-8 md:px-24">
           <RevealTitel />
           {KARTEN.map((k) => (
             <AffiKarte key={k.titel} karte={k} />

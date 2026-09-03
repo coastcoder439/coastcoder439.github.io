@@ -26,19 +26,27 @@ const StackCard = ({ children, index, totalCards, scrollProgress }: {
     offset: ['start end', 'start start'],
   });
 
-  const targetScale = 1 - (totalCards - index) * 0.05;
+  // Sanfter als im Original (0.05), weil bei fünf Karten die unterste sonst auf 0.75
+  // schrumpft und der Stapel unruhig wirkt.
+  const targetScale = 1 - (totalCards - index) * 0.03;
   const scale = useTransform(scrollProgress, [index * (1 / totalCards), 1], [1, targetScale]);
+
+  // VERSATZ: jede Karte startet 72 px tiefer als die vorige, damit von jeder
+  // darunterliegenden die oberste Zeile (Icon + Kicker) sichtbar bleibt — der Stapel
+  // soll als Stapel lesbar sein. Der negative Startwert hält ihn dabei mittig.
+  const versatz = index * 72;
 
   return (
     <div
       ref={container}
+      data-stack-card
       className="h-screen flex items-center justify-center sticky top-0"
       style={{ zIndex: index + 1 }}
     >
       <motion.div
         style={{
           scale,
-          top: `calc(-5vh + ${index * 25}px)`,
+          top: `calc(-12vh + ${versatz}px)`,
         }}
         className="relative w-full origin-top"
       >
