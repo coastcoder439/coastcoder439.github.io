@@ -93,7 +93,7 @@ export function Navbar() {
                             aria-label="Leon Pösken — zum Seitenanfang"
                             className="relative group min-w-[120px] rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
                         >
-                            <span className="font-mono text-lg md:text-xl font-black tracking-tight text-gradient">Leon Pösken</span>
+                            <span aria-hidden="true" className="grid h-9 w-9 place-content-center rounded-lg bg-foreground font-black text-sm text-background">LP</span>
                         </Link>
 
                         {/* Desktop Nav */}
