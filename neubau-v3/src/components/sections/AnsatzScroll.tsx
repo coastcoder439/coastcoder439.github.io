@@ -12,7 +12,7 @@
  */
 
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Clock, Inbox, ClipboardCheck, LayoutDashboard, ShieldCheck, Sparkles, FileText, MessageSquareReply } from "lucide-react";
 
 type Ersparnis = "Zeit" | "Geld" | "Nerven";
@@ -128,6 +128,10 @@ const TITEL_ZEILEN = [
 ];
 
 function RevealTitel() {
+  // Wie bucket.tsx und Loader.tsx: bei reduzierter Bewegung kein Farbbalken-Wisch,
+  // der Text steht sofort da (der scroll-gebundene Horizontal-Slide bleibt, weil
+  // scroll-verknuepfte Bewegung nicht unter reduced-motion faellt).
+  const reduce = useReducedMotion();
   return (
     <div className="flex h-[62vh] max-h-[440px] w-[86vw] max-w-[520px] flex-shrink-0 flex-col justify-center pr-4">
       <span className="mb-5 font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-primary md:text-xs">
@@ -137,27 +141,29 @@ function RevealTitel() {
         {TITEL_ZEILEN.map((line, i) => (
           <div key={line.text} className="relative block overflow-hidden py-1">
             <motion.p
-              initial={{ opacity: 0 }}
+              initial={reduce ? false : { opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-20px" }}
-              transition={{ delay: i * 0.15 + 0.35, duration: 0.01 }}
+              transition={{ delay: reduce ? 0 : i * 0.15 + 0.35, duration: 0.01 }}
               className="text-4xl font-black leading-[0.95] tracking-tighter text-foreground md:text-6xl lg:text-7xl"
             >
               {line.text}
             </motion.p>
-            <motion.div
-              initial={{ clipPath: i % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)" }}
-              whileInView={{
-                clipPath:
-                  i % 2 === 0
-                    ? ["inset(0 100% 0 0)", "inset(0 0% 0 0)", "inset(0 0% 0 0)", "inset(0 0 0 100%)"]
-                    : ["inset(0 0 0 100%)", "inset(0 0% 0 0)", "inset(0 0% 0 0)", "inset(0 100% 0 0)"],
-              }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.75, times: [0, 0.45, 0.55, 1], delay: i * 0.15, ease: [0.85, 0, 0.15, 1] }}
-              className="absolute inset-0 z-10"
-              style={{ backgroundColor: line.color }}
-            />
+            {!reduce && (
+              <motion.div
+                initial={{ clipPath: i % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)" }}
+                whileInView={{
+                  clipPath:
+                    i % 2 === 0
+                      ? ["inset(0 100% 0 0)", "inset(0 0% 0 0)", "inset(0 0% 0 0)", "inset(0 0 0 100%)"]
+                      : ["inset(0 0 0 100%)", "inset(0 0% 0 0)", "inset(0 0% 0 0)", "inset(0 100% 0 0)"],
+                }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.75, times: [0, 0.45, 0.55, 1], delay: i * 0.15, ease: [0.85, 0, 0.15, 1] }}
+                className="absolute inset-0 z-10"
+                style={{ backgroundColor: line.color }}
+              />
+            )}
           </div>
         ))}
       </div>
