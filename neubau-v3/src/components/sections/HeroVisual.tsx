@@ -47,7 +47,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
         />
       </div>
 
-      <main className="relative flex-1 flex flex-col justify-center pt-36 pb-16 z-10 max-w-[105rem] w-full mx-auto">
+      <div className="relative flex-1 flex flex-col justify-center pt-36 pb-16 z-10 max-w-[105rem] w-full mx-auto">
         {/* Einspaltig, bis die Charakter-Figur des Owners kommt — sie bekommt dann
             wieder eine zweite Spalte rechts. */}
         <div className="grid w-full grid-cols-1 gap-12 px-6 md:pl-28 md:pr-12">
@@ -140,7 +140,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
           {/* Fullstack-Banner aus dem Template, zurueckgeholt. */}
           <TechBanner />
         </div>
-      </main>
+      </div>
 
       <div className="absolute left-0 top-1/2 z-40 hidden md:flex items-center -translate-y-1/2">
         <motion.div

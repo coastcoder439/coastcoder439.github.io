@@ -52,10 +52,9 @@ export default function DatenschutzPage() {
                 <H2>Terminbuchung über Cal.com</H2>
                 <P>
                     Im Abschnitt „Buchen“ kann ein Kalender von Cal.com, Inc., 2261 Market Street #4382, San Francisco,
-                    CA 94114, USA angezeigt werden. Er lädt <strong>nicht</strong> automatisch: Erst wenn Sie auf
-                    „Kalender laden“ klicken, wird er von Cal.com geholt, und erst dann erhält Cal.com Ihre IP-Adresse.
-                    Rechtsgrundlage für dieses Nachladen ist Ihre Einwilligung durch den Klick (Art. 6 Abs. 1 lit. a
-                    DSGVO), die Sie jederzeit widerrufen können, indem Sie die Seite neu laden. Buchen Sie einen Termin,
+                    CA 94114, USA angezeigt werden. Er wird beim Aufruf der Seite mitgeladen; dabei erhält Cal.com Ihre IP-Adresse.
+                    Rechtsgrundlage ist mein berechtigtes Interesse an einer einfachen Terminvereinbarung sowie die
+                    Anbahnung eines Vertrags (Art. 6 Abs. 1 lit. f und b DSGVO). Buchen Sie einen Termin,
                     verarbeitet Cal.com die von Ihnen eingegebenen Angaben (Name, E-Mail-Adresse, gewünschter Termin,
                     optionale Notizen), damit ich den Termin wahrnehmen kann (Art. 6 Abs. 1 lit. b DSGVO). Details:{' '}
                     <a

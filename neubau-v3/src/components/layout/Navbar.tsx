@@ -113,7 +113,7 @@ export function Navbar() {
                                 download="Leon-Poesken-Lebenslauf.pdf"
                                 className="ml-2 inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-bold hover:opacity-90 transition-opacity"
                             >
-                                CV <ArrowDownRight className="w-4 h-4" />
+                                Lebenslauf <ArrowDownRight className="w-4 h-4" />
                             </a>
                         </div>
 
