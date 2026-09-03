@@ -61,7 +61,7 @@ function ShowcasePanel({
           // Zugeklappte Fenster sind unsichtbar: ohne aria-hidden/inert würde der
           // Tabulator in ihre Links laufen und der Fokus ins Nichts wandern.
           aria-hidden={activeSlide !== i}
-          {...(activeSlide !== i ? { inert: "" as unknown as boolean } : {})}
+          inert={activeSlide !== i}
           className="overflow-hidden"
         >
           {p.url ? (

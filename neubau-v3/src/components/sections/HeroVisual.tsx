@@ -8,56 +8,20 @@ import { portfolioData } from '@/data/portfolio';
 import { Spotlight } from '@/components/ui/spotlight-new';
 import { handleAnchorClick } from '@/lib/scroll';
 
-// v3 — Block 1 „Das ist Leon" (Owner 03.09.2026): links Motto + Owner-Subline +
-// Knöpfe „Gespräch buchen" / „Lebenslauf" + Nachweise-Zeile, rechts die Karte mit
-// den vier Schritten (später ersetzt sie die Charakter-Figur des Owners).
+// v3.1 — Block 1 „Das ist Leon": Motto, Owner-Subline, Knöpfe „Gespräch buchen"
+// und „Lebenslauf", Nachweise-Zeile. Rechts bleibt Platz für die Charakter-Figur;
+// die Karte „Das baue ich" ist raus (Owner: doppelt zum zweiten Würfel).
 // Motion des Templates bleibt: Spotlight, Punktraster, text-shiny, isExiting-Reveal,
 // OFFEN-FÜR-AUSTAUSCH-Badge, runder Lebenslauf-Button.
 const LINES = ['Technik', 'mit', 'Auftrag.'];
 const SUBLINE =
-  'Die Mitgründung einer NGO brachte mich zum KI-Systembau. Durch die IT-Welt begleitete mich eine Frage: Was zählt wirklich? Heute ist aus diesem holistischen Gedanken mehr als nur eine Methodik geworden — deinen Weg finden und ihn gemeinsam gehen.';
+  'Angefangen hat es mit der Gründung einer gemeinnützigen UG — für sie habe ich meine ersten Systeme gebaut. Geblieben ist die Frage, was am Ende wirklich zählt. Heute baue ich für andere: erst verstehen, wo du hinwillst, dann den Weg dahin zusammen gehen.';
 const NACHWEISE = [
   'EU AI Act Essentials · KI-Campus',
   'SC-900 · Microsoft',
   'ENISA-Grundlagen · EU Academy',
   'Cybersecurity Fundamentals · IBM',
 ];
-
-// Rechte Hero-Spalte: was dabei herauskommt. Bewusst KEIN beschrifteter
-// Bild-Platzhalter — bis die Charakter-Figur des Owners vorliegt, steht hier
-// etwas, das für sich allein trägt. Die Figur ersetzt später genau diese Karte.
-// Bewusst die Ergebnisse und nicht die vier Schritte: die stehen im Ablauf-Block.
-const HERO_ERGEBNISSE = [
-  ['Websites', 'die eine Geschichte erzählen'],
-  ['Apps', 'mit Oberfläche, nicht nur Skript'],
-  ['Funnels', 'die aus Besuchern Anfragen machen'],
-  ['Automations', 'die ohne Zuruf laufen'],
-];
-
-function HeroSideCard({ isExiting }: { isExiting: boolean }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      animate={isExiting ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-      transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="relative mx-auto w-full max-w-[400px] overflow-hidden rounded-[2rem] border border-foreground/10 bg-foreground/[0.03] p-8 shadow-2xl backdrop-blur"
-    >
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle,_#888_0.6px,_transparent_0.6px)] opacity-25 [background-size:18px_18px]" />
-      <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-primary">Das baue ich</p>
-      <ul className="mt-6 space-y-5">
-        {HERO_ERGEBNISSE.map(([was, wozu]) => (
-          <li key={was}>
-            <span className="block text-xl font-black tracking-tight text-foreground md:text-2xl">{was}</span>
-            <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{wozu}</span>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-8 border-t border-foreground/10 pt-5 text-sm leading-relaxed text-muted-foreground">
-        Von deinem Problem zum laufenden System — der Ablauf steht weiter unten.
-      </p>
-    </motion.div>
-  );
-}
 
 export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
   const { personal } = portfolioData;
@@ -83,7 +47,9 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
       </div>
 
       <main className="relative flex-1 flex flex-col justify-center pt-36 pb-16 z-10 max-w-[105rem] w-full mx-auto">
-        <div className="grid w-full grid-cols-1 items-center gap-12 px-6 md:pl-28 md:pr-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-16">
+        {/* Einspaltig, bis die Charakter-Figur des Owners kommt — sie bekommt dann
+            wieder eine zweite Spalte rechts. */}
+        <div className="grid w-full grid-cols-1 gap-12 px-6 md:pl-28 md:pr-12">
           <div className="flex flex-col">
             <motion.p
               initial={{ opacity: 0, x: -20 }}
@@ -160,9 +126,6 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
             </motion.div>
           </div>
 
-          <div className="w-full">
-            <HeroSideCard isExiting={isExiting} />
-          </div>
         </div>
 
         <div className="mx-auto max-w-[105rem] w-full px-6 md:px-20 mt-14 md:mt-20">

@@ -7,10 +7,10 @@ import ImageTrail from "@/components/ImageTrail";
 
 const INITIAL_CHIPS = [
   // v3: die vier Schritte des Ablaufs statt der Template-Berufe.
-  { id: 1, title: "Muster erkennen", description: "Prompt-Engineering", icon: Search },
-  { id: 2, title: "Das Ganze sehen", description: "Context-Engineering", icon: Eye },
-  { id: 3, title: "Regeln in Code", description: "Harness-Engineering", icon: ShieldCheck },
-  { id: 4, title: "Können übergeben", description: "Skill-Engineering", icon: PackageCheck },
+  { id: 1, title: "Prompt Engineering", description: "Muster finden", icon: Search },
+  { id: 2, title: "Context Engineering", description: "Wissen bereitstellen", icon: Eye },
+  { id: 3, title: "Harness Engineering", description: "Regeln erzwingen", icon: ShieldCheck },
+  { id: 4, title: "Skill Engineering", description: "Übergeben, was läuft", icon: PackageCheck },
 ];
 
 export default function Bucket({ trailImages }: { trailImages?: string[] }) {

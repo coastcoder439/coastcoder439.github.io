@@ -1,13 +1,9 @@
 import type { MetadataRoute } from 'next';
-import { SITE_URL, IMPRESSUM_COMPLETE } from '@/lib/site';
+import { SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
-    // Ohne vollständiges Impressum bleibt die Seite für Suchmaschinen gesperrt.
-    if (!IMPRESSUM_COMPLETE) {
-        return { rules: [{ userAgent: '*', disallow: '/' }] };
-    }
     return {
-        rules: [{ userAgent: '*', allow: '/', disallow: ['/impressum', '/datenschutz'] }],
+        rules: [{ userAgent: '*', allow: '/', disallow: ['/datenschutz'] }],
         sitemap: `${SITE_URL}/sitemap.xml`,
     };
 }

@@ -1,21 +1,21 @@
 "use client";
 
 /**
- * v3 — zwei Blöcke der Vier-Block-Struktur (Owner 03.09.2026):
- *   AblaufSection   = Block 2 „So läuft es mit dir": Würfel 1 dreht die vier Schritte
- *                     aus Kundensicht (= Prompt/Context/Harness/Skill), Würfel 2 zeigt,
- *                     was dabei rauskommt.
+ * v3.1 — die beiden mittleren Blöcke (Owner 03.09.2026 abends):
+ *   AblaufSection   = Block 2 „So arbeite ich": der Würfel bleibt beim Scrollen stehen
+ *                     und dreht sich auf den Schritt, auf den man zeigt — beim Scrollen
+ *                     läuft 1→4 von selbst durch, die Maus übersteuert sofort.
+ *                     Der aktive Schritt trägt die Farbe seiner Würfelseite.
  *   ProjekteSection = Block 3: EINE Slideshow mit allen neun Projekten, gruppiert nach
- *                     Ursprung · Praxis · Keel, rechts das Live-Fenster des Projekts (keine Screenshots).
- * Block 1 (Hero) und Block 4 (Buchen) liegen in HeroVisual bzw. CTASection.
- * Projekt-Texte wörtlich aus „Klare Kante" v4.6 (Praxis-Regel: kein Auftrags-/
- * Bezahlverhältnis behaupten, Prototyp-Vermerk als letzter Satz).
+ *                     Ursprung · Praxis · Keel, rechts das Live-Fenster des Projekts.
+ * Sprache: die englischen Begriffe stehen als Überschrift (Schlagwörter), darunter je
+ * ein Satz in normaler Sprache — kein Stakkato, keine Baukasten-Sätze.
  */
 
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
-import Loader from "@/components/ui/Loader";
+import Loader, { faceColors } from "@/components/ui/Loader";
 import { cn } from "@/lib/utils";
 import { ProjectHoverShowcase, type ShowcaseProject } from "./ProjectHoverShowcase";
 
@@ -63,111 +63,213 @@ const Copy = ({ children }: { children: React.ReactNode }) => (
   </Reveal>
 );
 
-const CubeBlock = ({
+const SHELL = "relative mx-auto max-w-[1180px] px-6 py-24 md:px-12 md:py-32";
+
+// Würfel 1 — die vier Disziplinen. Englischer Begriff als Schlagwort, darunter
+// ein Satz, wie ihn ein Mensch sagen würde.
+const SCHRITTE = [
+  {
+    titel: "Prompt Engineering",
+    text: "Ich schaue mir an, wie du arbeitest, und finde das Muster darin. Was einmal sitzt, sitzt beim nächsten Fall wieder.",
+  },
+  {
+    titel: "Context Engineering",
+    text: "Die KI bekommt genau das Wissen, das deine Aufgabe braucht. Fehlt ihr etwas, rät sie — und das merkt man am Ergebnis.",
+  },
+  {
+    titel: "Harness Engineering",
+    text: "Die Regeln stehen im Code, nicht in einer Anleitung, an die sich jemand erinnern muss. Was nicht passieren darf, kann nicht passieren.",
+  },
+  {
+    titel: "Skill Engineering",
+    text: "Am Ende steht kein Konzept im Ordner, sondern etwas, das läuft — und das du weiterbenutzen kannst, ohne mich zu fragen.",
+  },
+];
+
+// Würfel 2 — was dabei herauskommt.
+const ERGEBNISSE = [
+  {
+    titel: "Websites",
+    text: "Seiten, die eine Geschichte erzählen, statt Kacheln zu stapeln — wie die Radtour rund um einen E-Bike-Verleih.",
+  },
+  {
+    titel: "Apps",
+    text: "Werkzeuge mit Oberfläche: vom Diktat, das im Hintergrund mitschreibt, bis zum 3D-Modell, das man drehen kann.",
+  },
+  {
+    titel: "Funnels",
+    text: "Wege, auf denen aus Besuchern Anfragen werden. Einer entsteht gerade als Prototyp.",
+  },
+  {
+    titel: "Automations",
+    text: "Abläufe, die ohne Zuruf laufen: Ablage sortieren, Daten prüfen, Berichte schreiben.",
+  },
+];
+
+/**
+ * Ein Würfel, der stehen bleibt, und vier Schritte, die daran vorbeilaufen.
+ * Die Auswahl kommt entweder vom Scrollen (1→4 über die Länge der Strecke) oder
+ * von der Maus/Tastatur — was zuletzt kam, gilt.
+ */
+function CubeWalk({
   type,
   items,
   reverse = false,
+  label,
 }: {
   type: "disziplinen" | "ergebnisse";
-  items: { title: string; sub: string; desc: string }[];
+  items: { titel: string; text: string }[];
   reverse?: boolean;
-}) => (
-  <div
-    className={cn(
-      "grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16",
-      reverse && "lg:[&>*:first-child]:order-2"
-    )}
-  >
-    <Reveal className="flex min-h-[360px] items-center justify-center">
-      <div className="h-[420px] w-full max-w-[420px]">
-        <Loader type={type} />
+  label: string;
+}) {
+  const [aktiv, setAktiv] = React.useState(0);
+  const [zeigerFuehrt, setZeigerFuehrt] = React.useState(false);
+  const schrittRefs = React.useRef<(HTMLLIElement | null)[]>([]);
+  const farben = faceColors(type);
+
+  // Welcher Schritt steht gerade in der Bildschirmmitte? Ein Beobachter auf einem
+  // schmalen Band in der Mitte ist verlässlicher als ein Scroll-Fortschritt, der
+  // beim ersten Bild noch kein gemessenes Layout hat.
+  React.useEffect(() => {
+    const beobachter = new IntersectionObserver(
+      (eintraege) => {
+        if (zeigerFuehrt) return;
+        const treffer = eintraege.find((e) => e.isIntersecting);
+        if (!treffer) return;
+        const i = schrittRefs.current.indexOf(treffer.target as HTMLLIElement);
+        if (i >= 0) setAktiv(i);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    schrittRefs.current.forEach((el) => el && beobachter.observe(el));
+    return () => beobachter.disconnect();
+  }, [zeigerFuehrt]);
+
+  return (
+    <div className="relative lg:min-h-[200vh]">
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16",
+          reverse && "lg:[&>*:first-child]:order-2"
+        )}
+      >
+        {/* Der Würfel bleibt beim Scrollen stehen und dreht sich mit. */}
+        <div className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center">
+          <div className="mx-auto h-[380px] w-full max-w-[460px] lg:h-[480px]">
+            <Loader type={type} activeFace={aktiv} />
+          </div>
+        </div>
+
+        <ol className="space-y-3 lg:space-y-0" onMouseLeave={() => setZeigerFuehrt(false)}>
+          {items.map((it, i) => {
+            const an = aktiv === i;
+            return (
+              <li
+                key={it.titel}
+                ref={(el) => {
+                  schrittRefs.current[i] = el;
+                }}
+                className="lg:flex lg:min-h-[50vh] lg:items-center"
+              >
+                <button
+                  type="button"
+                  onMouseEnter={() => {
+                    setZeigerFuehrt(true);
+                    setAktiv(i);
+                  }}
+                  onFocus={() => {
+                    setZeigerFuehrt(true);
+                    setAktiv(i);
+                  }}
+                  onBlur={() => setZeigerFuehrt(false)}
+                  aria-current={an}
+                  className={cn(
+                    "w-full rounded-xl border-l-[3px] px-5 py-4 text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current",
+                    an ? "bg-foreground/[0.04]" : "border-l-transparent opacity-50 hover:opacity-90"
+                  )}
+                  style={an ? { borderLeftColor: farben[i] } : undefined}
+                >
+                  <span className="flex items-baseline gap-3">
+                    <span
+                      className="font-mono text-xs transition-colors duration-500"
+                      style={{ color: an ? farben[i] : undefined }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className="text-2xl font-black tracking-tight transition-colors duration-500 md:text-3xl"
+                      style={{ color: an ? farben[i] : undefined }}
+                    >
+                      {it.titel}
+                    </span>
+                  </span>
+                  <span className="mt-2 block max-w-[52ch] text-base leading-relaxed text-muted-foreground">
+                    {it.text}
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ol>
       </div>
-    </Reveal>
-    <Reveal delay={0.1}>
-      <ol className="space-y-6">
-        {items.map((it) => (
-          <li key={it.title}>
-            <h3 className="text-lg font-bold text-foreground md:text-xl">{it.title}</h3>
-            <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
-              {it.sub}
-            </span>
-            <p className="mt-1.5 max-w-[52ch] text-base leading-relaxed text-muted-foreground">
-              {it.desc}
-            </p>
-          </li>
-        ))}
-      </ol>
-    </Reveal>
-  </div>
-);
 
-const SHELL = "relative mx-auto max-w-[1180px] px-6 py-24 md:px-12 md:py-32";
-
-// Würfel 1 — die vier Schritte aus Kundensicht; jede Würfelseite ist einer davon.
-const SCHRITTE = [
-  { title: "1 · Muster erkennen", sub: "Prompt-Engineering", desc: "Dein Problem ist selten neu. Ich finde das Muster dahinter — einmal erkannt, lässt es sich von einem Anwendungsfall auf deinen übertragen." },
-  { title: "2 · Das Ganze sehen", sub: "Context-Engineering", desc: "Erst dein kompletter Ablauf, dann das Werkzeug: Welches Wissen die Aufgabe braucht, entscheidet der Blick aufs Ganze." },
-  { title: "3 · Regeln in Code gießen", sub: "Harness-Engineering", desc: "Regeln statt Vertrauen: Disziplin steckt im Code, nicht im Prompt. Wächter, Gates und Messwerte halten Agenten ehrlich — in deinem Projekt wie in jedem anderen." },
-  { title: "4 · Können übergeben", sub: "Skill-Engineering", desc: "Was sich bewährt hat, bleibt bei dir als abrufbares Können — geladen, wenn die Aufgabe es braucht, statt als Konzeptpapier im Ordner." },
-];
-
-// Würfel 2 — was dabei rauskommt (Texte aus dem Gate-Dokument).
-const ERGEBNISSE = [
-  { title: "Websites", sub: "Ergebnis", desc: "Seiten, die eine Geschichte erzählen statt Kacheln zu stapeln — wie die Radtour-Story rund um einen E-Bike-Verleih." },
-  { title: "Apps", sub: "Ergebnis", desc: "Werkzeuge mit Oberfläche: vom Diktat-Overlay bis zum drehbaren 3D-Modell." },
-  { title: "Funnels", sub: "Ergebnis", desc: "Strecken, die aus Besuchern Anfragen machen — ein Funnel-Builder entsteht gerade als Prototyp." },
-  { title: "Automations", sub: "Ergebnis", desc: "Abläufe, die ohne Zuruf laufen: Ablage-Regeln, Agenten, Prüfschritte." },
-];
+      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+        {label}
+      </p>
+    </div>
+  );
+}
 
 const GRUPPE_URSPRUNG = "Ursprung · World Eden Era";
 const GRUPPE_PRAXIS = "Praxis · Prototypen";
 const GRUPPE_KEEL = "Keel · eigenes System";
 
 const PROJEKTE: ShowcaseProject[] = [
-  { id: "oasis", group: GRUPPE_URSPRUNG, name: "Oasis-Simulator", tag: "Live · Präsentation", url: "https://world-eden-era.org/project-oasis/", desc: "Mein Herzensprojekt — ursprünglich von mir entwickelt, heute gemeinsam mit meiner Orga weiterentwickelt: die Aquaponik-Oase als drehbares 3D-Modell im Browser (272 MB aus Blender) plus eine Simulation, die Wetter und Klima in Ertrag und Kosten einrechnet." },
-  { id: "wee", group: GRUPPE_URSPRUNG, name: "WEE CRM", tag: "Live · Prototyp", url: "https://showcase-wee-crm.vercel.app", desc: "Fundraising-CRM der gUG, im Aufbau: Kontakte, Spenden, CSV-Import, Audit-Log auf React 19 und Supabase. Der Stand: ein getesteter Prototyp." },
-  { id: "drive", group: GRUPPE_URSPRUNG, name: "Drive-Automatisierung", tag: "Ohne Live-Ansicht", desc: "Der Vereins-Drive gehorcht einer YAML als einziger Wahrheitsquelle. Python verteilt die Ablage-Regeln und meldet Abweichungen — 233 Dateien im Migrationsplan, jeder Lauf mit Abgleichsbericht." },
-  { id: "wlbike", group: GRUPPE_PRAXIS, name: "WL Bike Rental", tag: "Live · Prototyp", url: "https://showcase-wl-bike.vercel.app", desc: "Scroll-Story rund um einen E-Bike-Verleih an der Ostsee: eine Radtour von Wald über Bodden bis Strand, jedes Angebot eine Station. Gebaut in Next.js, jeder Scroll-Zustand per Playwright-Screenshot verifiziert — der Stand: ein Prototyp." },
-  { id: "nordwind", group: GRUPPE_PRAXIS, name: "Nordwind Studio", tag: "Live · Prototyp", url: "https://showcase-nordwind.vercel.app", desc: "Demo-Cockpit für Print-on-Demand auf Shopify: sieben KI-Agenten von Designfreigabe bis USt-Voranmeldung, im Browser durchklickbar ohne Server. 96 Belege treffen die GuV auf 0,00 Euro genau — der Stand: ein Prototyp." },
-  { id: "funnel", group: GRUPPE_PRAXIS, name: "Funnel Desk", tag: "Live · Prototyp", url: "https://showcase-funnel-desk.vercel.app/dashboard", desc: "Akquise-Trichter im Vergleich: mehrere Zielgruppen nebeneinander, dieselben sechs Stufen von Reichweite bis Bindung, Betreiber-Dashboard plus mobile Auslieferung. Gedacht im Verbund mit Social-Dashboard und CRM — der Stand: ein Prototyp." },
-  { id: "keel", group: GRUPPE_KEEL, name: "Keel Showcase", tag: "Live · zum Durchklicken", url: "https://keel-showcase.vercel.app", desc: "Die Keel-Oberfläche zum Durchklicken: Website-Builder, Social Media, Commerce. Ohne Server, ohne Anmeldung — direkt hier eingebettet." },
-  { id: "harness", group: GRUPPE_KEEL, name: "Keel-Harness", tag: "Ohne Live-Ansicht", desc: "Ein Bausatz, der KI-Agenten diszipliniert arbeiten lässt: Wächter-Hooks, Dauer-Regeln, Mess-Dashboard. Ein Satz an den Agenten installiert ihn in jeden Projektordner." },
-  { id: "flowvoice", group: GRUPPE_KEEL, name: "FlowVoice", tag: "Ohne Live-Ansicht", desc: "Diktat für Windows: Hotkey drücken, sprechen — der Text steht im aktiven Fenster. Vier Erkennungs-Engines zur Wahl, von komplett lokal bis Groq." },
+  { id: "oasis", group: GRUPPE_URSPRUNG, name: "Oasis-Simulator", tag: "Live · Präsentation", url: "https://world-eden-era.org/project-oasis/", desc: "Mein Herzensprojekt, ursprünglich von mir gebaut und heute mit meiner Orga weiterentwickelt: eine Aquaponik-Oase als 3D-Modell, das man im Browser drehen kann, dazu eine Rechnung, die Wetter und Klima in Ertrag und Kosten übersetzt." },
+  { id: "wee", group: GRUPPE_URSPRUNG, name: "WEE CRM", tag: "Live · Prototyp", url: "https://showcase-wee-crm.vercel.app", desc: "Spendenverwaltung für die gemeinnützige UG: Kontakte, Spenden, Import aus Tabellen, und ein Protokoll, das festhält, wer was geändert hat. Stand: getesteter Prototyp." },
+  { id: "drive", group: GRUPPE_URSPRUNG, name: "Drive-Automatisierung", tag: "Ohne Live-Ansicht", desc: "Der Vereins-Drive räumt sich selbst auf: eine Datei legt fest, wo was hingehört, ein Skript sortiert danach und meldet, was nicht passt. 233 Dateien standen im Plan, jeder Lauf schreibt einen Bericht." },
+  { id: "wlbike", group: GRUPPE_PRAXIS, name: "WL Bike Rental", tag: "Live · Prototyp", url: "https://showcase-wl-bike.vercel.app", desc: "Eine Seite für einen E-Bike-Verleih an der Ostsee, erzählt als Radtour: vom Wald über den Bodden bis an den Strand, und jedes Angebot ist eine Station unterwegs. Stand: Prototyp." },
+  { id: "nordwind", group: GRUPPE_PRAXIS, name: "Nordwind Studio", tag: "Live · Prototyp", url: "https://showcase-nordwind.vercel.app", desc: "Ein Cockpit für einen Print-on-Demand-Shop: sieben Agenten übernehmen den Weg von der Designfreigabe bis zur Umsatzsteuer. Läuft im Browser, ohne Server. 96 Belege gehen auf den Cent auf. Stand: Prototyp." },
+  { id: "funnel", group: GRUPPE_PRAXIS, name: "Funnel Desk", tag: "Live · Prototyp", url: "https://showcase-funnel-desk.vercel.app/dashboard", desc: "Mehrere Zielgruppen nebeneinander, für jede derselbe Weg von der ersten Berührung bis zur festen Kundschaft — und ein Überblick, wo jemand hängen bleibt. Stand: Prototyp." },
+  { id: "keel", group: GRUPPE_KEEL, name: "Keel Showcase", tag: "Live · zum Durchklicken", url: "https://keel-showcase.vercel.app", desc: "Die Oberfläche von Keel zum Ausprobieren: Website-Baukasten, Social Media, Shop. Ohne Anmeldung, direkt hier im Fenster." },
+  { id: "harness", group: GRUPPE_KEEL, name: "Keel-Harness", tag: "Ohne Live-Ansicht", desc: "Ein Bausatz, der KI-Agenten diszipliniert arbeiten lässt: feste Regeln, Sperren vor riskanten Schritten, ein Dashboard mit Messwerten. Ein Satz an den Agenten genügt, und er richtet sich im Projekt selbst ein." },
+  { id: "flowvoice", group: GRUPPE_KEEL, name: "FlowVoice", tag: "Ohne Live-Ansicht", desc: "Diktieren unter Windows: Taste drücken, sprechen, der Text steht im Fenster, in dem man gerade arbeitet. Vier Erkennungs-Engines zur Wahl, von komplett offline bis Cloud." },
 ];
 
 export function AblaufSection() {
   return (
     <section id="ablauf" className={cn("relative z-20 bg-background text-foreground", SHELL)}>
-      <SectionHead nr="Ablauf — so läuft es mit dir" title="Erkennen. Sehen. Bauen. Übergeben." />
+      <SectionHead nr="Ablauf" title="So arbeite ich." />
       <Copy>
-        Was in der Aquaponik hält, trägt im Verleih, im Print-on-Demand, im Agenten-System. Vier
-        Schritte, mit denen ich dein Problem in ein laufendes System übersetze — jede Seite des
-        Würfels ist einer davon.
+        Was in der Aquaponik funktioniert, funktioniert auch im Verleih, im Shop und im
+        Agenten-System. Vier Dinge, die ich dafür beherrsche — fahr mit der Maus darüber,
+        der Würfel dreht sich mit.
       </Copy>
-      <div className="mt-10">
-        <CubeBlock type="disziplinen" items={SCHRITTE} />
-      </div>
-      <Reveal className="mb-8 mt-24">
+
+      <CubeWalk type="disziplinen" items={SCHRITTE} label="Prompt · Context · Harness · Skill Engineering" />
+
+      <Reveal className="mb-8 mt-12">
         <div className="flex items-center gap-4">
           <ArrowDownRight className="h-5 w-5 text-primary" />
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-primary md:text-xs">
-            Was dabei rauskommt
+            Und das kommt dabei heraus
           </span>
         </div>
       </Reveal>
-      <CubeBlock type="ergebnisse" items={ERGEBNISSE} reverse />
+
+      <CubeWalk type="ergebnisse" items={ERGEBNISSE} reverse label="Websites · Apps · Funnels · Automations" />
     </section>
   );
 }
 
 export function ProjekteSection() {
   return (
-    <section id="projekte" className={cn("relative z-20 bg-background text-foreground border-t border-foreground/10", SHELL)}>
-      <SectionHead nr="Projekte — die Schritte an echten Problemen" title="Echte Probleme, echte Lösungen." />
+    <section id="projekte" className={cn("relative z-20 border-t border-foreground/10 bg-background text-foreground", SHELL)}>
+      <SectionHead nr="Projekte" title="Echte Probleme, echte Lösungen." />
       <Copy>
-        Neun Projekte, drei Herkünfte: die NGO, an der alles begann — Prototypen für echte
-        Probleme — Keel, mein eigenes System. Wo eine Vorschau möglich ist, siehst du die echte Oberfläche,
-        kein Bild.
+        Neun Projekte aus drei Ecken: die gemeinnützige UG, mit der alles anfing, Prototypen
+        für Kundenprobleme, und Keel — mein eigenes System. Wo eine Vorschau möglich ist,
+        siehst du die echte Oberfläche, kein Bild.
       </Copy>
       <div className="mt-10">
         <ProjectHoverShowcase projects={PROJEKTE} />

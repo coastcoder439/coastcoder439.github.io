@@ -1,180 +1,158 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import {
-  Brain, Network, Cpu, Database, Fingerprint, Zap,
-  Server, Code, Terminal, Layers, Shield, Workflow,
-  Lightbulb, Users, MessageSquare, Target, Compass, Briefcase,
-  Globe, Smartphone, Filter
-} from 'lucide-react';
+import { Layers, Shield, Lightbulb, MessageSquare, Workflow, Globe, Smartphone, Filter } from 'lucide-react';
 
-type LoaderType = 'ai' | 'software' | 'softskill' | 'default' | 'disziplinen' | 'ergebnisse';
+type LoaderType = 'disziplinen' | 'ergebnisse';
 
 interface LoaderProps {
   type?: LoaderType;
+  /** Welche Seite nach vorn zeigt (0–3). Ohne Angabe dreht der Würfel frei weiter. */
+  activeFace?: number;
 }
 
-const config = {
-  ai: [
-    { icon: Brain, label: "AI", color: "#ef4444" },
-    { icon: Network, label: "NN", color: "#3b82f6" },
-    { icon: Cpu, label: "LLM", color: "#eab308" },
-    { icon: Database, label: "DATA", color: "#22c55e" },
-    { icon: Fingerprint, label: "VISION", color: "#a855f7" },
-    { icon: Zap, label: "ML", color: "#f97316" }
-  ],
-  software: [
-    { icon: Server, label: "BACKEND", color: "#3b82f6" },
-    { icon: Code, label: "CODE", color: "#eab308" },
-    { icon: Terminal, label: "CLI", color: "#22c55e" },
-    { icon: Layers, label: "ARCH", color: "#ef4444" },
-    { icon: Shield, label: "SECURE", color: "#8b5cf6" },
-    { icon: Workflow, label: "CI/CD", color: "#06b6d4" }
-  ],
-  softskill: [
-    { icon: Lightbulb, label: "IDEA", color: "#eab308" },
-    { icon: Users, label: "TEAM", color: "#3b82f6" },
-    { icon: MessageSquare, label: "TALK", color: "#22c55e" },
-    { icon: Target, label: "GOAL", color: "#ef4444" },
-    { icon: Compass, label: "SYSTEM", color: "#a855f7" },
-    { icon: Briefcase, label: "LEAD", color: "#f97316" }
-  ],
-  default: [
-    { icon: Zap, label: "Start", color: "#00d2ff" },
-    { icon: Zap, label: "Action", color: "#ff00ff" },
-    { icon: Zap, label: "Zoom", color: "#ffef00" },
-    { icon: Zap, label: "Wait", color: "#ffffff" },
-    { icon: Zap, label: "Boom", color: "#ff5252" },
-    { icon: Zap, label: "Loading", color: "#00e676" }
-  ],
-  // Wuerfel 1 — die vier Disziplinen (je eine Seite). Owner: „ein Wuerfel mit
-  // 4 Seiten". Vier Y-Seiten tragen die vier Disziplinen; Deckel/Boden
-  // wiederholen die ersten beiden, damit keine fremde fuenfte Kategorie erscheint.
+// Die vier Y-Seiten liegen auf 0°, 90°, 180°, 270°. Damit bringt eine Drehung des
+// Würfels auf -90° * index genau Seite [index] nach vorn — Schritt 1 bis 4 in einer
+// durchgehenden Vierteldrehung, ohne Rückwärtssprung.
+const config: Record<LoaderType, { icon: any; label: string; color: string }[]> = {
   disziplinen: [
-    { icon: MessageSquare, label: "PROMPT", color: "#3b82f6" },
-    { icon: Layers, label: "CONTEXT", color: "#22c55e" },
-    { icon: Shield, label: "HARNESS", color: "#a855f7" },
-    { icon: Lightbulb, label: "SKILL", color: "#eab308" },
-    { icon: MessageSquare, label: "PROMPT", color: "#3b82f6" },
-    { icon: Layers, label: "CONTEXT", color: "#22c55e" }
+    { icon: MessageSquare, label: 'PROMPT', color: '#3b82f6' },
+    { icon: Layers, label: 'CONTEXT', color: '#22c55e' },
+    { icon: Shield, label: 'HARNESS', color: '#a855f7' },
+    { icon: Lightbulb, label: 'SKILL', color: '#eab308' },
   ],
-  // Wuerfel 2 — was aus den Disziplinen entsteht: website, apps, funnel, automations.
   ergebnisse: [
-    { icon: Globe, label: "WEBSITES", color: "#ef4444" },
-    { icon: Smartphone, label: "APPS", color: "#06b6d4" },
-    { icon: Filter, label: "FUNNELS", color: "#f97316" },
-    { icon: Workflow, label: "AUTOMATIONS", color: "#22c55e" },
-    { icon: Globe, label: "WEBSITES", color: "#ef4444" },
-    { icon: Smartphone, label: "APPS", color: "#06b6d4" }
-  ]
+    { icon: Globe, label: 'WEBSITES', color: '#ef4444' },
+    { icon: Smartphone, label: 'APPS', color: '#06b6d4' },
+    { icon: Filter, label: 'FUNNELS', color: '#f97316' },
+    { icon: Workflow, label: 'AUTOMATIONS', color: '#22c55e' },
+  ],
 };
 
-const Loader = ({ type = 'default' }: LoaderProps) => {
+export const faceColors = (type: LoaderType) => config[type].map((f) => f.color);
+
+const Loader = ({ type = 'disziplinen', activeFace }: LoaderProps) => {
   const stageRef = useRef<HTMLDivElement>(null);
   const cubeRef = useRef<HTMLDivElement>(null);
   const shadowRef = useRef<HTMLDivElement>(null);
+  // Merkt sich die absolute Drehung, damit der Würfel von Seite 4 auf Seite 1
+  // nicht rückwärts durch alle Seiten rauscht.
+  const drehung = useRef(0);
+  const letzterIndex = useRef(0);
 
-  const faces = config[type] || config.default;
+  const faces = config[type];
+  const gesteuert = typeof activeFace === 'number';
 
+  // Freies Schweben und, ohne Steuerung, freies Drehen.
   useEffect(() => {
-    // Wer im Betriebssystem weniger Bewegung eingestellt hat, bekommt den
-    // Wuerfel still — sonst laufen drei Endlos-Tweens (WCAG 2.3.3 / 2.2.2).
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    // Stage Jump
-    gsap.set(stageRef.current, { scale: 1, rotateX: -20, rotateY: 0 });
-    const stageTween = gsap.to(stageRef.current, {
-      scale: 1.3,
-      rotateX: 160,
-      rotateY: 180,
-      duration: 2,
-      ease: "power1.inOut",
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    gsap.set(stageRef.current, { rotateX: -14, rotateY: 0 });
+    const schweben = gsap.to(stageRef.current, {
+      y: -16,
+      rotateX: -22,
+      duration: 2.6,
+      ease: 'sine.inOut',
       yoyo: true,
-      repeat: -1
+      repeat: -1,
     });
 
-    // Auto Rotate Cube
-    const cubeTween = gsap.to(cubeRef.current, {
-      rotateY: 360,
-      rotateZ: 360,
-      duration: 8,
-      ease: "none",
-      repeat: -1
+    gsap.set(shadowRef.current, { scale: 1, opacity: 0.45 });
+    const schatten = gsap.to(shadowRef.current, {
+      scale: 0.75,
+      opacity: 0.18,
+      duration: 2.6,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
     });
 
-    // Shadow Pulse
-    gsap.set(shadowRef.current, { scale: 1, opacity: 0.5 });
-    const shadowTween = gsap.to(shadowRef.current, {
-      scale: 0.4,
-      opacity: 0.1,
-      duration: 2,
-      ease: "power1.inOut",
-      yoyo: true,
-      repeat: -1
-    });
+    let frei: gsap.core.Tween | null = null;
+    if (!gesteuert) {
+      frei = gsap.to(cubeRef.current, { rotateY: 360, duration: 14, ease: 'none', repeat: -1 });
+    }
 
     return () => {
-      stageTween.kill();
-      cubeTween.kill();
-      shadowTween.kill();
+      schweben.kill();
+      schatten.kill();
+      frei?.kill();
     };
-  }, []);
+  }, [gesteuert]);
+
+  // Gesteuerte Drehung: immer den kürzesten Weg zur gewünschten Seite.
+  useEffect(() => {
+    if (!gesteuert || !cubeRef.current) return;
+    const ziel = ((activeFace as number) % 4 + 4) % 4;
+    let schritte = ziel - letzterIndex.current;
+    if (schritte > 2) schritte -= 4;
+    if (schritte < -2) schritte += 4;
+    letzterIndex.current = ziel;
+    drehung.current -= schritte * 90;
+    gsap.to(cubeRef.current, {
+      rotateY: drehung.current,
+      duration: 0.9,
+      ease: 'power3.out',
+    });
+  }, [activeFace, gesteuert]);
 
   return (
-    <div className="relative w-full h-full min-h-[400px] flex items-center justify-center overflow-hidden bg-transparent" style={{ perspective: 1500 }}>
-      {/* Background Dots */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none hidden"
-        style={{
-          backgroundImage: 'radial-gradient(#000000 1px, transparent 1px)',
-          backgroundSize: '15px 15px'
-        }}
-      />
-
+    <div
+      className="relative flex h-full min-h-[380px] w-full items-center justify-center overflow-hidden bg-transparent"
+      style={{ perspective: 1500 }}
+      aria-hidden="true"
+    >
       <div className="relative flex items-center justify-center">
-        {/* The 3D Stage */}
-        <div
-          ref={stageRef}
-          className="relative w-[110px] h-[110px]"
-          style={{ transformStyle: 'preserve-3d' }}
-        >
-          {/* The Auto-Rotating Cube */}
-          <div
-            ref={cubeRef}
-            className="absolute inset-0"
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            <Face icon={faces[0].icon} label={faces[0].label} color={faces[0].color} transform="rotateY(0deg) translateZ(55px)" />
-            <Face icon={faces[1].icon} label={faces[1].label} color={faces[1].color} transform="rotateY(180deg) translateZ(55px)" />
-            <Face icon={faces[2].icon} label={faces[2].label} color={faces[2].color} transform="rotateY(90deg) translateZ(55px)" />
-            <Face icon={faces[3].icon} label={faces[3].label} color={faces[3].color} transform="rotateY(-90deg) translateZ(55px)" />
-            <Face icon={faces[4].icon} label={faces[4].label} color={faces[4].color} transform="rotateX(90deg) translateZ(55px)" />
-            <Face icon={faces[5].icon} label={faces[5].label} color={faces[5].color} transform="rotateX(-90deg) translateZ(55px)" />
+        <div ref={stageRef} className="relative h-[180px] w-[180px]" style={{ transformStyle: 'preserve-3d' }}>
+          <div ref={cubeRef} className="absolute inset-0" style={{ transformStyle: 'preserve-3d' }}>
+            <Face {...faces[0]} transform="rotateY(0deg) translateZ(90px)" />
+            <Face {...faces[1]} transform="rotateY(90deg) translateZ(90px)" />
+            <Face {...faces[2]} transform="rotateY(180deg) translateZ(90px)" />
+            <Face {...faces[3]} transform="rotateY(270deg) translateZ(90px)" />
+            {/* Deckel und Boden bleiben neutral — Farbe tragen nur die vier Schritte. */}
+            <Deckel transform="rotateX(90deg) translateZ(90px)" />
+            <Deckel transform="rotateX(-90deg) translateZ(90px)" />
           </div>
         </div>
 
-        {/* Shadow Floor */}
         <div
           ref={shadowRef}
-          className="absolute -bottom-[80px] w-[120px] h-[30px] bg-black/40 dark:bg-white/10 rounded-[100%] blur-[8px]"
+          className="absolute -bottom-[90px] h-[30px] w-[140px] rounded-[100%] bg-black/40 blur-[8px] dark:bg-white/10"
         />
       </div>
     </div>
   );
 };
 
-function Face({ icon: Icon, label, color, transform }: { icon: any, label: string, color: string, transform: string }) {
+// Deckel und Boden: geschlossen, aber ohne eigene Aussage.
+function Deckel({ transform }: { transform: string }) {
   return (
     <div
-      className="absolute w-full h-full border-[5px] border-black box-border flex flex-col items-center justify-center overflow-hidden"
-      style={{
-        background: color,
-        transform,
-        backfaceVisibility: 'visible',
-        boxShadow: '12px 12px 0 black'
-      }}
+      className="absolute box-border h-full w-full border-[5px] border-black bg-zinc-800"
+      style={{ transform, backfaceVisibility: 'visible' }}
+    />
+  );
+}
+
+function Face({
+  icon: Icon,
+  label,
+  color,
+  transform,
+}: {
+  icon: any;
+  label: string;
+  color: string;
+  transform: string;
+}) {
+  return (
+    <div
+      className="absolute box-border flex h-full w-full flex-col items-center justify-center overflow-hidden border-[5px] border-black"
+      style={{ background: color, transform, backfaceVisibility: 'visible', boxShadow: '12px 12px 0 black' }}
     >
-      <div className="absolute w-[150%] h-[20px] bg-black opacity-20 -rotate-45 -translate-y-10" />
-      <Icon className="w-10 h-10 text-black z-10 mb-1" strokeWidth={2.5} />
-      <span className="font-['Arial_Black',sans-serif] text-[10px] bg-black text-white px-2 mt-1 uppercase z-10 tracking-widest rounded-sm">
+      <div className="absolute h-[20px] w-[150%] -translate-y-10 -rotate-45 bg-black opacity-20" />
+      <Icon className="z-10 mb-1 h-10 w-10 text-black" strokeWidth={2.5} />
+      <span className="z-10 mt-1 rounded-sm bg-black px-2 font-['Arial_Black',sans-serif] text-[10px] uppercase tracking-widest text-white">
         {label}
       </span>
     </div>

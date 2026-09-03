@@ -54,9 +54,9 @@ export default function Testimonial1() {
       value: 4,
       decimals: 0,
       suffix: "",
-      label: "Nachweise im Lauf",
+      label: "Zertifikate laufen",
       href: "/#start",
-      cta: "Zu den Nachweisen",
+      cta: "Zum Anfang",
     },
     {
       value: 1,

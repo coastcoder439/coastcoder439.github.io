@@ -27,12 +27,16 @@ export default function DatenschutzPage() {
 
                 <H2>Verantwortlicher</H2>
                 <P>
-                    Leon Pösken, [Straße und Hausnummer], [PLZ] Leipzig, Deutschland, E-Mail: [E-Mail-Adresse].
-                    Weitere Angaben im{' '}
-                    <Link href="/impressum" className="underline underline-offset-4 hover:text-foreground">
-                        Impressum
-                    </Link>
-                    .
+                    Leon Pösken, Leipzig, Deutschland. Kontakt über{' '}
+                    <a
+                        href="https://www.linkedin.com/in/leonpoesken/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-4 hover:text-foreground"
+                    >
+                        LinkedIn
+                    </a>{' '}
+                    oder über die Terminbuchung auf der Startseite.
                 </P>
 
                 <H2>Hosting und Server-Protokolle</H2>
@@ -99,18 +103,14 @@ export default function DatenschutzPage() {
                 <H2>Ihre Rechte</H2>
                 <P>
                     Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
-                    Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO). Wenden Sie sich dafür an die oben
-                    genannte E-Mail-Adresse. Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde
+                    Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO). Wenden Sie sich dafür über LinkedIn
+                    an mich. Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde
                     beschweren, für Sachsen ist das die Sächsische Datenschutz- und Transparenzbeauftragte.
                 </P>
 
                 <p className="mt-10 text-sm text-muted-foreground">Stand: September 2026</p>
 
                 <p className="mt-14">
-                    <Link href="/impressum" className="underline underline-offset-4 hover:text-foreground">
-                        Impressum
-                    </Link>
-                    <span className="mx-3 text-muted-foreground">·</span>
                     <Link href="/" className="underline underline-offset-4 hover:text-foreground">
                         Zur Startseite
                     </Link>

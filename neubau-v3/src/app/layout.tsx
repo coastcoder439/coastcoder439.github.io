@@ -4,7 +4,7 @@ import { getMessages, getLocale } from 'next-intl/server';
 import { ThemeProvider, I18nProvider, SmoothScrollProvider } from '@/providers';
 
 import '@/styles/globals.css';
-import { SITE_URL, IMPRESSUM_COMPLETE } from '@/lib/site';
+import { SITE_URL } from '@/lib/site';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -57,11 +57,11 @@ export const metadata: Metadata = {
         description: 'Technik mit Auftrag. KI-Systeme, die halten.',
     },
     robots: {
-        index: IMPRESSUM_COMPLETE,
-        follow: IMPRESSUM_COMPLETE,
+        index: true,
+        follow: true,
         googleBot: {
-            index: IMPRESSUM_COMPLETE,
-            follow: IMPRESSUM_COMPLETE,
+            index: true,
+            follow: true,
             'max-video-preview': -1,
             'max-image-preview': 'large',
             'max-snippet': -1,
