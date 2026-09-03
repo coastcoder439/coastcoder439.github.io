@@ -96,7 +96,7 @@ export default function Testimonial1() {
         {/* Main Heading with Refined Block Reveal Animation */}
         <h2 className="text-center max-w-5xl mx-auto relative text-neutral-900 dark:text-white px-4 space-y-1 md:space-y-2">
           {[
-            { text: "Alles geprüft —", color: "#6366f1", delay: 0 },
+            { text: "Alles geprüft.", color: "#6366f1", delay: 0 },
             { text: "Screenshot für Screenshot,", color: "#10b981", delay: 0.15 },
             { text: "Beleg für Beleg.", color: "#f59e0b", delay: 0.3 }
           ].map((line, i) => (

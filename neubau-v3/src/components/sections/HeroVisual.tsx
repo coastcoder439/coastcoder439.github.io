@@ -16,7 +16,7 @@ import { handleAnchorClick } from '@/lib/scroll';
 // OFFEN-FÜR-AUSTAUSCH-Badge, runder Lebenslauf-Button.
 const LINES = ['Technik', 'mit', 'Auftrag.'];
 const SUBLINE =
-  'Angefangen hat es mit der Gründung einer gemeinnützigen UG — für sie habe ich meine ersten Systeme gebaut. Geblieben ist die Frage, was am Ende wirklich zählt. Heute baue ich für andere: erst verstehen, wo du hinwillst, dann den Weg dahin zusammen gehen.';
+  'Angefangen hat es mit der Gründung einer gemeinnützigen UG. Für sie habe ich meine ersten Systeme gebaut. Geblieben ist die Frage, was am Ende wirklich zählt. Heute baue ich für andere: erst verstehen, wo du hinwillst, dann den Weg dahin zusammen gehen.';
 const NACHWEISE = [
   'EU AI Act Essentials · KI-Campus',
   'SC-900 · Microsoft',

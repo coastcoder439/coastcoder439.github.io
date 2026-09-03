@@ -72,7 +72,7 @@ const SCHRITTE = [
   },
   {
     titel: "Context Engineering",
-    text: "Die KI bekommt genau das Wissen, das deine Aufgabe braucht. Fehlt ihr etwas, rät sie — und das merkt man am Ergebnis.",
+    text: "Die KI bekommt genau das Wissen, das deine Aufgabe braucht. Fehlt ihr etwas, rät sie, und das merkt man am Ergebnis.",
   },
   {
     titel: "Harness Engineering",
@@ -80,14 +80,14 @@ const SCHRITTE = [
   },
   {
     titel: "Skill Engineering",
-    text: "Am Ende steht kein Konzept im Ordner, sondern etwas, das läuft — und das du weiterbenutzen kannst, ohne mich zu fragen.",
+    text: "Am Ende steht kein Konzept im Ordner, sondern etwas, das läuft und das du weiterbenutzen kannst, ohne mich zu fragen.",
   },
 ];
 
 const ERGEBNISSE = [
   {
     titel: "Websites",
-    text: "Seiten, die eine Geschichte erzählen, statt Kacheln zu stapeln — wie die Radtour rund um einen E-Bike-Verleih.",
+    text: "Seiten, die eine Geschichte erzählen, statt Kacheln zu stapeln, wie die Radtour rund um einen E-Bike-Verleih.",
   },
   {
     titel: "Apps",
@@ -170,19 +170,11 @@ const CubeBlock = ({
                   )}
                   style={an ? { borderLeftColor: farben[i] } : undefined}
                 >
-                  <span className="flex items-baseline gap-3">
-                    <span
-                      className="font-mono text-xs transition-colors duration-500"
-                      style={{ color: an ? farben[i] : undefined }}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span
-                      className="text-lg font-bold tracking-tight transition-colors duration-500 md:text-xl"
-                      style={{ color: an ? farben[i] : undefined }}
-                    >
-                      {it.titel}
-                    </span>
+                  <span
+                    className="block text-lg font-bold tracking-tight transition-colors duration-500 md:text-xl"
+                    style={{ color: an ? farben[i] : undefined }}
+                  >
+                    {it.titel}
                   </span>
                   <span className="mt-1.5 block max-w-[52ch] text-base leading-relaxed text-muted-foreground">
                     {it.text}
@@ -207,7 +199,7 @@ const PROJEKTE: ShowcaseProject[] = [
   { id: "drive", group: GRUPPE_URSPRUNG, name: "Drive-Automatisierung", tag: "Ohne Live-Ansicht", desc: "Der Vereins-Drive räumt sich selbst auf: eine Datei legt fest, wo was hingehört, ein Skript sortiert danach und meldet, was nicht passt. 233 Dateien standen im Plan, jeder Lauf schreibt einen Bericht." },
   { id: "wlbike", group: GRUPPE_PRAXIS, name: "WL Bike Rental", tag: "Live · Prototyp", url: "https://showcase-wl-bike.vercel.app", desc: "Eine Seite für einen E-Bike-Verleih an der Ostsee, erzählt als Radtour: vom Wald über den Bodden bis an den Strand, und jedes Angebot ist eine Station unterwegs. Stand: Prototyp." },
   { id: "nordwind", group: GRUPPE_PRAXIS, name: "Nordwind Studio", tag: "Live · Prototyp", url: "https://showcase-nordwind.vercel.app", desc: "Ein Cockpit für einen Print-on-Demand-Shop: sieben Agenten übernehmen den Weg von der Designfreigabe bis zur Umsatzsteuer. Läuft im Browser, ohne Server. 96 Belege gehen auf den Cent auf. Stand: Prototyp." },
-  { id: "funnel", group: GRUPPE_PRAXIS, name: "Funnel Desk", tag: "Live · Prototyp", url: "https://showcase-funnel-desk.vercel.app/dashboard", desc: "Mehrere Zielgruppen nebeneinander, für jede derselbe Weg von der ersten Berührung bis zur festen Kundschaft — und ein Überblick, wo jemand hängen bleibt. Stand: Prototyp." },
+  { id: "funnel", group: GRUPPE_PRAXIS, name: "Funnel Desk", tag: "Live · Prototyp", url: "https://showcase-funnel-desk.vercel.app/dashboard", desc: "Mehrere Zielgruppen nebeneinander, für jede derselbe Weg von der ersten Berührung bis zur festen Kundschaft, dazu ein Überblick, wo jemand hängen bleibt. Stand: Prototyp." },
   { id: "keel", group: GRUPPE_KEEL, name: "Keel Showcase", tag: "Live · zum Durchklicken", url: "https://keel-showcase.vercel.app", desc: "Die Oberfläche von Keel zum Ausprobieren: Website-Baukasten, Social Media, Shop. Ohne Anmeldung, direkt hier im Fenster." },
   { id: "harness", group: GRUPPE_KEEL, name: "Keel-Harness", tag: "Ohne Live-Ansicht", desc: "Ein Bausatz, der KI-Agenten diszipliniert arbeiten lässt: feste Regeln, Sperren vor riskanten Schritten, ein Dashboard mit Messwerten. Ein Satz an den Agenten genügt, und er richtet sich im Projekt selbst ein." },
   { id: "flowvoice", group: GRUPPE_KEEL, name: "FlowVoice", tag: "Ohne Live-Ansicht", desc: "Diktieren unter Windows: Taste drücken, sprechen, der Text steht im Fenster, in dem man gerade arbeitet. Vier Erkennungs-Engines zur Wahl, von komplett offline bis Cloud." },
@@ -219,7 +211,7 @@ export function AblaufSection() {
       <SectionHead nr="Ablauf" title="So arbeite ich." />
       <Copy>
         Was in der Aquaponik funktioniert, funktioniert auch im Verleih, im Shop und im
-        Agenten-System. Vier Dinge, die ich dafür beherrsche — fahr mit der Maus darüber,
+        Agenten-System. Vier Dinge, die ich dafür beherrsche. Fahr mit der Maus darüber,
         der Würfel dreht sich mit.
       </Copy>
 
@@ -247,7 +239,7 @@ export function ProjekteSection() {
       <SectionHead nr="Projekte" title="Echte Probleme, echte Lösungen." />
       <Copy>
         Neun Projekte aus drei Ecken: die gemeinnützige UG, mit der alles anfing, Prototypen
-        für Kundenprobleme, und Keel — mein eigenes System. Wo eine Vorschau möglich ist,
+        für Kundenprobleme, und Keel, mein eigenes System. Wo eine Vorschau möglich ist,
         siehst du die echte Oberfläche, kein Bild.
       </Copy>
       <div className="mt-10">

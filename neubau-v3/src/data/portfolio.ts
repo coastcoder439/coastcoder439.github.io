@@ -7,7 +7,7 @@ export const portfolioData: PortfolioData = {
         name: 'Leon Pösken',
         title: 'KI-Systembau',
         subtitle: 'Technik mit Auftrag.',
-        bio: 'Die Mitgründung einer NGO brachte mich zum KI-Systembau. Durch die IT-Welt begleitete mich eine Frage: Was zählt wirklich? Heute ist aus diesem holistischen Gedanken mehr als nur eine Methodik geworden — deinen Weg finden und ihn gemeinsam gehen.',
+        bio: 'Die Mitgründung einer NGO brachte mich zum KI-Systembau. Durch die IT-Welt begleitete mich eine Frage: Was zählt wirklich? Heute ist aus diesem holistischen Gedanken mehr als nur eine Methodik geworden. Deinen Weg finden und ihn gemeinsam gehen.',
         avatar: '',
         location: 'Leipzig, Deutschland',
         email: '',

@@ -20,33 +20,6 @@ const NAV = [
     { label: 'Buchen', id: 'buchen' },
 ];
 
-function Clock() {
-    const [time, setTime] = useState<string>('');
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-        const update = () => {
-            const now = new Date();
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            const s = String(now.getSeconds()).padStart(2, '0');
-            setTime(`${h}:${m}:${s}`);
-        };
-        update();
-        const interval = setInterval(update, 1000);
-        return () => clearInterval(interval);
-    }, []);
-
-    if (!mounted) return <span className="font-mono text-xl md:text-2xl font-black opacity-0">00:00:00</span>;
-
-    return (
-        <span className="font-mono text-xl md:text-2xl font-black text-gradient tracking-widest hover:tracking-[0.2em] transition-all duration-300">
-            {time}
-        </span>
-    );
-}
-
 export function Navbar() {
     const pathname = usePathname();
     const { scrollY } = useScroll();
@@ -120,7 +93,7 @@ export function Navbar() {
                             aria-label="Leon Pösken — zum Seitenanfang"
                             className="relative group min-w-[120px] rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
                         >
-                            <Clock />
+                            <span className="font-mono text-lg md:text-xl font-black tracking-tight text-gradient">Leon Pösken</span>
                         </Link>
 
                         {/* Desktop Nav */}

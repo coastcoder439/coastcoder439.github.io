@@ -17,12 +17,12 @@ import Bucket from "@/components/ui/bucket";
 
 import { AblaufSection, ProjekteSection } from "@/components/sections/StoryContent";
 // Tech-Logos, die beim Mausbewegen in die Box fliegen (ImageTrail, wie im Template).
+// Programme, die man automatisiert (verschiedene Branchen) — NICHT der Coding-Stack
+// (der steht schon im Banner). Diese fliegen beim Mausbewegen in die Box.
 const TRAIL = [
-  "/tech/nextdotjs.svg", "/tech/react.svg", "/tech/typescript.svg", "/tech/javascript.svg",
-  "/tech/nodedotjs.svg", "/tech/python.svg", "/tech/tailwindcss.svg", "/tech/vite.svg",
-  "/tech/supabase.svg", "/tech/postgresql.svg", "/tech/mysql.svg", "/tech/docker.svg",
-  "/tech/greensock.svg", "/tech/framer.svg", "/tech/threedotjs.svg", "/tech/vercel.svg",
-  "/tech/git.svg", "/tech/figma.svg",
+  "/apps/gmail.svg", "/apps/googlecalendar.svg", "/apps/googlesheets.svg", "/apps/slack.svg",
+  "/apps/notion.svg", "/apps/trello.svg", "/apps/salesforce.svg", "/apps/hubspot.svg",
+  "/apps/mailchimp.svg", "/apps/shopify.svg", "/apps/whatsapp.svg", "/apps/zapier.svg",
 ];
 
 // Kennzahlen-Panel („Alles geprüft") — Template-Panel, blendet bei 0.45–0.6 aus.

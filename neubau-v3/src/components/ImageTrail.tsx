@@ -323,7 +323,7 @@ class ImageTrailVariant3 {
     this.zIndexVal = 1;
     this.activeImagesCount = 0;
     this.isIdle = true;
-    this.threshold = 80;
+    this.threshold = 170;
     this.mousePos = { x: 0, y: 0 };
     this.lastMousePos = { x: 0, y: 0 };
     this.cacheMousePos = { x: 0, y: 0 };
@@ -1217,11 +1217,12 @@ export default function ImageTrail({ items = [], variant = 1 }: ImageTrailProps)
     <div className="w-full h-full relative z-0 rounded-lg bg-transparent overflow-visible pointer-events-auto" ref={containerRef}>
       {items.map((url, i) => (
         <div
-          className="content__img w-[190px] aspect-[1.1] rounded-[15px] absolute top-0 left-0 opacity-0 overflow-hidden [will-change:transform,filter]"
+          className="content__img w-[104px] h-[104px] rounded-2xl absolute top-0 left-0 opacity-0 overflow-hidden bg-white shadow-2xl ring-1 ring-black/5 [will-change:transform,filter]"
           key={i}
         >
+          {/* bg-contain + Padding: das Logo bleibt ganz und erkennbar (nicht formatfüllend beschnitten). */}
           <div
-            className="content__img-inner bg-center bg-cover w-[calc(100%+20px)] h-[calc(100%+20px)] absolute top-[-10px] left-[-10px]"
+            className="content__img-inner bg-center bg-contain bg-no-repeat absolute inset-[18px]"
             style={{ backgroundImage: `url(${url})` }}
           />
         </div>
