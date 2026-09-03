@@ -13,7 +13,7 @@
 
 import React from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { Clock, Inbox, ClipboardCheck, LayoutDashboard, ShieldCheck, Sparkles, FileText, MessageSquareReply } from "lucide-react";
+import { Clock, Inbox, ClipboardCheck, LayoutDashboard, ShieldCheck, Sparkles } from "lucide-react";
 
 type Ersparnis = "Zeit" | "Geld" | "Nerven";
 
@@ -33,41 +33,6 @@ const akzent: Record<Ersparnis, { icon: string; tag: string; strip: string; glow
   Nerven: { icon: "text-amber-500", tag: "text-amber-600 dark:text-amber-400 border-amber-500/40 bg-amber-500/10", strip: "bg-amber-500", glow: "bg-amber-500/15" },
 };
 
-// Spar-Beispiel-Kästchen (GitHub/Kaggle-Optik). BEISPIEL-Zahlen — vom Owner ersetzbar.
-const BEISPIELE: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  titel: string;
-  akzent: string;
-  desc: string;
-  zahlen: { wert: string; label: string }[];
-}[] = [
-  {
-    icon: FileText,
-    label: "Beispiel · Angebote & Rechnungen",
-    titel: "Vom Auftrag zur Rechnung,",
-    akzent: "ohne Abtippen.",
-    desc: "Auftragsdaten wandern von allein ins Angebot, in die Rechnung und in die Buchhaltung. Ein Vorgang, ein Klick.",
-    zahlen: [
-      { wert: "20 Min", label: "statt 4 Std je Vorgang" },
-      { wert: "~2 Tage", label: "frei pro Monat" },
-      { wert: "0", label: "Zahlendreher" },
-    ],
-  },
-  {
-    icon: MessageSquareReply,
-    label: "Beispiel · Kundenanfragen",
-    titel: "Jede Anfrage sofort",
-    akzent: "beantwortet.",
-    desc: "Eine erste Antwort geht raus, während du noch beim Kunden bist. Passende Termine schlägt das System selbst vor.",
-    zahlen: [
-      { wert: "< 1 Min", label: "bis zur ersten Antwort" },
-      { wert: "rund um die Uhr", label: "auch nach Feierabend" },
-      { wert: "0", label: "verpasste Anfragen" },
-    ],
-  },
-];
-
 function AffiKarte({ karte }: { karte: (typeof KARTEN)[number] }) {
   const Icon = karte.icon;
   const a = akzent[karte.spart];
@@ -86,34 +51,6 @@ function AffiKarte({ karte }: { karte: (typeof KARTEN)[number] }) {
       <div>
         <h3 className="text-2xl font-black leading-tight tracking-tight text-foreground md:text-[26px]">{karte.titel}</h3>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">{karte.text}</p>
-      </div>
-    </div>
-  );
-}
-
-function BeispielKarte({ beispiel }: { beispiel: (typeof BEISPIELE)[number] }) {
-  const Icon = beispiel.icon;
-  return (
-    <div className="relative flex h-[66vh] max-h-[500px] w-[90vw] max-w-[680px] flex-shrink-0 flex-col justify-between overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-br from-foreground/[0.06] to-transparent p-8 shadow-xl md:p-12">
-      <div>
-        <div className="mb-8 flex items-center gap-3">
-          <span className="grid h-9 w-9 place-content-center rounded-lg bg-primary/15">
-            <Icon className="h-5 w-5 text-primary" />
-          </span>
-          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-primary">{beispiel.label}</span>
-        </div>
-        <h3 className="max-w-[16ch] text-3xl font-black leading-[0.98] tracking-tighter text-foreground md:text-4xl lg:text-5xl">
-          {beispiel.titel} <span className="text-primary">{beispiel.akzent}</span>
-        </h3>
-        <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-muted-foreground md:text-lg">{beispiel.desc}</p>
-      </div>
-      <div className="mt-8 grid grid-cols-3 gap-4 border-t border-foreground/10 pt-6">
-        {beispiel.zahlen.map((z) => (
-          <div key={z.label}>
-            <div className="text-2xl font-black tracking-tighter text-foreground md:text-3xl">{z.wert}</div>
-            <div className="mt-1 font-mono text-[10px] uppercase leading-tight tracking-wider text-muted-foreground">{z.label}</div>
-          </div>
-        ))}
       </div>
     </div>
   );
@@ -199,15 +136,12 @@ export function AnsatzScroll() {
   const x = useTransform(scrollYProgress, [0, 1], [0, -ueberbreite]);
 
   return (
-    <section ref={ref} id="ansatz" className="relative h-[420vh] bg-background">
+    <section ref={ref} id="ansatz" className="relative h-[260vh] bg-background">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div ref={trackRef} style={{ x }} className="flex w-max items-center gap-6 px-6 md:gap-8 md:px-24">
           <RevealTitel />
           {KARTEN.map((k) => (
             <AffiKarte key={k.titel} karte={k} />
-          ))}
-          {BEISPIELE.map((b) => (
-            <BeispielKarte key={b.label} beispiel={b} />
           ))}
         </motion.div>
       </div>

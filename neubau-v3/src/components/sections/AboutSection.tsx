@@ -15,6 +15,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Bucket from "@/components/ui/bucket";
 import { AblaufSection, ProjekteSection } from "@/components/sections/StoryContent";
 import { AnsatzScroll } from "@/components/sections/AnsatzScroll";
+import { SavingsShowcase } from "@/components/sections/SavingsShowcase";
 
 // Programme, die man automatisiert (verschiedene Branchen) — NICHT der Coding-Stack
 // (der steht schon im Banner). Diese fliegen beim Mausbewegen in die Box.
@@ -89,6 +90,7 @@ export default function AboutSection() {
       <AuditFunnel />
       <ProjekteSection />
       <AnsatzScroll />
+      <SavingsShowcase />
     </section>
   );
 }
