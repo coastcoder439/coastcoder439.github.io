@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { ArrowDownRight, CalendarDays, FileText } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
 import { Spotlight } from '@/components/ui/spotlight-new';
+import { TechBanner } from '@/components/ui/tech-banner';
 import { handleAnchorClick } from '@/lib/scroll';
 
 // v3.1 — Block 1 „Das ist Leon": Motto, Owner-Subline, Knöpfe „Gespräch buchen"
@@ -128,13 +129,16 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
 
         </div>
 
-        <div className="mx-auto max-w-[105rem] w-full px-6 md:px-20 mt-14 md:mt-20">
-          <div className="flex items-center gap-6">
+        <div className="mx-auto max-w-[105rem] w-full px-6 md:px-20 mt-14 md:mt-16">
+          <div className="mb-6 flex items-center gap-6">
             <Separator className="flex-1 h-[1px] bg-foreground/10 hidden md:block" />
             <div className="text-[10px] md:text-xs whitespace-nowrap font-bold tracking-[0.3em] text-muted-foreground uppercase">
-              LEIPZIG, DE — 2026
+              Womit ich baue
             </div>
+            <Separator className="flex-1 h-[1px] bg-foreground/10 hidden md:block" />
           </div>
+          {/* Fullstack-Banner aus dem Template, zurueckgeholt. */}
+          <TechBanner />
         </div>
       </main>
 

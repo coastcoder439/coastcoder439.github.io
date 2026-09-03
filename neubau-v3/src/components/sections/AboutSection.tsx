@@ -14,7 +14,16 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import Testimonial1 from "@/components/ui/testimonial-1";
 import Bucket from "@/components/ui/bucket";
+
 import { AblaufSection, ProjekteSection } from "@/components/sections/StoryContent";
+// Tech-Logos, die beim Mausbewegen in die Box fliegen (ImageTrail, wie im Template).
+const TRAIL = [
+  "/tech/nextdotjs.svg", "/tech/react.svg", "/tech/typescript.svg", "/tech/javascript.svg",
+  "/tech/nodedotjs.svg", "/tech/python.svg", "/tech/tailwindcss.svg", "/tech/vite.svg",
+  "/tech/supabase.svg", "/tech/postgresql.svg", "/tech/mysql.svg", "/tech/docker.svg",
+  "/tech/greensock.svg", "/tech/framer.svg", "/tech/threedotjs.svg", "/tech/vercel.svg",
+  "/tech/git.svg", "/tech/figma.svg",
+];
 
 // Kennzahlen-Panel („Alles geprüft") — Template-Panel, blendet bei 0.45–0.6 aus.
 const CoreEngineeringPanel = ({ scrollYProgress }: { scrollYProgress: any }) => {
@@ -79,7 +88,7 @@ const AuditFunnel = () => {
                         transition={{ delay: 0.1, duration: 0.8 }}
                         className="w-full max-w-4xl mx-auto"
                     >
-                        <Bucket />
+                        <Bucket trailImages={TRAIL} />
                     </motion.div>
                 </motion.div>
             </div>

@@ -1,19 +1,19 @@
 "use client";
 
 /**
- * v3.1 — die beiden mittleren Blöcke (Owner 03.09.2026 abends):
- *   AblaufSection   = Block 2 „So arbeite ich": der Würfel bleibt beim Scrollen stehen
- *                     und dreht sich auf den Schritt, auf den man zeigt — beim Scrollen
- *                     läuft 1→4 von selbst durch, die Maus übersteuert sofort.
- *                     Der aktive Schritt trägt die Farbe seiner Würfelseite.
+ * v3.2 — die beiden mittleren Blöcke, wieder template-treu (Owner 03.09.2026 nachts):
+ *   AblaufSection   = Block 2 „So arbeite ich": das KOMPAKTE CubeBlock-Layout aus dem
+ *                     Template (Würfel links, vier Punkte kompakt rechts) — NUR ergänzt
+ *                     um die Würfeldrehung auf den gezeigten/gescrollten Schritt und die
+ *                     Schritt-Farbe. Keine lange Sticky-Strecke mehr.
  *   ProjekteSection = Block 3: EINE Slideshow mit allen neun Projekten, gruppiert nach
  *                     Ursprung · Praxis · Keel, rechts das Live-Fenster des Projekts.
  * Sprache: die englischen Begriffe stehen als Überschrift (Schlagwörter), darunter je
- * ein Satz in normaler Sprache — kein Stakkato, keine Baukasten-Sätze.
+ * ein Satz in normaler Sprache.
  */
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 import Loader, { faceColors } from "@/components/ui/Loader";
 import { cn } from "@/lib/utils";
@@ -65,8 +65,6 @@ const Copy = ({ children }: { children: React.ReactNode }) => (
 
 const SHELL = "relative mx-auto max-w-[1180px] px-6 py-24 md:px-12 md:py-32";
 
-// Würfel 1 — die vier Disziplinen. Englischer Begriff als Schlagwort, darunter
-// ein Satz, wie ihn ein Mensch sagen würde.
 const SCHRITTE = [
   {
     titel: "Prompt Engineering",
@@ -86,7 +84,6 @@ const SCHRITTE = [
   },
 ];
 
-// Würfel 2 — was dabei herauskommt.
 const ERGEBNISSE = [
   {
     titel: "Websites",
@@ -107,85 +104,69 @@ const ERGEBNISSE = [
 ];
 
 /**
- * Ein Würfel, der stehen bleibt, und vier Schritte, die daran vorbeilaufen.
- * Die Auswahl kommt entweder vom Scrollen (1→4 über die Länge der Strecke) oder
- * von der Maus/Tastatur — was zuletzt kam, gilt.
+ * Das kompakte CubeBlock aus dem Template (Würfel links, Punkte rechts), ergänzt um
+ * die einzige neue Sache: der Würfel dreht sich auf den Schritt, auf den man zeigt
+ * (Hover/Fokus) oder der beim Scrollen an der Reihe ist. Der aktive Schritt trägt die
+ * Farbe seiner Würfelseite. Kein Sticky, kein 200-vh-Spreizen.
  */
-function CubeWalk({
+const CubeBlock = ({
   type,
   items,
   reverse = false,
-  label,
 }: {
   type: "disziplinen" | "ergebnisse";
   items: { titel: string; text: string }[];
   reverse?: boolean;
-  label: string;
-}) {
+}) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const [aktiv, setAktiv] = React.useState(0);
-  const [zeigerFuehrt, setZeigerFuehrt] = React.useState(false);
-  const schrittRefs = React.useRef<(HTMLLIElement | null)[]>([]);
+  // Ref statt State: der Scroll-Handler unten liest den aktuellen Wert, nicht eine
+  // veraltete Closure — sonst überschrieb ein Scroll-Tick die Hover-Auswahl.
+  const zeigerRef = React.useRef(false);
   const farben = faceColors(type);
 
-  // Welcher Schritt steht gerade in der Bildschirmmitte? Ein Beobachter auf einem
-  // schmalen Band in der Mitte ist verlässlicher als ein Scroll-Fortschritt, der
-  // beim ersten Bild noch kein gemessenes Layout hat.
-  React.useEffect(() => {
-    const beobachter = new IntersectionObserver(
-      (eintraege) => {
-        if (zeigerFuehrt) return;
-        const treffer = eintraege.find((e) => e.isIntersecting);
-        if (!treffer) return;
-        const i = schrittRefs.current.indexOf(treffer.target as HTMLLIElement);
-        if (i >= 0) setAktiv(i);
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-    );
-    schrittRefs.current.forEach((el) => el && beobachter.observe(el));
-    return () => beobachter.disconnect();
-  }, [zeigerFuehrt]);
+  const zeige = (i: number) => {
+    zeigerRef.current = true;
+    setAktiv(i);
+  };
+
+  // Beim Durchscrollen läuft 1→4 langsam durch (mittlerer Sichtbarkeitsbereich);
+  // Maus/Fokus übersteuern sofort.
+  useMotionValueEvent(scrollYProgress, "change", (p) => {
+    if (zeigerRef.current) return;
+    const norm = Math.min(0.999, Math.max(0, (p - 0.15) / 0.7));
+    setAktiv(Math.floor(norm * items.length));
+  });
 
   return (
-    <div className="relative lg:min-h-[200vh]">
-      <div
-        className={cn(
-          "grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16",
-          reverse && "lg:[&>*:first-child]:order-2"
-        )}
-      >
-        {/* Der Würfel bleibt beim Scrollen stehen und dreht sich mit. */}
-        <div className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center">
-          <div className="mx-auto h-[380px] w-full max-w-[460px] lg:h-[480px]">
-            <Loader type={type} activeFace={aktiv} />
-          </div>
+    <div
+      ref={ref}
+      className={cn(
+        "grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16",
+        reverse && "lg:[&>*:first-child]:order-2"
+      )}
+    >
+      <Reveal className="flex min-h-[360px] items-center justify-center">
+        <div className="h-[420px] w-full max-w-[420px]">
+          <Loader type={type} activeFace={aktiv} />
         </div>
-
-        <ol className="space-y-3 lg:space-y-0" onMouseLeave={() => setZeigerFuehrt(false)}>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <ol className="space-y-4" onMouseLeave={() => { zeigerRef.current = false; }}>
           {items.map((it, i) => {
             const an = aktiv === i;
             return (
-              <li
-                key={it.titel}
-                ref={(el) => {
-                  schrittRefs.current[i] = el;
-                }}
-                className="lg:flex lg:min-h-[50vh] lg:items-center"
-              >
+              <li key={it.titel}>
                 <button
                   type="button"
-                  onMouseEnter={() => {
-                    setZeigerFuehrt(true);
-                    setAktiv(i);
-                  }}
-                  onFocus={() => {
-                    setZeigerFuehrt(true);
-                    setAktiv(i);
-                  }}
-                  onBlur={() => setZeigerFuehrt(false)}
+                  onMouseEnter={() => zeige(i)}
+                  onFocus={() => zeige(i)}
+                  onBlur={() => { zeigerRef.current = false; }}
                   aria-current={an}
                   className={cn(
-                    "w-full rounded-xl border-l-[3px] px-5 py-4 text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current",
-                    an ? "bg-foreground/[0.04]" : "border-l-transparent opacity-50 hover:opacity-90"
+                    "w-full rounded-lg border-l-[3px] px-4 py-3 text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current",
+                    an ? "bg-foreground/[0.04]" : "border-l-transparent opacity-55 hover:opacity-90"
                   )}
                   style={an ? { borderLeftColor: farben[i] } : undefined}
                 >
@@ -197,13 +178,13 @@ function CubeWalk({
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span
-                      className="text-2xl font-black tracking-tight transition-colors duration-500 md:text-3xl"
+                      className="text-lg font-bold tracking-tight transition-colors duration-500 md:text-xl"
                       style={{ color: an ? farben[i] : undefined }}
                     >
                       {it.titel}
                     </span>
                   </span>
-                  <span className="mt-2 block max-w-[52ch] text-base leading-relaxed text-muted-foreground">
+                  <span className="mt-1.5 block max-w-[52ch] text-base leading-relaxed text-muted-foreground">
                     {it.text}
                   </span>
                 </button>
@@ -211,14 +192,10 @@ function CubeWalk({
             );
           })}
         </ol>
-      </div>
-
-      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-        {label}
-      </p>
+      </Reveal>
     </div>
   );
-}
+};
 
 const GRUPPE_URSPRUNG = "Ursprung · World Eden Era";
 const GRUPPE_PRAXIS = "Praxis · Prototypen";
@@ -246,9 +223,11 @@ export function AblaufSection() {
         der Würfel dreht sich mit.
       </Copy>
 
-      <CubeWalk type="disziplinen" items={SCHRITTE} label="Prompt · Context · Harness · Skill Engineering" />
+      <div className="mt-10">
+        <CubeBlock type="disziplinen" items={SCHRITTE} />
+      </div>
 
-      <Reveal className="mb-8 mt-12">
+      <Reveal className="mb-8 mt-24">
         <div className="flex items-center gap-4">
           <ArrowDownRight className="h-5 w-5 text-primary" />
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-primary md:text-xs">
@@ -257,7 +236,7 @@ export function AblaufSection() {
         </div>
       </Reveal>
 
-      <CubeWalk type="ergebnisse" items={ERGEBNISSE} reverse label="Websites · Apps · Funnels · Automations" />
+      <CubeBlock type="ergebnisse" items={ERGEBNISSE} reverse />
     </section>
   );
 }
