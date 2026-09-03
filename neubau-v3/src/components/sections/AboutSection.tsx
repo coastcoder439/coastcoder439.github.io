@@ -53,7 +53,7 @@ const AuditFunnel = () => {
                     style={{ y: yExit, scale: scaleExit, opacity: opacityExit }}
                     className="space-y-6 md:space-y-10 flex flex-col items-center px-6 relative z-10 mix-blend-difference w-full"
                 >
-                    <motion.h4
+                    <motion.h2
                         style={{ scale, willChange: "transform" }}
                         className="text-4xl md:text-6xl lg:text-[7rem] font-black text-white max-w-7xl tracking-tighter leading-[0.9] lg:px-6 uppercase text-center"
                     >
@@ -62,11 +62,11 @@ const AuditFunnel = () => {
                             initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="text-white italic font-serif-elegant font-light lowercase tracking-normal"
+                            className="text-white italic font-serif-elegant font-light tracking-normal"
                         >
                             Systeme bauen
                         </motion.span>.
-                    </motion.h4>
+                    </motion.h2>
                 </motion.div>
 
                 <motion.div

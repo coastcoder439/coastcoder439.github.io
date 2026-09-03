@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import { scrollToId } from '@/lib/scroll';
 
 export function BackToTop() {
     const [isVisible, setIsVisible] = useState(false);
@@ -74,9 +75,7 @@ export function BackToTop() {
         };
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+    const scrollToTop = () => scrollToId('');
 
     return (
         <AnimatePresence>
@@ -94,6 +93,7 @@ export function BackToTop() {
                         exit={{ opacity: 0, scale: 0.5 }}
                         transition={{ duration: 0.2 }}
                         onClick={scrollToTop}
+                        aria-label="Zum Seitenanfang"
                         style={{ x: mouseX, y: mouseY }}
                         className="relative h-14 w-14 rounded-full bg-foreground text-background shadow-2xl flex items-center justify-center border border-background/20 backdrop-blur-md cursor-pointer group"
                     >

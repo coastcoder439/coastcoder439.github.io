@@ -4,6 +4,7 @@ import { getMessages, getLocale } from 'next-intl/server';
 import { ThemeProvider, I18nProvider, SmoothScrollProvider } from '@/providers';
 
 import '@/styles/globals.css';
+import { SITE_URL, IMPRESSUM_COMPLETE } from '@/lib/site';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -30,8 +31,6 @@ const signature = Alex_Brush({
     display: 'swap',
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL
-    ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'http://localhost:3001');
 
 export const metadata: Metadata = {
     title: {
@@ -58,11 +57,11 @@ export const metadata: Metadata = {
         description: 'Technik mit Auftrag. KI-Systeme, die halten.',
     },
     robots: {
-        index: true,
-        follow: true,
+        index: IMPRESSUM_COMPLETE,
+        follow: IMPRESSUM_COMPLETE,
         googleBot: {
-            index: true,
-            follow: true,
+            index: IMPRESSUM_COMPLETE,
+            follow: IMPRESSUM_COMPLETE,
             'max-video-preview': -1,
             'max-image-preview': 'large',
             'max-snippet': -1,

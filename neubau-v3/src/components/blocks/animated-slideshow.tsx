@@ -85,19 +85,38 @@ export const TextStaggerHover = React.forwardRef<
   const { characters } = splitText(text)
   const isActive = activeSlide === index
   const handleMouse = () => changeSlide(index)
+  // Ergaenzung zur 21st-Vorlage: der Eintrag ist auch per Tastatur (Tab, Enter,
+  // Leertaste) und per Fingertipp bedienbar, nicht nur per Maus-Hover.
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault()
+      changeSlide(index)
+    }
+  }
   return (
     <span
       className={cn(
-        "relative inline-block origin-bottom overflow-hidden",
+        "relative inline-block origin-bottom overflow-hidden rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current",
         className
       )}
       {...props}
       ref={ref}
+      role="tab"
+      tabIndex={0}
+      aria-selected={isActive}
       onMouseEnter={handleMouse}
+      onFocus={handleMouse}
+      onClick={handleMouse}
+      onKeyDown={handleKey}
     >
+      {/* Der sichtbare Text ist in Einzelzeichen zerlegt (Animation) und stünde
+          für Screenreader doppelt und buchstabenweise da — deshalb einmal als
+          zusammenhängender Name, der Rest ausgeblendet. */}
+      <span className="sr-only">{text}</span>
       {characters.map((char, index) => (
         <span
           key={`${char}-${index}`}
+          aria-hidden="true"
           className="relative inline-block overflow-hidden"
         >
           <MotionConfig
@@ -107,8 +126,10 @@ export const TextStaggerHover = React.forwardRef<
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
+            {/* opacity-45 statt der Vorlagen-0.2: darunter reicht der Kontrast
+                für große Schrift (3:1) nicht — und diese Namen SIND die Bedienung. */}
             <motion.span
-              className="inline-block opacity-20"
+              className="inline-block opacity-45"
               initial={{ y: "0%" }}
               animate={isActive ? { y: "-110%" } : { y: "0%" }}
             >
@@ -147,7 +168,7 @@ export const HoverSliderImageWrap = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "grid  overflow-hidden [&>*]:col-start-1 [&>*]:col-end-1 [&>*]:row-start-1 [&>*]:row-end-1 [&>*]:size-full",
+        "grid overflow-hidden [&>*]:col-start-1 [&>*]:col-end-1 [&>*]:row-start-1 [&>*]:row-end-1 [&>*]:size-full",
         className
       )}
       {...props}

@@ -14,8 +14,10 @@ export const portfolioData: PortfolioData = {
         phone: '',
         resumeUrl: '/Leon-Poesken-Lebenslauf.pdf',
         website: '',
-        // Cal.com-Buchungslink (Free-Plan). Sobald ein Termintyp existiert: 'leon-posken-4hsbjc/<slug>'.
-        calLink: 'leon-posken-4hsbjc',
+        // Cal.com-Buchungslink: direkt auf den 30-Minuten-Termin, damit der Kunde
+        // nicht erst auf der Profilseite auswaehlen muss. Der Termintyp heisst in
+        // Cal.com noch '30 min meeting' — Umbenennung auf Deutsch liegt beim Owner.
+        calLink: 'leon-posken-4hsbjc/30min',
         languages: [
             { name: 'Deutsch', level: 'Native' },
             { name: 'Englisch', level: 'Fluent' },

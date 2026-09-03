@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 
 import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
 import { usePreloadState } from '@/components/ui/arc-preloader-hero';
+import { scrollToId } from '@/lib/scroll';
 
 // Feste Nav v3: Start · Ablauf · Projekte · Buchen · CV-Button. Anker scrollen auf der Startseite; Lenis laeuft als root,
 // also bleibt window-Scroll nativ und scrollTo greift.
@@ -46,22 +47,6 @@ function Clock() {
     );
 }
 
-function scrollToId(id: string) {
-    if (typeof window === 'undefined') return;
-    if (!id) {
-        const lenis = (window as any).lenis;
-        if (lenis?.scrollTo) lenis.scrollTo(0);
-        else window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-    }
-    const el = document.getElementById(id);
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + window.scrollY - 80;
-    const lenis = (window as any).lenis;
-    if (lenis?.scrollTo) lenis.scrollTo(y);
-    else window.scrollTo({ top: y, behavior: 'smooth' });
-}
-
 export function Navbar() {
     const pathname = usePathname();
     const { scrollY } = useScroll();
@@ -82,6 +67,14 @@ export function Navbar() {
     }, [isMenuOpen]);
 
     useEffect(() => { setIsMenuOpen(false); }, [pathname]);
+
+    // Escape schliesst das mobile Menue (sonst ist es nur per Maus zu verlassen).
+    useEffect(() => {
+        if (!isMenuOpen) return;
+        const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsMenuOpen(false); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [isMenuOpen]);
 
     useMotionValueEvent(scrollY, 'change', (latest) => {
         if (isMenuOpen) return;
@@ -121,7 +114,12 @@ export function Navbar() {
                         )}
                         layout
                     >
-                        <Link href="/" onClick={(e) => onNav(e, '')} className="relative group min-w-[120px]">
+                        <Link
+                            href="/"
+                            onClick={(e) => onNav(e, '')}
+                            aria-label="Leon Pösken — zum Seitenanfang"
+                            className="relative group min-w-[120px] rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
+                        >
                             <Clock />
                         </Link>
 
@@ -153,8 +151,10 @@ export function Navbar() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsMenuOpen((p) => !p)}
-                                className="p-2 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors lg:hidden"
-                                aria-label="Menü"
+                                className="p-2 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+                                aria-label={isMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
+                                aria-expanded={isMenuOpen}
+                                aria-controls="mobiles-menue"
                             >
                                 <AnimatePresence mode="wait" initial={false}>
                                     <motion.div
@@ -181,6 +181,10 @@ export function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
+                        id="mobiles-menue"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Menü"
                         className="fixed inset-0 z-[90] lg:hidden bg-background"
                     >
                         <div className="relative flex flex-col items-center justify-center h-full gap-6 py-20">

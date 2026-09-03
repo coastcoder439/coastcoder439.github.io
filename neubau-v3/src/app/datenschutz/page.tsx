@@ -37,20 +37,23 @@ export default function DatenschutzPage() {
 
                 <H2>Hosting und Server-Protokolle</H2>
                 <P>
-                    Diese Seite wird bei Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA gehostet.
-                    Beim Aufruf verarbeitet Vercel technisch notwendige Daten (IP-Adresse, Zeitpunkt, aufgerufene
-                    Adresse, Browser-Kennung), um die Seite auszuliefern und den Betrieb abzusichern. Rechtsgrundlage
-                    ist mein berechtigtes Interesse an einem sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Vercel
-                    verarbeitet Daten auch in den USA; Grundlage sind die EU-Standardvertragsklauseln.
+                    Diese Seite wird bei Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA gehostet. Beim
+                    Aufruf verarbeitet Vercel technisch notwendige Daten (IP-Adresse, Zeitpunkt, aufgerufene Adresse,
+                    Browser-Kennung), um die Seite auszuliefern und den Betrieb abzusichern. Rechtsgrundlage ist mein
+                    berechtigtes Interesse an einem sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Diese Protokolle
+                    werden nach spätestens 30 Tagen gelöscht. Vercel verarbeitet Daten auch in den USA; Grundlage sind
+                    die EU-Standardvertragsklauseln und ein Auftragsverarbeitungsvertrag.
                 </P>
 
                 <H2>Terminbuchung über Cal.com</H2>
                 <P>
-                    Im Abschnitt „Buchen" ist ein Kalender von Cal.com, Inc., 2261 Market Street #4382, San Francisco,
-                    CA 94114, USA eingebettet. Beim Laden der Seite wird der Kalender von Cal.com nachgeladen; dabei
-                    erhält Cal.com Ihre IP-Adresse. Buchen Sie einen Termin, verarbeitet Cal.com die von Ihnen
-                    eingegebenen Angaben (Name, E-Mail-Adresse, gewünschter Termin, optionale Notizen), damit ich den
-                    Termin wahrnehmen kann (Art. 6 Abs. 1 lit. b DSGVO). Details:{' '}
+                    Im Abschnitt „Buchen“ kann ein Kalender von Cal.com, Inc., 2261 Market Street #4382, San Francisco,
+                    CA 94114, USA angezeigt werden. Er lädt <strong>nicht</strong> automatisch: Erst wenn Sie auf
+                    „Kalender laden“ klicken, wird er von Cal.com geholt, und erst dann erhält Cal.com Ihre IP-Adresse.
+                    Rechtsgrundlage für dieses Nachladen ist Ihre Einwilligung durch den Klick (Art. 6 Abs. 1 lit. a
+                    DSGVO), die Sie jederzeit widerrufen können, indem Sie die Seite neu laden. Buchen Sie einen Termin,
+                    verarbeitet Cal.com die von Ihnen eingegebenen Angaben (Name, E-Mail-Adresse, gewünschter Termin,
+                    optionale Notizen), damit ich den Termin wahrnehmen kann (Art. 6 Abs. 1 lit. b DSGVO). Details:{' '}
                     <a
                         href="https://cal.com/privacy"
                         target="_blank"
@@ -64,17 +67,27 @@ export default function DatenschutzPage() {
 
                 <H2>Eingebettete Prototypen</H2>
                 <P>
-                    Im Abschnitt „Projekte" werden meine eigenen Prototypen als Fenster eingebettet. Sie werden von
-                    Vercel (siehe oben) und für den Oasis-Simulator von world-eden-era.org ausgeliefert. Beim Anzeigen
-                    eines Fensters erhält der jeweilige Server Ihre IP-Adresse. Die Prototypen setzen keine Cookies zu
-                    Werbezwecken und enthalten keine Analyse-Werkzeuge.
+                    Im Abschnitt „Projekte“ können meine eigenen Prototypen als Fenster angezeigt werden. Auch sie
+                    laden erst auf Klick („Vorschau starten“), Rechtsgrundlage ist damit Ihre Einwilligung (Art. 6
+                    Abs. 1 lit. a DSGVO). Ausgeliefert werden sie von Vercel (siehe oben) und im Fall des
+                    Oasis-Simulators von world-eden-era.org, der Seite der von mir mitgegründeten gemeinnützigen UG.
+                    Dabei erhält der jeweilige Server Ihre IP-Adresse. Die Prototypen setzen keine Werbe-Cookies und
+                    enthalten keine Analyse-Werkzeuge.
                 </P>
 
                 <H2>Schriften, Cookies, lokale Speicherung</H2>
                 <P>
                     Schriften werden von dieser Seite selbst ausgeliefert, es findet kein Aufruf bei Google statt.
-                    Die Seite setzt keine Werbe- oder Analyse-Cookies. Ihre Wahl von hellem oder dunklem Design wird
-                    lokal in Ihrem Browser gespeichert und nicht an mich übertragen.
+                    Die Seite setzt keine Werbe- oder Analyse-Cookies. Zwei Angaben bleiben nur in Ihrem Browser:
+                    Ihre Wahl von hellem oder dunklem Design und ein Vermerk, dass die Startanimation in dieser
+                    Sitzung bereits gelaufen ist. Beides wird nicht an mich übertragen und verschwindet, wenn Sie
+                    die Websitedaten löschen.
+                </P>
+
+                <H2>Keine automatisierte Entscheidungsfindung</H2>
+                <P>
+                    Es findet kein Profiling und keine automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO
+                    statt.
                 </P>
 
                 <H2>Externe Links</H2>

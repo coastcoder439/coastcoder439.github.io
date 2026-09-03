@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Linkedin, ArrowDownRight } from 'lucide-react';
+import { handleAnchorClick } from '@/lib/scroll';
 
 // Schlanker deutscher Footer (v3): Name, Ort, Anker der vier Blöcke, LinkedIn + Lebenslauf,
 // Impressum + Datenschutz. Bewusst ohne GitHub-/Repo-/Instagram-Links (Owner-Regel) und
@@ -11,17 +12,6 @@ const LINKS = [
     { label: 'Projekte', id: 'projekte' },
     { label: 'Buchen', id: 'buchen' },
 ];
-
-function goTo(e: React.MouseEvent, id: string) {
-    if (typeof window === 'undefined' || window.location.pathname !== '/') return;
-    const el = document.getElementById(id);
-    if (!el) return;
-    e.preventDefault();
-    const y = el.getBoundingClientRect().top + window.scrollY - 80;
-    const lenis = (window as any).lenis;
-    if (lenis?.scrollTo) lenis.scrollTo(y);
-    else window.scrollTo({ top: y, behavior: 'smooth' });
-}
 
 export function Footer() {
     return (
@@ -38,7 +28,7 @@ export function Footer() {
                             <Link
                                 key={l.id}
                                 href={`/#${l.id}`}
-                                onClick={(e) => goTo(e, l.id)}
+                                onClick={(e) => handleAnchorClick(e, l.id)}
                                 className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
                             >
                                 {l.label}

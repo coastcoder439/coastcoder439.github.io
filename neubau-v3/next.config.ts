@@ -15,7 +15,6 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,
-    transpilePackages: ['three'],
     images: {
         formats: ['image/avif', 'image/webp'],
     },

@@ -7,10 +7,10 @@ import ImageTrail from "@/components/ImageTrail";
 
 const INITIAL_CHIPS = [
   // v3: die vier Schritte des Ablaufs statt der Template-Berufe.
-  { id: 1, title: "Muster erkennen", description: "Prompt Engineering", icon: Search },
-  { id: 2, title: "Das Ganze sehen", description: "Context Engineering", icon: Eye },
+  { id: 1, title: "Muster erkennen", description: "Prompt-Engineering", icon: Search },
+  { id: 2, title: "Das Ganze sehen", description: "Context-Engineering", icon: Eye },
   { id: 3, title: "Regeln in Code", description: "Harness-Engineering", icon: ShieldCheck },
-  { id: 4, title: "Können übergeben", description: "Skill Engineering", icon: PackageCheck },
+  { id: 4, title: "Können übergeben", description: "Skill-Engineering", icon: PackageCheck },
 ];
 
 export default function Bucket({ trailImages }: { trailImages?: string[] }) {
@@ -18,6 +18,8 @@ export default function Bucket({ trailImages }: { trailImages?: string[] }) {
 
   const isMobile = useIsMobile();
   useEffect(() => {
+    // Automatischer Wechsel nur, wenn Bewegung erwünscht ist (WCAG 2.2.2).
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const interval = setInterval(() => {
       setItems((prev) => {
         const [first, ...rest] = prev;

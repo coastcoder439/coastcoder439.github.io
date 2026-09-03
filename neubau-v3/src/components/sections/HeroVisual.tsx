@@ -6,10 +6,11 @@ import { Separator } from '@/components/ui/separator';
 import { ArrowDownRight, CalendarDays, FileText } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
 import { Spotlight } from '@/components/ui/spotlight-new';
+import { handleAnchorClick } from '@/lib/scroll';
 
 // v3 — Block 1 „Das ist Leon" (Owner 03.09.2026): links Motto + Owner-Subline +
-// Knöpfe „Gespräch buchen" / „Lebenslauf" + Nachweise-Zeile, rechts der Charakter-
-// Platzhalter (Figur mit verschränkten Armen, kommt aus den Owner-Referenzen).
+// Knöpfe „Gespräch buchen" / „Lebenslauf" + Nachweise-Zeile, rechts die Karte mit
+// den vier Schritten (später ersetzt sie die Charakter-Figur des Owners).
 // Motion des Templates bleibt: Spotlight, Punktraster, text-shiny, isExiting-Reveal,
 // OFFEN-FÜR-AUSTAUSCH-Badge, runder Lebenslauf-Button.
 const LINES = ['Technik', 'mit', 'Auftrag.'];
@@ -22,49 +23,38 @@ const NACHWEISE = [
   'Cybersecurity Fundamentals · IBM',
 ];
 
-function scrollToBuchen(e: React.MouseEvent) {
-  if (typeof window === 'undefined') return;
-  const el = document.getElementById('buchen');
-  if (!el) return;
-  e.preventDefault();
-  const y = el.getBoundingClientRect().top + window.scrollY - 80;
-  const lenis = (window as any).lenis;
-  if (lenis?.scrollTo) lenis.scrollTo(y);
-  else window.scrollTo({ top: y, behavior: 'smooth' });
-}
+// Rechte Hero-Spalte: was dabei herauskommt. Bewusst KEIN beschrifteter
+// Bild-Platzhalter — bis die Charakter-Figur des Owners vorliegt, steht hier
+// etwas, das für sich allein trägt. Die Figur ersetzt später genau diese Karte.
+// Bewusst die Ergebnisse und nicht die vier Schritte: die stehen im Ablauf-Block.
+const HERO_ERGEBNISSE = [
+  ['Websites', 'die eine Geschichte erzählen'],
+  ['Apps', 'mit Oberfläche, nicht nur Skript'],
+  ['Funnels', 'die aus Besuchern Anfragen machen'],
+  ['Automations', 'die ohne Zuruf laufen'],
+];
 
-// Platzhalter, bis die Figur aus den Owner-Referenzen kommt: Silhouette mit
-// verschränkten Armen, gleiche Rahmung wie später das echte Bild.
-function CharacterPlaceholder({ isExiting }: { isExiting: boolean }) {
+function HeroSideCard({ isExiting }: { isExiting: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 40 }}
       animate={isExiting ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
       transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="relative mx-auto aspect-[3/4] w-full max-w-[400px] overflow-hidden rounded-[2rem] border border-foreground/10 bg-foreground/[0.03] shadow-2xl"
+      className="relative mx-auto w-full max-w-[400px] overflow-hidden rounded-[2rem] border border-foreground/10 bg-foreground/[0.03] p-8 shadow-2xl backdrop-blur"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle,_#888_0.6px,_transparent_0.6px)] opacity-25 [background-size:18px_18px]" />
-      <svg
-        viewBox="0 0 300 400"
-        className="relative h-full w-full text-foreground/75"
-        role="img"
-        aria-label="Charakter-Platzhalter: Leon mit verschränkten Armen"
-      >
-        <circle cx="150" cy="96" r="46" fill="currentColor" />
-        <rect x="136" y="138" width="28" height="24" rx="8" fill="currentColor" />
-        <path d="M68 400 V236 q0-72 82-80 q82 8 82 80 V400 Z" fill="currentColor" />
-        <path
-          d="M56 262 q44-46 94-30 q50-16 94 30 l-6 34 q-44-28-88-14 q-44-14-88 14 Z"
-          fill="currentColor"
-          className="text-background/30"
-        />
-        <path d="M60 258 l-16 62 q-2 30 28 32 l18-58 Z" fill="currentColor" className="text-background/20" />
-        <path d="M240 258 l16 62 q2 30-28 32 l-18-58 Z" fill="currentColor" className="text-background/20" />
-      </svg>
-      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-foreground/10 bg-background/80 px-5 py-3 backdrop-blur">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Charakter folgt</span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary">Platzhalter</span>
-      </div>
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle,_#888_0.6px,_transparent_0.6px)] opacity-25 [background-size:18px_18px]" />
+      <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-primary">Das baue ich</p>
+      <ul className="mt-6 space-y-5">
+        {HERO_ERGEBNISSE.map(([was, wozu]) => (
+          <li key={was}>
+            <span className="block text-xl font-black tracking-tight text-foreground md:text-2xl">{was}</span>
+            <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{wozu}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-8 border-t border-foreground/10 pt-5 text-sm leading-relaxed text-muted-foreground">
+        Von deinem Problem zum laufenden System — der Ablauf steht weiter unten.
+      </p>
     </motion.div>
   );
 }
@@ -104,17 +94,22 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               {personal.name} · Leipzig
             </motion.p>
 
-            {LINES.map((line, i) => (
-              <motion.h1
-                key={line}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[clamp(3rem,9vw,10.5rem)] font-black leading-[0.85] tracking-tighter text-shiny will-change-transform"
-              >
-                {line}
-              </motion.h1>
-            ))}
+            {/* Eine einzige Hauptüberschrift; die drei Zeilen laufen als Zeilen darin an.
+                leading-[0.92] statt 0.85: enger schnitt der Farbverlauf die Unterlänge
+                von „Auftrag." unten ab. */}
+            <h1 className="text-[clamp(3rem,9vw,10.5rem)] font-black leading-[0.92] tracking-tighter">
+              {LINES.map((line, i) => (
+                <motion.span
+                  key={line}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="block pb-[0.06em] text-shiny will-change-transform"
+                >
+                  {line}
+                </motion.span>
+              ))}
+            </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -133,7 +128,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
             >
               <a
                 href="#buchen"
-                onClick={scrollToBuchen}
+                onClick={(e) => handleAnchorClick(e, 'buchen')}
                 className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-4 text-sm font-black uppercase tracking-widest text-background shadow-xl transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
               >
                 <CalendarDays className="h-4 w-4" />
@@ -166,7 +161,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
           </div>
 
           <div className="w-full">
-            <CharacterPlaceholder isExiting={isExiting} />
+            <HeroSideCard isExiting={isExiting} />
           </div>
         </div>
 
@@ -176,21 +171,6 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
             <div className="text-[10px] md:text-xs whitespace-nowrap font-bold tracking-[0.3em] text-muted-foreground uppercase">
               LEIPZIG, DE — 2026
             </div>
-            <a
-              href={personal.resumeUrl}
-              download="Leon-Poesken-Lebenslauf.pdf"
-              aria-label="Lebenslauf herunterladen"
-              className="group flex items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
-            >
-              <motion.div className="relative flex items-center bg-zinc-100 dark:bg-white h-12 w-12 group-hover:w-44 rounded-full transition-all duration-500 ease-[0.23,1,0.32,1] overflow-hidden shadow-xl">
-                <span className="whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 group-hover:delay-150 text-[10px] font-black uppercase tracking-widest text-zinc-900 dark:text-black pl-6 pr-12">
-                  Lebenslauf
-                </span>
-                <div className="absolute right-0 flex items-center justify-center size-12 text-zinc-900 dark:text-black group-hover:rotate-45 transition-transform duration-500">
-                  <ArrowDownRight className="w-5 h-5" />
-                </div>
-              </motion.div>
-            </a>
           </div>
         </div>
       </main>

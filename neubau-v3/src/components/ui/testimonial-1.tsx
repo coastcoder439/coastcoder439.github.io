@@ -38,7 +38,7 @@ export default function Testimonial1() {
       value: 6,
       decimals: 0,
       suffix: "",
-      label: "Prototypen live",
+      label: "Prototypen zum Durchklicken",
       href: "/#projekte",
       cta: "Durchklicken",
     },
@@ -94,14 +94,14 @@ export default function Testimonial1() {
         </div>
 
         {/* Main Heading with Refined Block Reveal Animation */}
-        <div className="text-center max-w-5xl mx-auto relative text-neutral-900 dark:text-white px-4 space-y-1 md:space-y-2">
+        <h2 className="text-center max-w-5xl mx-auto relative text-neutral-900 dark:text-white px-4 space-y-1 md:space-y-2">
           {[
-            { text: "Alles geprüft.", color: "#6366f1", delay: 0 },
+            { text: "Alles geprüft —", color: "#6366f1", delay: 0 },
             { text: "Screenshot für Screenshot,", color: "#10b981", delay: 0.15 },
             { text: "Beleg für Beleg.", color: "#f59e0b", delay: 0.3 }
           ].map((line, i) => (
             <div key={i} className="relative block overflow-hidden py-1.5">
-              <motion.h1
+              <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-20px" }}
@@ -112,7 +112,7 @@ export default function Testimonial1() {
                 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tighter"
               >
                 {line.text}
-              </motion.h1>
+              </motion.p>
 
               {/* The Refined Revealer Block */}
               <motion.div
@@ -134,7 +134,7 @@ export default function Testimonial1() {
               />
             </div>
           ))}
-        </div>
+        </h2>
 
         {/* Glassmorphic Stats Bar */}
         <div className="sm:flex grid grid-cols-2 gap-8 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl mt-12 w-full mx-auto px-8 py-10 border rounded-2xl border-white/20 dark:border-white/5 shadow-2xl relative overflow-hidden">

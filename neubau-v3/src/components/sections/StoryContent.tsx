@@ -6,7 +6,7 @@
  *                     aus Kundensicht (= Prompt/Context/Harness/Skill), Würfel 2 zeigt,
  *                     was dabei rauskommt.
  *   ProjekteSection = Block 3: EINE Slideshow mit allen neun Projekten, gruppiert nach
- *                     Ursprung · Praxis · Keel, rechts das Live-iframe (keine Screenshots).
+ *                     Ursprung · Praxis · Keel, rechts das Live-Fenster des Projekts (keine Screenshots).
  * Block 1 (Hero) und Block 4 (Buchen) liegen in HeroVisual bzw. CTASection.
  * Projekt-Texte wörtlich aus „Klare Kante" v4.6 (Praxis-Regel: kein Auftrags-/
  * Bezahlverhältnis behaupten, Prototyp-Vermerk als letzter Satz).
@@ -87,7 +87,7 @@ const CubeBlock = ({
       <ol className="space-y-6">
         {items.map((it) => (
           <li key={it.title}>
-            <h4 className="text-lg font-bold text-foreground md:text-xl">{it.title}</h4>
+            <h3 className="text-lg font-bold text-foreground md:text-xl">{it.title}</h3>
             <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
               {it.sub}
             </span>
@@ -105,10 +105,10 @@ const SHELL = "relative mx-auto max-w-[1180px] px-6 py-24 md:px-12 md:py-32";
 
 // Würfel 1 — die vier Schritte aus Kundensicht; jede Würfelseite ist einer davon.
 const SCHRITTE = [
-  { title: "1 · Muster erkennen", sub: "Prompt Engineering", desc: "Dein Problem ist selten neu. Ich finde das Muster dahinter — einmal erkannt, lässt es sich von einem Anwendungsfall auf deinen übertragen." },
-  { title: "2 · Das Ganze sehen", sub: "Context Engineering", desc: "Erst dein kompletter Ablauf, dann das Werkzeug: Welches Wissen die Aufgabe braucht, entscheidet der Blick aufs Ganze." },
+  { title: "1 · Muster erkennen", sub: "Prompt-Engineering", desc: "Dein Problem ist selten neu. Ich finde das Muster dahinter — einmal erkannt, lässt es sich von einem Anwendungsfall auf deinen übertragen." },
+  { title: "2 · Das Ganze sehen", sub: "Context-Engineering", desc: "Erst dein kompletter Ablauf, dann das Werkzeug: Welches Wissen die Aufgabe braucht, entscheidet der Blick aufs Ganze." },
   { title: "3 · Regeln in Code gießen", sub: "Harness-Engineering", desc: "Regeln statt Vertrauen: Disziplin steckt im Code, nicht im Prompt. Wächter, Gates und Messwerte halten Agenten ehrlich — in deinem Projekt wie in jedem anderen." },
-  { title: "4 · Können übergeben", sub: "Skill Engineering", desc: "Was sich bewährt hat, bleibt bei dir als abrufbares Können — geladen, wenn die Aufgabe es braucht, statt als Konzeptpapier im Ordner." },
+  { title: "4 · Können übergeben", sub: "Skill-Engineering", desc: "Was sich bewährt hat, bleibt bei dir als abrufbares Können — geladen, wenn die Aufgabe es braucht, statt als Konzeptpapier im Ordner." },
 ];
 
 // Würfel 2 — was dabei rauskommt (Texte aus dem Gate-Dokument).
@@ -124,21 +124,21 @@ const GRUPPE_PRAXIS = "Praxis · Prototypen";
 const GRUPPE_KEEL = "Keel · eigenes System";
 
 const PROJEKTE: ShowcaseProject[] = [
-  { id: "oasis", group: GRUPPE_URSPRUNG, name: "Oasis-Simulator", tag: "iframe · Präsentation", url: "https://world-eden-era.org/project-oasis/", desc: "Mein Herzensprojekt — ursprünglich von mir entwickelt, heute gemeinsam mit meiner Orga weiterentwickelt: die Aquaponik-Oase als drehbares 3D-Modell im Browser (272 MB aus Blender) plus eine Simulation, die Wetter und Klima in Ertrag und Kosten einrechnet." },
-  { id: "wee", group: GRUPPE_URSPRUNG, name: "WEE CRM", tag: "iframe · Prototyp", url: "https://showcase-wee-crm.vercel.app", desc: "Fundraising-CRM der gUG, im Aufbau: Kontakte, Spenden, CSV-Import, Audit-Log auf React 19 und Supabase. Der Stand: ein getesteter Prototyp." },
-  { id: "drive", group: GRUPPE_URSPRUNG, name: "Drive-Automatisierung", tag: "nur Text", desc: "Der Vereins-Drive gehorcht einer YAML als einziger Wahrheitsquelle. Python verteilt die Ablage-Regeln und meldet Abweichungen — 233 Dateien im Migrationsplan, jeder Lauf mit Abgleichsbericht." },
-  { id: "wlbike", group: GRUPPE_PRAXIS, name: "WL Bike Rental", tag: "iframe · Prototyp", url: "https://showcase-wl-bike.vercel.app", desc: "Scroll-Story rund um einen E-Bike-Verleih an der Ostsee: eine Radtour von Wald über Bodden bis Strand, jedes Angebot eine Station. Gebaut in Next.js, jeder Scroll-Zustand per Playwright-Screenshot verifiziert — der Stand: ein Prototyp." },
-  { id: "nordwind", group: GRUPPE_PRAXIS, name: "Nordwind Studio", tag: "iframe · Prototyp", url: "https://showcase-nordwind.vercel.app", desc: "Demo-Cockpit für Print-on-Demand auf Shopify: sieben KI-Agenten von Designfreigabe bis USt-Voranmeldung, im Browser durchklickbar ohne Server. 96 Belege treffen die GuV auf 0,00 Euro genau — der Stand: ein Prototyp." },
-  { id: "funnel", group: GRUPPE_PRAXIS, name: "Funnel Desk", tag: "iframe · Prototyp", url: "https://showcase-funnel-desk.vercel.app/dashboard", desc: "Akquise-Trichter im Vergleich: mehrere Zielgruppen nebeneinander, dieselben sechs Stufen von Reichweite bis Bindung, Betreiber-Dashboard plus mobile Auslieferung. Gedacht im Verbund mit Social-Dashboard und CRM — der Stand: ein Prototyp." },
-  { id: "keel", group: GRUPPE_KEEL, name: "Keel Showcase", tag: "iframe · Vercel", url: "https://keel-showcase.vercel.app", desc: "Die Keel-Oberfläche zum Durchklicken: Website-Builder, Social Media, Commerce. Ohne Server, ohne Anmeldung — direkt hier eingebettet." },
-  { id: "harness", group: GRUPPE_KEEL, name: "Keel-Harness", tag: "nur Text", desc: "Ein Bausatz, der KI-Agenten diszipliniert arbeiten lässt: Wächter-Hooks, Dauer-Regeln, Mess-Dashboard. Ein Satz an den Agenten installiert ihn in jeden Projektordner." },
-  { id: "flowvoice", group: GRUPPE_KEEL, name: "FlowVoice", tag: "nur Text", desc: "Diktat für Windows: Hotkey drücken, sprechen — der Text steht im aktiven Fenster. Vier Erkennungs-Engines zur Wahl, von komplett lokal bis Groq." },
+  { id: "oasis", group: GRUPPE_URSPRUNG, name: "Oasis-Simulator", tag: "Live · Präsentation", url: "https://world-eden-era.org/project-oasis/", desc: "Mein Herzensprojekt — ursprünglich von mir entwickelt, heute gemeinsam mit meiner Orga weiterentwickelt: die Aquaponik-Oase als drehbares 3D-Modell im Browser (272 MB aus Blender) plus eine Simulation, die Wetter und Klima in Ertrag und Kosten einrechnet." },
+  { id: "wee", group: GRUPPE_URSPRUNG, name: "WEE CRM", tag: "Live · Prototyp", url: "https://showcase-wee-crm.vercel.app", desc: "Fundraising-CRM der gUG, im Aufbau: Kontakte, Spenden, CSV-Import, Audit-Log auf React 19 und Supabase. Der Stand: ein getesteter Prototyp." },
+  { id: "drive", group: GRUPPE_URSPRUNG, name: "Drive-Automatisierung", tag: "Ohne Live-Ansicht", desc: "Der Vereins-Drive gehorcht einer YAML als einziger Wahrheitsquelle. Python verteilt die Ablage-Regeln und meldet Abweichungen — 233 Dateien im Migrationsplan, jeder Lauf mit Abgleichsbericht." },
+  { id: "wlbike", group: GRUPPE_PRAXIS, name: "WL Bike Rental", tag: "Live · Prototyp", url: "https://showcase-wl-bike.vercel.app", desc: "Scroll-Story rund um einen E-Bike-Verleih an der Ostsee: eine Radtour von Wald über Bodden bis Strand, jedes Angebot eine Station. Gebaut in Next.js, jeder Scroll-Zustand per Playwright-Screenshot verifiziert — der Stand: ein Prototyp." },
+  { id: "nordwind", group: GRUPPE_PRAXIS, name: "Nordwind Studio", tag: "Live · Prototyp", url: "https://showcase-nordwind.vercel.app", desc: "Demo-Cockpit für Print-on-Demand auf Shopify: sieben KI-Agenten von Designfreigabe bis USt-Voranmeldung, im Browser durchklickbar ohne Server. 96 Belege treffen die GuV auf 0,00 Euro genau — der Stand: ein Prototyp." },
+  { id: "funnel", group: GRUPPE_PRAXIS, name: "Funnel Desk", tag: "Live · Prototyp", url: "https://showcase-funnel-desk.vercel.app/dashboard", desc: "Akquise-Trichter im Vergleich: mehrere Zielgruppen nebeneinander, dieselben sechs Stufen von Reichweite bis Bindung, Betreiber-Dashboard plus mobile Auslieferung. Gedacht im Verbund mit Social-Dashboard und CRM — der Stand: ein Prototyp." },
+  { id: "keel", group: GRUPPE_KEEL, name: "Keel Showcase", tag: "Live · zum Durchklicken", url: "https://keel-showcase.vercel.app", desc: "Die Keel-Oberfläche zum Durchklicken: Website-Builder, Social Media, Commerce. Ohne Server, ohne Anmeldung — direkt hier eingebettet." },
+  { id: "harness", group: GRUPPE_KEEL, name: "Keel-Harness", tag: "Ohne Live-Ansicht", desc: "Ein Bausatz, der KI-Agenten diszipliniert arbeiten lässt: Wächter-Hooks, Dauer-Regeln, Mess-Dashboard. Ein Satz an den Agenten installiert ihn in jeden Projektordner." },
+  { id: "flowvoice", group: GRUPPE_KEEL, name: "FlowVoice", tag: "Ohne Live-Ansicht", desc: "Diktat für Windows: Hotkey drücken, sprechen — der Text steht im aktiven Fenster. Vier Erkennungs-Engines zur Wahl, von komplett lokal bis Groq." },
 ];
 
 export function AblaufSection() {
   return (
     <section id="ablauf" className={cn("relative z-20 bg-background text-foreground", SHELL)}>
-      <SectionHead nr="2 / Ablauf — so läuft es mit dir" title="Erkennen. Sehen. Bauen. Übergeben." />
+      <SectionHead nr="Ablauf — so läuft es mit dir" title="Erkennen. Sehen. Bauen. Übergeben." />
       <Copy>
         Was in der Aquaponik hält, trägt im Verleih, im Print-on-Demand, im Agenten-System. Vier
         Schritte, mit denen ich dein Problem in ein laufendes System übersetze — jede Seite des
@@ -151,7 +151,7 @@ export function AblaufSection() {
         <div className="flex items-center gap-4">
           <ArrowDownRight className="h-5 w-5 text-primary" />
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-primary md:text-xs">
-            Was dabei rauskommt — websites · apps · funnels · automations
+            Was dabei rauskommt
           </span>
         </div>
       </Reveal>
@@ -163,10 +163,10 @@ export function AblaufSection() {
 export function ProjekteSection() {
   return (
     <section id="projekte" className={cn("relative z-20 bg-background text-foreground border-t border-foreground/10", SHELL)}>
-      <SectionHead nr="3 / Projekte — die Schritte an echten Problemen" title="Echte Probleme, echte Lösungen." />
+      <SectionHead nr="Projekte — die Schritte an echten Problemen" title="Echte Probleme, echte Lösungen." />
       <Copy>
         Neun Projekte, drei Herkünfte: die NGO, an der alles begann — Prototypen für echte
-        Probleme — Keel, mein eigenes System. Jedes Fenster rechts ist die echte Oberfläche,
+        Probleme — Keel, mein eigenes System. Wo eine Vorschau möglich ist, siehst du die echte Oberfläche,
         kein Bild.
       </Copy>
       <div className="mt-10">

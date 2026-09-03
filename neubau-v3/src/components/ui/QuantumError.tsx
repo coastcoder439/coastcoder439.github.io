@@ -33,13 +33,14 @@ export function QuantumError({ type = '404', reset }: { type?: '404' | '500'; re
                 </div>
 
                 <div className="mt-14 flex flex-col items-center gap-6 sm:flex-row">
-                    <Link href="/">
-                        <button className="group relative flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-sm font-bold tracking-wide text-background transition-all hover:pr-10">
-                            <span>Zur Startseite</span>
-                            <div className="absolute right-4 opacity-0 transition-opacity group-hover:opacity-100">
-                                <MoveLeft size={16} className="rotate-180" />
-                            </div>
-                        </button>
+                    <Link
+                        href="/"
+                        className="group relative flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-sm font-bold tracking-wide text-background transition-all hover:pr-10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
+                    >
+                        <span>Zur Startseite</span>
+                        <span className="absolute right-4 opacity-0 transition-opacity group-hover:opacity-100">
+                            <MoveLeft size={16} className="rotate-180" />
+                        </span>
                     </Link>
 
                     {!is404 && (

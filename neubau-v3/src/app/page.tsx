@@ -8,7 +8,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { LoadingScreen } from '@/components/layout';
 import { DeferredMount } from '@/components/ui/DeferredMount';
 import { HeroVisual } from "@/components/sections/HeroVisual";
-import ExpertiseSection from "@/components/sections/ExpertiseSection";
 import AboutSection from "@/components/sections/AboutSection";
 import CTASection from "@/components/sections/CTASection";
 import { usePreloadState } from "@/components/ui/arc-preloader-hero";
@@ -18,7 +17,7 @@ if (typeof window !== 'undefined') {
 }
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
-// v3 (03.09.2026): Hero (Start) + ExpertiseSection (Raster-Übergang) + AboutSection
+// v3 (03.09.2026): Hero (Start) + AboutSection
 // (Ablauf · Projekte · Geprüft) + CTASection (Buchen mit Cal.com). Nur die doppelte Blog-
 // StatsSection ist raus (Owner: „doppelte Sektion fliegt"); die uebrige
 // Template-Motion bleibt.
@@ -89,7 +88,6 @@ export default function HomePage() {
                 <HeroVisual isExiting={isReadyToAnimate} />
 
                 <DeferredMount>
-                    <ExpertiseSection />
                     <AboutSection />
                     <CTASection />
                 </DeferredMount>

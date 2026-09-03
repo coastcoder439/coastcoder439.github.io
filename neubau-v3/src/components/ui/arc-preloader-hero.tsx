@@ -90,23 +90,15 @@ export function ArcRevealHero({
     }
   }, [phase, children]);
 
-  // Generate title from pathname if greetings is not provided
+  // Titel je Seite. Unbekannte Adressen (404) bekommen bewusst den Namen und
+  // nicht das eingetippte Wort — sonst stand "Gibtsnicht" riesig auf dem Schirm.
   const title = React.useMemo(() => {
-      if (pathname === '/') return 'Leon Pösken';
-      const parts = pathname.split('/').filter(Boolean);
-      
-      if ((parts[0] === 'projects' || parts[0] === 'blog') && parts.length > 1) {
-          // Format slug (e.g., browser-automation-agent -> Browser Automation Agent)
-          return parts[1]
-              .split('-')
-              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(' ');
-      }
-      
-      if (parts.length > 0) {
-          return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
-      }
-      return 'Loading';
+    const SEITEN: Record<string, string> = {
+      '/': 'Leon Pösken',
+      '/impressum': 'Impressum',
+      '/datenschutz': 'Datenschutz',
+    };
+    return SEITEN[pathname] ?? 'Leon Pösken';
   }, [pathname]);
 
   const activeGreetings = greetings || [{ text: title }];
@@ -263,7 +255,9 @@ export function ArcRevealHero({
                     lang={current.lang}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
+                    // Kurz ausblenden: die Deckflaeche faellt bei "reveal" sofort, ein
+                    // langsamer Text-Exit legte den Schriftzug lesbar ueber den Inhalt.
+                    exit={{ opacity: 0, y: -15, transition: { duration: 0.12 } }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
                     className={cn(
                       "select-none px-6 text-center text-5xl font-semibold tracking-tight text-white",

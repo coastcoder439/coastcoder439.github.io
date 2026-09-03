@@ -76,6 +76,9 @@ const Loader = ({ type = 'default' }: LoaderProps) => {
   const faces = config[type] || config.default;
 
   useEffect(() => {
+    // Wer im Betriebssystem weniger Bewegung eingestellt hat, bekommt den
+    // Wuerfel still — sonst laufen drei Endlos-Tweens (WCAG 2.3.3 / 2.2.2).
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // Stage Jump
     gsap.set(stageRef.current, { scale: 1, rotateX: -20, rotateY: 0 });
     const stageTween = gsap.to(stageRef.current, {
