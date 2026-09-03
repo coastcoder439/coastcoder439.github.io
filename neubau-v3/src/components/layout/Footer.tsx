@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { Linkedin, ArrowDownRight } from 'lucide-react';
 
-// Schlanker deutscher Footer: Name, Motto, Anker, LinkedIn + CV. Bewusst ohne
-// GitHub-/Repo-/Instagram-Links (Owner-Regel: „ohne GitHub, das ist privat").
+// Schlanker deutscher Footer (v3): Name, Ort, Anker der vier Blöcke, LinkedIn + Lebenslauf,
+// Impressum + Datenschutz. Bewusst ohne GitHub-/Repo-/Instagram-Links (Owner-Regel) und
+// ohne Motto (steht nur im Hero).
 const LINKS = [
     { label: 'Ablauf', id: 'ablauf' },
     { label: 'Projekte', id: 'projekte' },
@@ -29,10 +30,10 @@ export function Footer() {
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
                     <div>
                         <p className="text-3xl md:text-4xl font-black tracking-tighter">Leon Pösken</p>
-                        <p className="mt-2 text-muted-foreground">KI-Systembau · Leipzig</p>
+                        <p className="mt-2 text-muted-foreground">Leipzig, Deutschland</p>
                     </div>
 
-                    <nav className="flex flex-wrap gap-x-6 gap-y-2">
+                    <nav aria-label="Abschnitte" className="flex flex-wrap gap-x-6 gap-y-2">
                         {LINKS.map((l) => (
                             <Link
                                 key={l.id}
@@ -64,9 +65,17 @@ export function Footer() {
                     </a>
                 </div>
 
-                <p className="mt-12 text-xs font-mono text-muted-foreground">
-                    © {new Date().getFullYear()} Leon Pösken
-                </p>
+                <div className="mt-12 flex flex-col gap-3 text-xs font-mono text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+                    <p>© {new Date().getFullYear()} Leon Pösken</p>
+                    <nav aria-label="Rechtliches" className="flex gap-5">
+                        <Link href="/impressum" className="hover:text-foreground transition-colors">
+                            Impressum
+                        </Link>
+                        <Link href="/datenschutz" className="hover:text-foreground transition-colors">
+                            Datenschutz
+                        </Link>
+                    </nav>
+                </div>
             </div>
         </footer>
     );

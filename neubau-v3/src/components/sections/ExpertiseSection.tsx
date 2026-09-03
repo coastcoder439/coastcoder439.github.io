@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { NavigationShortcuts } from "@/components/sections/NavigationShortcuts";
 
 export default function ExpertiseSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -34,7 +33,6 @@ export default function ExpertiseSection() {
                     initial={{ opacity: 1, scale: 1 }}
                     className="w-full relative z-20"
                 >
-                    <NavigationShortcuts />
                 </motion.div>
             </div>
         </section>

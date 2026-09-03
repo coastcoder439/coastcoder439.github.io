@@ -107,7 +107,7 @@ const SHELL = "relative mx-auto max-w-[1180px] px-6 py-24 md:px-12 md:py-32";
 const SCHRITTE = [
   { title: "1 · Muster erkennen", sub: "Prompt Engineering", desc: "Dein Problem ist selten neu. Ich finde das Muster dahinter — einmal erkannt, lässt es sich von einem Anwendungsfall auf deinen übertragen." },
   { title: "2 · Das Ganze sehen", sub: "Context Engineering", desc: "Erst dein kompletter Ablauf, dann das Werkzeug: Welches Wissen die Aufgabe braucht, entscheidet der Blick aufs Ganze." },
-  { title: "3 · Regeln in Code gießen", sub: "Harness-Engineering", desc: "Was bei dir gelten soll, steht im Code: Wächter, Gates, Messwerte halten Agenten ehrlich — in deinem Projekt wie in jedem anderen." },
+  { title: "3 · Regeln in Code gießen", sub: "Harness-Engineering", desc: "Regeln statt Vertrauen: Disziplin steckt im Code, nicht im Prompt. Wächter, Gates und Messwerte halten Agenten ehrlich — in deinem Projekt wie in jedem anderen." },
   { title: "4 · Können übergeben", sub: "Skill Engineering", desc: "Was sich bewährt hat, bleibt bei dir als abrufbares Können — geladen, wenn die Aufgabe es braucht, statt als Konzeptpapier im Ordner." },
 ];
 
@@ -140,8 +140,9 @@ export function AblaufSection() {
     <section id="ablauf" className={cn("relative z-20 bg-background text-foreground", SHELL)}>
       <SectionHead nr="2 / Ablauf — so läuft es mit dir" title="Erkennen. Sehen. Bauen. Übergeben." />
       <Copy>
-        Vier Schritte, mit denen ich dein Problem in ein laufendes System übersetze — jede Seite
-        des Würfels ist einer davon.
+        Was in der Aquaponik hält, trägt im Verleih, im Print-on-Demand, im Agenten-System. Vier
+        Schritte, mit denen ich dein Problem in ein laufendes System übersetze — jede Seite des
+        Würfels ist einer davon.
       </Copy>
       <div className="mt-10">
         <CubeBlock type="disziplinen" items={SCHRITTE} />

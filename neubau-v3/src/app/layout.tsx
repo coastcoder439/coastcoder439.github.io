@@ -30,6 +30,9 @@ const signature = Alex_Brush({
     display: 'swap',
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL
+    ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'http://localhost:3001');
+
 export const metadata: Metadata = {
     title: {
         default: 'Leon Pösken | KI-Systembau',
@@ -39,11 +42,12 @@ export const metadata: Metadata = {
     keywords: ['KI-Systembau', 'Prompt Engineering', 'Context Engineering', 'Harness Engineering', 'Skill Engineering', 'Leon Pösken'],
     authors: [{ name: 'Leon Pösken' }],
     creator: 'Leon Pösken',
-    metadataBase: new URL('https://coastcoder439.github.io'),
+    // Basis-Adresse: auf Vercel liefert VERCEL_PROJECT_PRODUCTION_URL die Produktionsdomain.
+    metadataBase: new URL(SITE_URL),
     openGraph: {
         type: 'website',
         locale: 'de_DE',
-        url: 'https://coastcoder439.github.io',
+        url: SITE_URL,
         title: 'Leon Pösken | KI-Systembau',
         description: 'Technik mit Auftrag. KI-Systeme, die halten — von der Methodik bis zum laufenden Prototyp.',
         siteName: 'Leon Pösken',
@@ -66,8 +70,7 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            { url: '/Arfazrll_light.svg', media: '(prefers-color-scheme: light)' },
-            { url: '/Arfazrll_dark.svg', media: '(prefers-color-scheme: dark)' },
+            { url: '/favicon.svg', type: 'image/svg+xml' },
         ],
     },
 };
@@ -85,7 +88,6 @@ export const viewport: Viewport = {
 import { ThemeAwareClickSpark } from '@/components/ui/ThemeAwareClickSpark';
 import { ConditionalNavigation } from '@/components/layout/ConditionalNavigation';
 import { ArcPreloaderWrapper } from '@/components/layout/ArcPreloaderWrapper';
-import { ChatBot } from '@/components/layout/ChatBot';
 
 export default async function RootLayout({
     children,
@@ -107,7 +109,6 @@ export default async function RootLayout({
                                         {children}
                                     </ConditionalNavigation>
                                 </ArcPreloaderWrapper>
-                                <ChatBot headless />
                             </ThemeAwareClickSpark>
                         </SmoothScrollProvider>
                     </I18nProvider>

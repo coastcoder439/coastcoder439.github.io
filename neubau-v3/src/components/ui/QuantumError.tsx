@@ -1,175 +1,66 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Home, MoveLeft, RefreshCcw } from 'lucide-react';
+import React from 'react';
 import Link from 'next/link';
-import { usePerformance } from '@/hooks/usePerformance';
+import { motion } from 'framer-motion';
+import { MoveLeft, RotateCcw } from 'lucide-react';
 
-interface QuantumErrorProps {
-    type?: '404' | '500';
-    reset?: () => void;
-}
-
-export function QuantumError({ type = '404', reset }: QuantumErrorProps) {
-    const { isLowPowerMode } = usePerformance();
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-    const [currentTime, setCurrentTime] = useState(new Date());
-    const frameRef = React.useRef<number | null>(null);
-
-    const springConfig = { damping: 25, stiffness: 150 };
-    const rotateX = useSpring(useTransform(mouseY, [0, 1000], [10, -10]), springConfig);
-    const rotateY = useSpring(useTransform(mouseX, [0, 1000], [-10, 10]), springConfig);
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (isLowPowerMode) return;
-
-            if (frameRef.current) {
-                cancelAnimationFrame(frameRef.current);
-            }
-
-            frameRef.current = requestAnimationFrame(() => {
-                mouseX.set(e.clientX);
-                mouseY.set(e.clientY);
-            });
-        };
-        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            clearInterval(timer);
-            if (frameRef.current) {
-                cancelAnimationFrame(frameRef.current);
-            }
-        };
-    }, [mouseX, mouseY, isLowPowerMode]);
-
-    const title = type === '404' ? '404' : 'ERROR';
-    const subtitle = type === '404' ? 'YOU ARE LOST!?' : 'EXCEPTION_CAUGHT';
-    const description = type === '404'
-        ? "The page you're looking for is missing."
-        : "An internal technical error has occurred.";
-
-    const formattedDate = currentTime.toLocaleDateString('id-ID', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    }).toUpperCase();
-
-    const formattedTime = currentTime.toLocaleTimeString('id-ID', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    });
+// v3: deutsche Fehlerseite (404 und 500). Ersetzt die englische Template-Fassung.
+export function QuantumError({ type = '404', reset }: { type?: '404' | '500'; reset?: () => void }) {
+    const is404 = type === '404';
+    const badge = is404 ? 'Seite nicht gefunden' : 'Technischer Fehler';
+    const text = is404
+        ? 'Diese Adresse gibt es hier nicht. Zurück zur Startseite, dort steht alles.'
+        : 'Da ist etwas schiefgelaufen. Lade die Seite neu oder geh zurück zur Startseite.';
 
     return (
-        <div className="fixed inset-0 z-[99999] bg-white dark:bg-[#000000] flex flex-col items-center justify-center font-sans overflow-hidden select-none">
-            {/* Content Container with 3D Tilt */}
+        <div className="fixed inset-0 z-[99999] bg-white dark:bg-black flex flex-col items-center justify-center font-sans overflow-hidden select-none">
             <motion.div
-                style={{ rotateX, rotateY, perspective: '1000px' }}
-                className="relative z-10 flex flex-col items-center text-center px-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 flex flex-col items-center px-6 text-center"
             >
-                {/* Glitch Typography */}
-                <div className="relative mb-8">
-                    <motion.h1
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="text-[12rem] md:text-[18rem] font-black leading-none tracking-tighter text-foreground"
-                    >
-                        {title}
-                    </motion.h1>
+                <h1 className="text-[9rem] font-black leading-none tracking-tighter text-foreground md:text-[16rem]">
+                    {type}
+                </h1>
 
-                    {/* Ghost Layers for Glitch Effect */}
-                    {!isLowPowerMode && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-30 mix-blend-difference pointer-events-none">
-                            <motion.span
-                                animate={{
-                                    x: [0, -4, 4, -2, 0],
-                                    y: [0, 2, -2, 1, 0]
-                                }}
-                                transition={{ duration: 0.2, repeat: Infinity, repeatType: 'reverse', ease: 'linear' }}
-                                className="text-[12rem] md:text-[18rem] font-black text-primary select-none"
-                            >
-                                {title}
-                            </motion.span>
-                        </div>
-                    )}
+                <div className="mt-6 flex max-w-md flex-col items-center gap-4">
+                    <div className="rounded-full bg-foreground px-5 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-background md:text-xs">
+                        {badge}
+                    </div>
+                    <p className="mt-1 text-sm font-medium text-muted-foreground md:text-base">{text}</p>
                 </div>
 
-                {/* Subtitle & Status */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="flex flex-col items-center gap-4 max-w-md"
-                >
-                    <div className="px-5 py-2 bg-foreground text-background text-[10px] md:text-sm font-black tracking-[0.5em] rounded-full uppercase">
-                        {subtitle}
-                    </div>
-                    <p className="text-muted-foreground text-sm md:text-base font-bold tracking-tight mt-1 opacity-70">
-                        {description}
-                    </p>
-                </motion.div>
-
-                {/* Navigation Links */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="flex flex-col sm:flex-row items-center gap-6 mt-16"
-                >
+                <div className="mt-14 flex flex-col items-center gap-6 sm:flex-row">
                     <Link href="/">
-                        <button className="group relative flex items-center gap-3 px-8 py-4 rounded-full bg-foreground text-background font-bold text-sm tracking-wide transition-all hover:pr-10">
-                            <Home size={18} />
-                            <span>Return Home</span>
-                            <div className="absolute right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="group relative flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-sm font-bold tracking-wide text-background transition-all hover:pr-10">
+                            <span>Zur Startseite</span>
+                            <div className="absolute right-4 opacity-0 transition-opacity group-hover:opacity-100">
                                 <MoveLeft size={16} className="rotate-180" />
                             </div>
                         </button>
                     </Link>
 
-                    {reset ? (
+                    {!is404 && (
                         <button
-                            onClick={reset}
-                            className="flex items-center gap-3 text-muted-foreground hover:text-foreground font-bold text-sm tracking-wide transition-colors"
+                            onClick={() => (reset ? reset() : window.location.reload())}
+                            className="flex items-center gap-3 text-sm font-bold tracking-wide text-muted-foreground transition-colors hover:text-foreground"
                         >
-                            <RefreshCcw size={18} />
-                            <span>Reboot Session</span>
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => window.history.back()}
-                            className="flex items-center gap-3 text-muted-foreground hover:text-foreground font-bold text-sm tracking-wide transition-colors"
-                        >
-                            <MoveLeft size={18} />
-                            <span>Step Back</span>
+                            <RotateCcw size={16} />
+                            <span>Neu laden</span>
                         </button>
                     )}
-                </motion.div>
-            </motion.div>
 
-            {/* Decorative Elements - Real-time Info Panel */}
-            <div className="absolute bottom-12 left-12 z-20 hidden md:block">
-                <div className="flex flex-col font-mono text-left select-none">
-                    <div className="flex items-center gap-2 text-primary font-black text-[11px] tracking-[0.2em] uppercase mb-1 opacity-80">
-                        <span>JAKARTA, INDONESIA</span>
-                    </div>
-                    <div className="text-[10px] font-black uppercase tracking-[0.1em] text-foreground/40 mb-2">
-                        {formattedDate}
-                    </div>
-                    <div className="text-4xl font-black text-foreground/10 tracking-tighter leading-none">
-                        {formattedTime.replace(/:/g, '.')}
-                    </div>
+                    <button
+                        onClick={() => window.history.back()}
+                        className="flex items-center gap-3 text-sm font-bold tracking-wide text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                        <MoveLeft size={16} />
+                        <span>Zurück</span>
+                    </button>
                 </div>
-            </div>
-
-            {/* Subtle Noise / Grain */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] bg-[url('/noise.svg')]" />
-        </div >
+            </motion.div>
+        </div>
     );
 }
