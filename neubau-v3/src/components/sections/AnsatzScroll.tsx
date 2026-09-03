@@ -114,22 +114,25 @@ function RevealTitel() {
 // Letztes Panel der horizontalen Strecke: der Kopf der NÄCHSTEN Sektion wird noch von
 // rechts hereingeschoben (der Sektionswechsel folgt damit der Slider-Bewegung, statt sie
 // zu brechen). Erst danach geht es vertikal weiter durch die Spar-Beispiele.
+// w-screen + negatives Margin gegen das Track-Padding: am Ende der Strecke füllt dieses
+// Panel den GANZEN Bildschirm, die letzte Karte ist links raus. Ohne das stünde es nur
+// neben der letzten Karte und der Wechsel würde sich anfühlen wie „einfach weiter runter".
 function SektionsWechsel() {
   return (
-    <div className="flex h-[62vh] max-h-[460px] w-[88vw] max-w-[860px] flex-shrink-0 flex-col justify-center pl-4 md:pl-10">
+    <div className="-mr-6 flex h-screen w-screen flex-shrink-0 flex-col items-center justify-center px-6 text-center md:-mr-24 md:px-24">
       <span className="mb-5 font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-primary md:text-xs">
         Was das konkret bringt
       </span>
-      <h2 className="text-4xl font-black leading-[0.95] tracking-tighter text-foreground md:text-6xl lg:text-7xl">
+      <h2 className="text-5xl font-black leading-[0.95] tracking-tighter text-foreground md:text-7xl lg:text-8xl">
         Fünf Beispiele,
         <br />
         ganz konkret.
       </h2>
-      <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-muted-foreground">
+      <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-muted-foreground">
         Was eine Automatisierung an Zeit und Geld zurückholt. Die Zahlen sind Rechenbeispiele,
         keine Versprechen.
       </p>
-      <span className="mt-8 inline-flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-muted-foreground md:text-xs">
+      <span className="mt-10 inline-flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-muted-foreground md:text-xs">
         <ArrowDown className="h-4 w-4 animate-bounce" />
         weiter nach unten
       </span>
@@ -162,7 +165,7 @@ export function AnsatzScroll() {
   const x = useTransform(scrollYProgress, [0, 1], [0, -ueberbreite]);
 
   return (
-    <section ref={ref} id="ansatz" className="relative h-[380vh] bg-background">
+    <section ref={ref} id="ansatz" className="relative h-[440vh] bg-background">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div ref={trackRef} style={{ x }} className="flex w-max items-center gap-6 px-6 md:gap-8 md:px-24">
           <RevealTitel />
