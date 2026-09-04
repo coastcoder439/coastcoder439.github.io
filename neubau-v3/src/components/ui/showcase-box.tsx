@@ -38,9 +38,9 @@ export type ShowcaseInhalt = {
   accent: string;
   icon: React.ComponentType<{ className?: string }>;
   kicker: string;
-  titel: string;
-  titelZweite: string;
-  akzent: string;
+  /** Gesetzte Zeilen des Titels; die LETZTE bekommt die Akzentfarbe. Jede Zeile ist
+   *  eine Sinneinheit — nie ein Einzelwort [Owner 04.09.2026]. */
+  titelZeilen: string[];
   stats: ShowcaseStat[];
   beschreibung: string;
   detail: ShowcaseDetail;
@@ -202,11 +202,20 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
         <Icon className="h-8 w-8" />
         <span className="text-sm font-bold uppercase tracking-[0.3em] opacity-95">{inhalt.kicker}</span>
       </div>
-      <h2 className="text-4xl font-bold leading-[0.9em] tracking-tight text-black dark:text-white md:text-5xl lg:text-6xl">
-        {inhalt.titel} <br />
-        <span className="flex flex-wrap items-center gap-2">
-          {inhalt.titelZweite} <span style={{ color: inhalt.accent }}>{inhalt.akzent}</span>
-        </span>
+      {/* Feste Zeilen statt einer Flex-Zeile, die selbst umbricht: sonst landen einzelne
+          Wörter wie „sofort" oder „sich" allein in einer Zeile [Owner 04.09.2026].
+          leading 1.05 statt 0.9em — bei 0.9 wurde das „g" in „Anfrage" und „Auftrag"
+          unten gekappt. */}
+      <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight text-black dark:text-white md:text-[2.5rem] lg:text-[3rem]">
+        {inhalt.titelZeilen.map((zeile, i) => (
+          <span
+            key={zeile}
+            className="block"
+            style={i === inhalt.titelZeilen.length - 1 ? { color: inhalt.accent } : undefined}
+          >
+            {zeile}
+          </span>
+        ))}
       </h2>
     </>
   );
@@ -229,7 +238,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          aria-label={`Rechenbeispiel öffnen: ${inhalt.titel} ${inhalt.titelZweite} ${inhalt.akzent}`.replace(/\s+/g, " ")}
+          aria-label={`Rechenbeispiel öffnen: ${inhalt.titelZeilen.join(" ")}`}
           className="absolute right-8 top-8 z-50 rounded-full bg-black p-4 text-white shadow-2xl dark:bg-white dark:text-black"
         >
           <Maximize2 size={22} />
@@ -293,7 +302,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                   onClick={(e) => e.stopPropagation()}
                   role="dialog"
                   aria-modal="true"
-                  aria-label={`Rechenbeispiel: ${inhalt.titel} ${inhalt.titelZweite} ${inhalt.akzent}`.replace(/\s+/g, " ")}
+                  aria-label={`Rechenbeispiel: ${inhalt.titelZeilen.join(" ")}`}
                   className="relative mx-auto my-10 w-full max-w-[1600px] rounded-[3rem] border border-black/10 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-[#0A0A0A] md:p-12"
                 >
                   <div className="mb-10 max-w-2xl space-y-6 pr-16">{kopf}</div>

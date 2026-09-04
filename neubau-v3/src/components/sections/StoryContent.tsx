@@ -211,8 +211,8 @@ export function AblaufSection() {
       <SectionHead nr="Ablauf" title="So arbeite ich." />
       <Copy>
         Was in der Aquaponik funktioniert, funktioniert auch im Verleih, im Shop und im
-        Agenten-System. Die vier Dinge, die ich dafür beherrsche. Tipp sie an oder fahr
-        mit der Maus darüber — der Würfel dreht sich mit.
+        Agenten-System. Die vier Dinge, die ich dafür beherrsche — antippen oder mit der Maus
+        darüberfahren, der Würfel dreht sich mit.
       </Copy>
 
       <div className="mt-10">

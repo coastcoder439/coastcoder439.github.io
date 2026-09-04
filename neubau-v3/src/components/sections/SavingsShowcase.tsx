@@ -42,9 +42,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
     accent: "#39d353",
     icon: FileText,
     kicker: "Beispiel · Angebote & Rechnungen",
-    titel: "Vom Auftrag zur Rechnung,",
-    titelZweite: "ohne",
-    akzent: "Abtippen.",
+    titelZeilen: ["Vom Auftrag", "zur Rechnung,", "ohne Abtippen."],
     stats: [
       { value: 25, suffix: " Min", label: "statt 1 Std 45 Min je Vorgang" },
       { prefix: "~", value: 1, suffix: " Tag", label: "frei pro Monat" },
@@ -86,9 +84,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
     accent: "#20beff",
     icon: MessageSquareReply,
     kicker: "Beispiel · Kundenanfragen",
-    titel: "Jede Anfrage sofort",
-    titelZweite: "",
-    akzent: "bestätigt.",
+    titelZeilen: ["Jede Anfrage", "sofort bestätigt."],
     stats: [
       { prefix: "< ", value: 1, suffix: " Min", label: "bis zur automatischen Bestätigung" },
       { value: 24, suffix: " h", label: "am Tag, auch am Wochenende" },
@@ -130,9 +126,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
     accent: "#a855f7",
     icon: CalendarClock,
     kicker: "Beispiel · Termine",
-    titel: "Termine buchen sich",
-    titelZweite: "",
-    akzent: "von selbst.",
+    titelZeilen: ["Termine buchen", "sich von selbst."],
     stats: [
       { prefix: "~", value: 3, suffix: " Std", label: "frei pro Monat" },
       { value: 24, suffix: " h", label: "buchbar, auch sonntags" },
@@ -172,9 +166,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
     accent: "#fb923c",
     icon: Receipt,
     kicker: "Beispiel · Belege & Buchhaltung",
-    titel: "Belege sortieren sich",
-    titelZweite: "",
-    akzent: "von allein.",
+    titelZeilen: ["Belege sortieren", "sich von allein."],
     stats: [
       { prefix: "~", value: 30, suffix: " Std", label: "eigene Zeit im Jahr" },
       { prefix: "≈ ", value: 200, suffix: " €", label: "im Monat, Zeit und Steuerbüro" },
@@ -217,16 +209,14 @@ const BEISPIELE: ShowcaseInhalt[] = [
     accent: "#f43f5e",
     icon: BellRing,
     kicker: "Beispiel · Zahlungen",
-    titel: "Kein Geld bleibt",
-    titelZweite: "",
-    akzent: "liegen.",
+    titelZeilen: ["Kein Geld", "bleibt liegen."],
     stats: [
       { value: 4, suffix: " Tage", label: "weniger Verzug" },
       { prefix: "≈ ", value: 900, suffix: " €", label: "weniger dauerhaft gebundenes Geld" },
       { value: 1, suffix: ". Tag", label: "nach Fälligkeit geht die Erinnerung" },
     ],
     beschreibung:
-      "Zahlungserinnerungen gehen freundlich und pünktlich raus — ganz ohne Hinterhertelefonieren.",
+      "Zahlungserinnerungen gehen freundlich und pünktlich raus, ohne dass jemand hinterhertelefonieren muss.",
     detail: {
       rechnung: [
         { schritt: "Offene Rechnungen im Monat", wert: "8" },
@@ -261,9 +251,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
     accent: "#14b8a6",
     icon: PhoneCall,
     kicker: "Beispiel · Telefon & WhatsApp",
-    titel: "Jeder Anruf wird",
-    titelZweite: "",
-    akzent: "angenommen.",
+    titelZeilen: ["Jeder Anruf wird", "angenommen."],
     stats: [
       { value: 2, suffix: " Sek", label: "bis abgenommen wird, rund um die Uhr" },
       { prefix: "≈ ", value: 1600, suffix: " €", label: "Mehrumsatz im Monat, zwei Aufträge" },

@@ -84,6 +84,25 @@
   ::selection {
     @apply bg-primary/20 text-foreground;
   }
+
+  /* Umbruch-Regeln für die GANZE Seite [Owner 04.09.2026: „sinnvolle und grafisch gute
+     Absätze bei allen Texten"]. Ohne sie entscheidet allein der Platz, wo eine Zeile
+     endet — und dann steht das letzte Wort einer Überschrift allein da.
+       balance  = verteilt die Zeilen einer Überschrift gleichmäßig
+       pretty   = lässt kein einzelnes Wort in der letzten Zeile eines Absatzes zurück
+     Beides ist reine Verbesserung: Wo ein Browser es nicht kennt, bricht er wie bisher. */
+  h1, h2, h3, h4, blockquote {
+    text-wrap: balance;
+  }
+
+  p, li, dd, figcaption {
+    text-wrap: pretty;
+  }
+
+  /* Wortpaare, die nie auseinandergerissen werden dürfen. */
+  .zusammen {
+    white-space: nowrap;
+  }
 }
 
 @layer components {

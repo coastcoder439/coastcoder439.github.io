@@ -41,8 +41,14 @@ const WECHSEL_BEI = 5000;
 const WISCH_DAUER = 0.7;
 const WISCH_FARBE = '#0ea5e9';
 
-const SUBLINE =
-  'Die meiste Software nimmt: Zeit, Aufmerksamkeit, Nerven. Ich baue die andere Sorte — und ich baue nur, woran ich glaube. Angefangen hat es bei meinem Herzensprojekt, der NGO World Eden Era, wo niemand Budget für Umwege hatte. Geblieben ist die Überzeugung, dass ein Betrieb mit zwei Leuten dieselbe Qualität und dieselbe Freiheit verdient wie einer mit zweihundert.';
+// Drei kurze Absätze statt eines Blocks: was ich baue · woher es kommt · was daraus
+// folgt. Als ein Klumpen von fünf Zeilen liest das niemand [Owner 04.09.2026: „keine
+// riesigen fetten Textblöcke, keine zusammengeklatschte Scheiße"].
+const SUBLINE: string[] = [
+  'Die meiste Software nimmt: Zeit, Aufmerksamkeit, Nerven. Ich baue die andere Sorte — und ich baue nur, woran ich glaube.',
+  'Angefangen hat es bei meinem Herzensprojekt, der NGO World Eden Era, wo niemand Budget für Umwege hatte.',
+  'Geblieben ist die Überzeugung, dass ein Betrieb mit zwei Leuten dieselbe Qualität und dieselbe Freiheit verdient wie einer mit zweihundert.',
+];
 const SCHLUSSSATZ = 'Große Firmen haben Abteilungen dafür. Kleine haben mich.';
 const NACHWEISE = [
   'EU AI Act Essentials · KI-Campus',
@@ -113,17 +119,13 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               {personal.name} · Leipzig
             </motion.p>
 
-            {/* Wechselnde Hauptüberschrift. Die Größe ist kleiner als beim festen
-                Dreizeiler „Technik mit Auftrag", weil der längste Slogan sonst vier
-                Zeilen bräuchte; min-h hält die Höhe über alle drei stabil, sonst
-                springt der halbe Hero bei jedem Wechsel. 2,05em = zwei Zeilen, gemessen
-                am längsten Slogan („Auf Augenhöhe mit den Großen": 191 px bei 1440,
-                136 px bei 1024, 76 px bei 390) — mehr wäre nur tote Fläche.
-                leading-[0.92] statt enger: sonst schneidet der Farbverlauf Unterlängen ab. */}
-            {/* leading 1.12 statt 1: Bei font-black reicht eine Zeilenbox von 1em nicht
-                für die Unterlängen — beim Glanz (bg-clip-text) wurde das „g" von
-                „Überzeugung" und „Augenhöhe" unten gekappt, weil der Farbverlauf auf die
-                Box beschnitten wird und nicht auf die Glyphe. */}
+            {/* Wechselnde Hauptüberschrift, kleiner als der frühere feste Dreizeiler —
+                sonst bräuchte der längste Slogan vier Zeilen. min-h hält die Höhe über
+                alle drei stabil, sonst springt der halbe Hero bei jedem Wechsel.
+                leading 1.12: Bei font-black reicht eine Zeilenbox von 1em nicht für die
+                Unterlängen — beim Glanz (bg-clip-text) wurde das „g" von „Überzeugung"
+                und „Augenhöhe" gekappt, weil der Farbverlauf auf die BOX beschnitten
+                wird und nicht auf die Glyphe. */}
             <h1 className="min-h-[2.4em] text-[clamp(2.5rem,7vw,8rem)] font-black leading-[1.12] tracking-tighter">
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
@@ -177,14 +179,16 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               </motion.span>
             </h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 max-w-[60ch] text-base md:text-xl leading-relaxed text-foreground/80"
+              className="mt-8 max-w-[56ch] space-y-4 text-base md:text-lg leading-relaxed text-foreground/80"
             >
-              {SUBLINE}
-            </motion.p>
+              {SUBLINE.map((absatz) => (
+                <p key={absatz.slice(0, 24)}>{absatz}</p>
+              ))}
+            </motion.div>
 
             {/* Der Satz, der die Position in acht Wörtern sagt — deshalb abgesetzt und
                 schwerer als der Absatz darüber, aber kleiner als die Überschrift. */}

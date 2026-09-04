@@ -57,9 +57,8 @@ const AuditFunnel = () => {
               transition={{ delay: 0.4 }}
               className="font-serif-elegant font-light italic tracking-normal text-white"
             >
-              Systeme bauen
+              Systeme bauen.
             </motion.span>
-            .
           </motion.h2>
         </motion.div>
 
