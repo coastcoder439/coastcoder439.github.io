@@ -37,7 +37,9 @@ export interface ArcRevealHeroProps {
 
 export function ArcRevealHero({
   greetings,
-  greetingHold = 800,
+  // 1100 statt 800: Der Farbbalken braucht 0,6 s, bis er das Wort freigegeben hat —
+  // danach soll es noch einen Moment stehen bleiben, bevor der Bogen weiterläuft.
+  greetingHold = 1100,
   revealDuration = 800,
   className,
   introClassName,
@@ -95,7 +97,11 @@ export function ArcRevealHero({
   // Wortes — sonst stand "Gibtsnicht" riesig auf dem Schirm.
   const title = React.useMemo(() => {
     const SEITEN: Record<string, string> = {
-      '/': '',
+      // Die Startseite stand hier leer — deshalb lief der graue Bogen wortlos, obwohl
+      // der Textplatz vorhanden ist. „Willkommen" benennt die Wartezeit, statt sie zu
+      // verschweigen [Owner 04.09.2026]. Dieser Bildschirm ist der, den der Besucher
+      // wirklich jedes Mal sieht: der schwarze davor läuft nur einmal je Browser-Sitzung.
+      '/': 'Willkommen',
       '/datenschutz': 'Datenschutz',
       '/impressum': 'Impressum',
     };
@@ -254,18 +260,45 @@ export function ArcRevealHero({
                   <motion.span
                     key={`${index}-${current.text}`}
                     lang={current.lang}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: 1 }}
                     // Kurz ausblenden: die Deckflaeche faellt bei "reveal" sofort, ein
                     // langsamer Text-Exit legte den Schriftzug lesbar ueber den Inhalt.
                     exit={{ opacity: 0, y: -15, transition: { duration: 0.12 } }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className={cn(
-                      "select-none px-6 text-center text-5xl font-semibold tracking-tight text-white",
-                      greetingClassName,
-                    )}
+                    className="relative inline-block select-none overflow-hidden px-6 py-1 align-middle"
                   >
-                    {current.text}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.24, duration: 0.01 }}
+                      className={cn(
+                        "block text-center text-5xl font-semibold tracking-tight text-white",
+                        greetingClassName,
+                      )}
+                    >
+                      {current.text}
+                    </motion.span>
+                    {/* Derselbe Block-Reveal wie bei „Mehr Zeit. Weniger Kosten. Ruhigere
+                        Nerven." (AnsatzScroll → RevealTitel): ein Farbbalken wischt über
+                        die Zeile und gibt den Text dahinter frei. */}
+                    <motion.span
+                      initial={{ clipPath: "inset(0 100% 0 0)" }}
+                      animate={{
+                        clipPath: [
+                          "inset(0 100% 0 0)",
+                          "inset(0 0% 0 0)",
+                          "inset(0 0% 0 0)",
+                          "inset(0 0 0 100%)",
+                        ],
+                      }}
+                      transition={{
+                        duration: 0.55,
+                        times: [0, 0.42, 0.58, 1],
+                        delay: 0.05,
+                        ease: [0.85, 0, 0.15, 1],
+                      }}
+                      className="absolute inset-0 z-10 block bg-[#0ea5e9]"
+                    />
                   </motion.span>
                 )}
               </AnimatePresence>
