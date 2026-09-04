@@ -58,6 +58,9 @@ export function Footer() {
                 <div className="mt-12 flex flex-col gap-3 text-xs font-mono text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
                     <p>© {new Date().getFullYear()} Leon Pösken</p>
                     <nav aria-label="Rechtliches" className="flex gap-5">
+                        <Link href="/impressum" className="hover:text-foreground transition-colors">
+                            Impressum
+                        </Link>
                         <Link href="/datenschutz" className="hover:text-foreground transition-colors">
                             Datenschutz
                         </Link>

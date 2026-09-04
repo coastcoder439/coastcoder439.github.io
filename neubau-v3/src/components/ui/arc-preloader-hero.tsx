@@ -97,6 +97,7 @@ export function ArcRevealHero({
     const SEITEN: Record<string, string> = {
       '/': '',
       '/datenschutz': 'Datenschutz',
+      '/impressum': 'Impressum',
     };
     return SEITEN[pathname] ?? '';
   }, [pathname]);

@@ -9,9 +9,11 @@ interface LoadingScreenProps {
     duration?: number;
 }
 
-// Ladebildschirm OHNE Schriftzug (Owner): kein Name, kein Motto — nur die Bewegung
-// und der ruhige Punkt. Ohne Text muss auch niemand mehr lesen, darum steht er kürzer.
-const WORDS: string[] = [];
+// Ladebildschirm: kein Name, kein Motto (Owner) — aber ein Wort, das die Wartezeit
+// benennt statt sie zu verschweigen [Owner 04.09.2026: „Da könnte man hinschreiben,
+// willkommen … währenddessen lädt die Seite"]. Hinter dem Vorhang lädt die Startseite
+// vollständig; gemessen 04.09.: alle Abrufe nach 1,8 s fertig, Vorhang bis 2,7 s.
+const WORDS: string[] = ['Willkommen'];
 
 export function LoadingScreen({ onComplete, onExitStart, duration }: LoadingScreenProps) {
     const [isLoading, setIsLoading] = useState(true);
@@ -28,8 +30,10 @@ export function LoadingScreen({ onComplete, onExitStart, duration }: LoadingScre
     };
 
     useEffect(() => {
-        // Ohne Schriftzug gibt es nichts zu lesen — kurz halten, dann Exit einleiten.
-        const t = setTimeout(handleAnimationComplete, 850);
+        // Das Wort braucht Zeit zum Erscheinen (0,15 s Verzug + 0,6 s Einblendung) und
+        // danach einen Moment zum Stehen. 1200 ms + 300 ms Pause + 1200 ms Vorhang
+        // ergeben rund 2,7 s — dieselbe Länge wie bisher, jetzt mit Inhalt.
+        const t = setTimeout(handleAnimationComplete, 1200);
         return () => clearTimeout(t);
     }, []);
 
