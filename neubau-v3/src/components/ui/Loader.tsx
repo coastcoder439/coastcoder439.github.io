@@ -188,8 +188,8 @@ function Face({
     >
       {/* Glanzstreifen statt des früheren schwarzen Balkens. */}
       <div className="absolute h-[20px] w-[150%] -translate-y-10 -rotate-45 bg-white opacity-20" />
-      <Icon className="z-10 mb-1 h-10 w-10 text-black" strokeWidth={2.5} />
-      <span className="z-10 mt-1 rounded-sm bg-black px-2 font-['Arial_Black',sans-serif] text-[10px] uppercase tracking-widest text-white">
+      <Icon className="z-10 mb-1 h-[50px] w-[50px] text-black" strokeWidth={2.5} />
+      <span className="z-10 mt-1 rounded-sm bg-black px-2.5 py-0.5 font-['Arial_Black',sans-serif] text-[12.5px] uppercase tracking-widest text-white">
         {label}
       </span>
     </div>
