@@ -197,7 +197,8 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
 
   const kopf = (
     <>
-      <div className="flex items-center gap-3" style={{ color: inhalt.accent }}>
+      {/* pr-16: rechts sitzt der runde Knopf — ohne den Abstand liegt er auf dem Kicker. */}
+      <div className="flex items-center gap-3 pr-16" style={{ color: inhalt.accent }}>
         <Icon className="h-8 w-8" />
         <span className="text-sm font-bold uppercase tracking-[0.3em] opacity-70">{inhalt.kicker}</span>
       </div>
@@ -269,6 +270,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
         createPortal(
           <AnimatePresence>
             {offen && (
+              <>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -289,17 +291,6 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                   aria-label={`Rechenbeispiel: ${inhalt.titel} ${inhalt.akzent}`}
                   className="relative mx-auto my-10 w-full max-w-[1600px] rounded-[3rem] border border-black/10 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-[#0A0A0A] md:p-12"
                 >
-                  <motion.button
-                    type="button"
-                    onClick={() => setOffen(false)}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    aria-label="Rechenbeispiel schließen"
-                    className="absolute right-8 top-8 z-50 rounded-full bg-black p-4 text-white shadow-2xl dark:bg-white dark:text-black"
-                  >
-                    <Minimize2 size={22} />
-                  </motion.button>
-
                   <div className="mb-10 max-w-2xl space-y-6 pr-16">{kopf}</div>
 
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -364,6 +355,27 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                   </div>
                 </motion.div>
               </motion.div>
+
+              {/* Der Schließknopf steht NEBEN dem Overlay, nicht darin: Das Overlay
+                  trägt einen Weichzeichner (backdrop-filter), und der erzeugt für
+                  seine Kinder einen eigenen Bezugsrahmen — "fixed" würde darin wie
+                  "absolute" wirken und der Knopf wäre am unteren Ende des bis zu
+                  2500 px hohen Dialogs aus dem Bild gescrollt. Am Handy gibt es keine
+                  Escape-Taste, also muss er immer erreichbar bleiben. */}
+              <motion.button
+                type="button"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={() => setOffen(false)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Rechenbeispiel schließen"
+                className="fixed right-5 top-5 z-[10000] rounded-full bg-black p-4 text-white shadow-2xl dark:bg-white dark:text-black"
+              >
+                <Minimize2 size={22} />
+              </motion.button>
+              </>
             )}
           </AnimatePresence>,
           document.body,

@@ -9,9 +9,11 @@
  * Zwei Dinge sind dabei entscheidend, sonst ruckelt es:
  *  1. `debounce` muss LÄNGER sein als die Pausen zwischen zwei Radbewegungen. Sonst
  *     feuert der Snap mitten im Scrollen und kämpft gegen die Hand am Rad.
- *  2. `mandatory` statt `proximity`: proximity hat bei dicht liegenden Punkten mehrere
+ *  2. Am Zeigegerät `mandatory`: proximity hat dort bei dicht liegenden Punkten mehrere
  *     Kandidaten gleichzeitig im Einzugsbereich und zieht mal vor, mal zurück.
- *     mandatory nimmt immer eindeutig den nächsten.
+ *     Auf Touch dagegen `proximity` — mandatory macht dort jeden Rastpunkt zur
+ *     Endstation, weil ein Wisch die halbe Rastweite (>435 px) in EINER Geste schaffen
+ *     müsste. Siehe die Begründung unten im Code.
  *
  * Damit `mandatory` nicht die ganze Seite an sich reißt, ist der Snap NUR zwischen dem
  * Anfang der Karten-Strecke und der Buchen-Sektion scharf; darüber und darunter wird er
@@ -37,8 +39,20 @@ export function SnapZone() {
     // Wer weniger Bewegung eingestellt hat, bekommt keinen geführten Scroll.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Auf Touch-Geräten macht "mandatory" jeden Rastpunkt zur Endstation: die Rastweite
+    // beträgt hier 844–873 px, also müsste ein Wisch in EINER Geste über die halbe Lücke
+    // (>435 px) schaffen — sonst zieht der Snap ihn zurück. Gemessen auf 390×844 und
+    // 360×740: ab der Beispiel-Sektion kam man mit normalen Wischern gar nicht mehr
+    // weiter, und "Gespräch buchen" landete 750 px vor dem Kalender.
+    // Deshalb dort "proximity" mit engem Einzugsbereich: Es rastet nur ein, wenn der
+    // Finger ohnehin nahe an einem Punkt stehen bleibt, und hält niemanden fest.
+    const grobeEingabe = window.matchMedia("(pointer: coarse)").matches;
+
     const snap = new Snap(lenis, {
-      type: "mandatory",
+      type: grobeEingabe ? "proximity" : "mandatory",
+      // nur bei proximity ausgewertet; 25 % der Höhe liegt deutlich unter der halben
+      // Rastweite, damit zwischen zwei Punkten ein freier Bereich bleibt.
+      distanceThreshold: "25%",
       duration: 0.9,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       // lang genug, dass er erst greift, wenn die Hand vom Rad ist

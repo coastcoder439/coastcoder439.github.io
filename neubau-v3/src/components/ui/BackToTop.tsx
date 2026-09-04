@@ -5,6 +5,11 @@ import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motio
 import { ArrowUp } from 'lucide-react';
 import { scrollToId } from '@/lib/scroll';
 
+// Der Knopf blendet sich waehrend des Scrollens aus und kommt erst beim Anhalten zurueck.
+// Auf Mobil ist er zusaetzlich auf 44 px verkleinert (Mindestmass fuer Tippziele): mit
+// 56 px lag er dort messbar ueber Fließtext — gemessen 36×54 px ueber einer
+// Ablauf-Beschreibung und 20×33 px ueber einem Beispieltext.
+
 export function BackToTop() {
     const [isVisible, setIsVisible] = useState(false);
     // Use refs for values that change rapidly to avoid re-renders
@@ -85,7 +90,7 @@ export function BackToTop() {
                     ref={ref}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className="fixed bottom-5 right-5 z-40 w-14 h-14 flex items-center justify-center pointer-events-auto hide-on-modal transition-all duration-300"
+                    className="fixed bottom-4 right-4 z-40 h-11 w-11 flex items-center justify-center pointer-events-auto hide-on-modal transition-all duration-300 md:bottom-5 md:right-5 md:h-14 md:w-14"
                 >
                     <motion.button
                         initial={{ opacity: 0, scale: 0.5 }}
@@ -95,9 +100,9 @@ export function BackToTop() {
                         onClick={scrollToTop}
                         aria-label="Zum Seitenanfang"
                         style={{ x: mouseX, y: mouseY }}
-                        className="relative h-14 w-14 rounded-full bg-foreground text-background shadow-2xl flex items-center justify-center border border-background/20 backdrop-blur-md cursor-pointer group"
+                        className="relative h-11 w-11 rounded-full bg-foreground text-background shadow-2xl flex items-center justify-center border border-background/20 backdrop-blur-md cursor-pointer group md:h-14 md:w-14"
                     >
-                        <ArrowUp className="w-6 h-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
+                        <ArrowUp className="h-5 w-5 md:h-6 md:w-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
 
                         {/* Glow Effect */}
                         <div className="absolute inset-0 rounded-full bg-foreground/10 blur-xl -z-10 group-hover:blur-2xl transition-all" />
