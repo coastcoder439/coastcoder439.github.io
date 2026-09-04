@@ -157,7 +157,7 @@ function Punkte({ eintraege, accent }: { eintraege: string[]; accent: string }) 
   return (
     <ul className="flex flex-col gap-4">
       {eintraege.map((e) => (
-        <li key={e} className="flex gap-3 text-[15px] leading-relaxed text-black/70 dark:text-white/60">
+        <li key={e} className="flex gap-3 text-[15px] leading-relaxed text-black/75 dark:text-white/70">
           <span className="mt-[9px] h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ backgroundColor: accent }} />
           <span>{e}</span>
         </li>
@@ -200,7 +200,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
       {/* pr-16: rechts sitzt der runde Knopf — ohne den Abstand liegt er auf dem Kicker. */}
       <div className="flex items-center gap-3 pr-16" style={{ color: inhalt.accent }}>
         <Icon className="h-8 w-8" />
-        <span className="text-sm font-bold uppercase tracking-[0.3em] opacity-70">{inhalt.kicker}</span>
+        <span className="text-sm font-bold uppercase tracking-[0.3em] opacity-95">{inhalt.kicker}</span>
       </div>
       <h2 className="text-4xl font-bold leading-[0.9em] tracking-tight text-black dark:text-white md:text-5xl lg:text-6xl">
         {inhalt.titel} <br />
@@ -246,20 +246,20 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                     <Counter value={s.value} />
                     {s.suffix}
                   </span>
-                  <span className="text-[10px] font-black uppercase tracking-widest opacity-40">{s.label}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-black/70 dark:text-white/65">{s.label}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="max-w-sm pt-12 md:pt-20">
-            <p className="text-lg font-semibold leading-relaxed text-black/50 dark:text-white/40">
+            <p className="text-lg font-semibold leading-relaxed text-black/70 dark:text-white/65">
               {inhalt.beschreibung}
             </p>
             {/* Steht IMMER da, nicht nur beim Überfahren: Die Zahlen oben sind
                 Rechenbeispiele mit offenen Annahmen, keine Zusagen. Im zugeklappten
                 Zustand ist die Zahl sonst ungeschützt. */}
-            <p className="mt-6 text-[13px] leading-relaxed text-black/45 dark:text-white/35">
+            <p className="mt-6 text-[13px] leading-relaxed text-black/65 dark:text-white/55">
               Rechenbeispiel mit offen genannten Annahmen — deine Zahlen rechnen wir im
               Gespräch durch.
             </p>
@@ -339,7 +339,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                         <span className="text-5xl font-black tracking-tighter" style={{ color: inhalt.accent }}>
                           {inhalt.detail.dauer}
                         </span>
-                        <span className="text-[15px] leading-relaxed text-black/70 dark:text-white/60">
+                        <span className="text-[15px] leading-relaxed text-black/75 dark:text-white/70">
                           von der ersten Aufnahme bis zu dem Punkt, an dem es ohne dich läuft.
                         </span>
                       </div>
@@ -355,7 +355,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
 
                     <Panel ueberschrift="Womit gerechnet" accent={inhalt.accent}>
                       <Punkte eintraege={inhalt.detail.annahmen} accent={inhalt.accent} />
-                      <p className="text-[13px] leading-relaxed text-black/40 dark:text-white/30">
+                      <p className="text-[13px] leading-relaxed text-black/65 dark:text-white/55">
                         Deine Zahlen sind andere. Im Gespräch rechnen wir es mit deinen durch.
                       </p>
                     </Panel>

@@ -29,7 +29,7 @@ export function Footer() {
                                 key={l.id}
                                 href={`/#${l.id}`}
                                 onClick={(e) => handleAnchorClick(e, l.id)}
-                                className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
+                                className="inline-flex min-h-11 items-center text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
                             >
                                 {l.label}
                             </Link>

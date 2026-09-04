@@ -119,7 +119,7 @@ export function Navbar() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsMenuOpen((p) => !p)}
-                                className="p-2 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+                                className="p-3 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
                                 aria-label={isMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
                                 aria-expanded={isMenuOpen}
                                 aria-controls="mobiles-menue"

@@ -14,7 +14,7 @@ export function QuantumError({ type = '404', reset }: { type?: '404' | '500'; re
         : 'Da ist etwas schiefgelaufen. Lade die Seite neu oder geh zurück zur Startseite.';
 
     return (
-        <div className="fixed inset-0 z-[99999] bg-white dark:bg-black flex flex-col items-center justify-center font-sans overflow-hidden select-none">
+        <main className="fixed inset-0 z-[99999] bg-white dark:bg-black flex flex-col items-center justify-center font-sans overflow-hidden select-none">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -62,6 +62,6 @@ export function QuantumError({ type = '404', reset }: { type?: '404' | '500'; re
                     </button>
                 </div>
             </motion.div>
-        </div>
+        </main>
     );
 }

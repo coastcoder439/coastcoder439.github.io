@@ -43,7 +43,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
     titelZweite: "ohne",
     akzent: "Abtippen.",
     stats: [
-      { value: 25, suffix: " Min", label: "statt 1 Std 45 je Vorgang" },
+      { value: 25, suffix: " Min", label: "statt 1 Std 45 Min je Vorgang" },
       { prefix: "~", value: 1, suffix: " Tag", label: "frei pro Monat" },
       { prefix: "≈ ", value: 350, suffix: " €", label: "im Monat, bei 45 € je Stunde" },
     ],
@@ -51,9 +51,9 @@ const BEISPIELE: ShowcaseInhalt[] = [
       "Auftragsdaten wandern von allein ins Angebot, in die Rechnung und in die Buchhaltung. Ein Vorgang, ein Klick.",
     detail: {
       rechnung: [
-        { schritt: "Heute je Vorgang: Angebot, Rechnung, Buchung, Ablage", wert: "1 Std 45" },
+        { schritt: "Heute je Vorgang: Angebot, Rechnung, Buchung, Ablage", wert: "1 Std 45 Min" },
         { schritt: "Danach je Vorgang: prüfen und freigeben", wert: "25 Min" },
-        { schritt: "Ersparnis je Vorgang", wert: "1 Std 20" },
+        { schritt: "Ersparnis je Vorgang", wert: "1 Std 20 Min" },
         { schritt: "Vorgänge im Monat", wert: "× 6" },
         { schritt: "Ersparnis im Monat", wert: "8 Std", hervor: true },
         { schritt: "Das ist rund ein Arbeitstag; bei 45 € je Stunde", wert: "≈ 350 €" },
@@ -72,7 +72,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
       ],
       annahmen: [
         "6 Vorgänge im Monat.",
-        "1 Std 45 Handarbeit je Vorgang über alle drei Schritte.",
+        "1 Std 45 Min Handarbeit je Vorgang über alle drei Schritte.",
         "45 € je Stunde — Arbeitskosten je Arbeitsstunde, Statistisches Bundesamt 2025.",
         "Die vorhandenen Programme lassen sich verbinden.",
       ],
@@ -142,7 +142,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
       rechnung: [
         { schritt: "Termine pro Woche (Annahme, stark betriebsabhängig)", wert: "20" },
         { schritt: "Abstimmung je Termin heute (Annahme, nicht belegt)", wert: "8 Min" },
-        { schritt: "Aufwand pro Woche", wert: "2 Std 40" },
+        { schritt: "Aufwand pro Woche", wert: "2 Std 40 Min" },
         { schritt: "Belegter Rückgang durch Online-Buchung", wert: "10–25 %" },
         { schritt: "Vorsichtig gerechnet mit", wert: "25 %" },
         { schritt: "Frei pro Monat", wert: "≈ 3 Std", hervor: true },
@@ -188,7 +188,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
         { schritt: "Heute je Beleg: sortieren, ablegen, aufbereiten", wert: "3 Min" },
         { schritt: "Aufwand im Monat", wert: "3 Std" },
         { schritt: "Danach je Beleg: fotografieren und prüfen", wert: "30 Sek" },
-        { schritt: "Eigene Ersparnis im Monat", wert: "2 Std 30" },
+        { schritt: "Eigene Ersparnis im Monat", wert: "2 Std 30 Min" },
         { schritt: "Dazu weniger Nacharbeit beim Steuerbüro", wert: "1 Std" },
         { schritt: "Zeit und Steuerbüro zusammen", wert: "≈ 200 €", hervor: true },
       ],

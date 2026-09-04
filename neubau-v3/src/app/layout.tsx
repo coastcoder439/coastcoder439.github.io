@@ -43,6 +43,10 @@ export const metadata: Metadata = {
     creator: 'Leon Pösken',
     // Basis-Adresse: auf Vercel liefert VERCEL_PROJECT_PRODUCTION_URL die Produktionsdomain.
     metadataBase: new URL(SITE_URL),
+    // Die Seite ist ueber mehrere Vercel-Adressen erreichbar (Projekt- und
+    // Deployment-URLs). Ohne canonical verteilen Suchmaschinen ihre Signale auf
+    // Dubletten -- und beim Umzug auf eine eigene Domain waere das erst recht ein Problem.
+    alternates: { canonical: '/' },
     openGraph: {
         type: 'website',
         locale: 'de_DE',
@@ -99,6 +103,39 @@ export default async function RootLayout({
     return (
         <html lang="de" data-scroll-behavior="smooth" suppressHydrationWarning>
             <body className={`${inter.variable} ${jetbrainsMono.variable} ${playfair.variable} ${signature.variable} font-sans relative`}>
+                {/* Strukturierte Daten: sagen Suchmaschinen, WER hier was WO anbietet.
+                    Ohne das ist die Seite fuer eine Suche wie "Automatisierung Leipzig"
+                    nur Text; damit wird sie als Person mit Ort und Angebot lesbar. */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@type': 'ProfessionalService',
+                            name: 'Leon Pösken',
+                            description:
+                                'Automatisierung und KI-Systeme für kleine Betriebe und Selbstständige: Abläufe verbinden, Anfragen beantworten, Belege und Rechnungen ohne Abtippen.',
+                            url: SITE_URL,
+                            image: `${SITE_URL}/og.png`,
+                            areaServed: { '@type': 'Country', name: 'Deutschland' },
+                            address: { '@type': 'PostalAddress', addressLocality: 'Leipzig', addressCountry: 'DE' },
+                            founder: {
+                                '@type': 'Person',
+                                name: 'Leon Pösken',
+                                jobTitle: 'KI-Systembau',
+                                sameAs: ['https://www.linkedin.com/in/leonpoesken/'],
+                                knowsAbout: [
+                                    'Prompt Engineering',
+                                    'Context Engineering',
+                                    'Harness Engineering',
+                                    'Skill Engineering',
+                                    'Prozessautomatisierung',
+                                ],
+                            },
+                            knowsLanguage: ['de', 'en'],
+                        }),
+                    }}
+                />
                 <ThemeProvider>
                     <I18nProvider locale={locale} messages={messages}>
                         <SmoothScrollProvider>

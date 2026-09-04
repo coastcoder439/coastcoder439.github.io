@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 // Fullstack-Banner aus dem Template (BrandScroller + BrandScrollerReverse): ZWEI
 // gegenläufige Reihen mit vielen Logos. Auf Leons echten Stack gesetzt; Logos liegen
@@ -43,11 +43,15 @@ const Item = ({ name, icon }: { name: string; icon: string }) => (
 );
 
 function Reihe({ items, reverse = false }: { items: { name: string; icon: string }[]; reverse?: boolean }) {
+  const reduce = useReducedMotion();
   return (
     <div className="relative flex w-full overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
       <motion.div
-        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
-        transition={{ duration: 34, ease: "linear", repeat: Infinity }}
+        // Bei "weniger Bewegung" laeuft das Band nicht: Der CSS-Reset dafuer greift nur
+        // auf CSS-Animationen, dieses Band wird aber von JavaScript bewegt und lief
+        // deshalb unveraendert weiter — gemessen identisch schnell in beiden Modi.
+        animate={reduce ? undefined : { x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
+        transition={reduce ? undefined : { duration: 34, ease: "linear", repeat: Infinity }}
         className="flex whitespace-nowrap"
       >
         <div className="flex shrink-0" aria-hidden="true">
