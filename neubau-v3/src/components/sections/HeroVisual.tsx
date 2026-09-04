@@ -18,11 +18,24 @@ import { handleAnchorClick } from '@/lib/scroll';
 // Testleser verstanden es erst nach dem Lesen der Texte, weil „Auftrag" zuerst die
 // erteilte Arbeit meint. Die drei hier decken zusammen ab, wofür der Owner steht —
 // Haltung, Gerechtigkeit gegenüber kleinen Betrieben, persönliche Beziehung.
-const SLOGANS = ['IT aus Überzeugung', 'Auf Augenhöhe mit den Großen', 'Mehr als nur ein Auftrag'];
+// Die Zeilen sind GESETZT, nicht dem Platz überlassen — getrennt wird nach Sinneinheiten
+// [Owner 04.09.2026: „technik/mit/auftrag in drei Zeilen ist optisch Bullshit und
+// sinngemäß auch, technik / mit auftrag wäre richtig"]. Alle drei zweizeilig, damit die
+// Höhe über den Wechsel stabil bleibt.
+const SLOGANS: string[][] = [
+  ['IT', 'aus Überzeugung'],
+  ['Auf Augenhöhe', 'mit den Großen'],
+  ['Mehr als nur', 'ein Auftrag'],
+];
 
-// Zwei GETRENNTE Ereignisse je Runde, ausdrücklich so gewollt [Owner: „ICH WILL DEN
-// TEXT WECHSEL DANACH"]: Bei 4 s wischt der Farbbalken über die STEHENDE Zeile, erst bei
-// 5 s wechselt der Text. Der Wisch maskiert den Wechsel also nicht, er geht ihm voraus.
+// Drei Ereignisse je Runde, in dieser Reihenfolge:
+//   3,2 s  der Glanz läuft EINMAL über die Zeile (nicht endlos im Kreis)
+//   4,0 s  der blaue Balken wischt über die STEHENDE Zeile
+//   5,0 s  erst danach wechselt der Text
+// [Owner: „ICH WILL DEN TEXT WECHSEL DANACH" und „nur, dass der einmal bei Sekunde drei
+// oder vier kommt, kurz bevor dieses Blaue kommt"]
+const HUSCH_BEI = 3200;
+const HUSCH_DAUER = 850;
 const WISCH_BEI = 4000;
 const WECHSEL_BEI = 5000;
 const WISCH_DAUER = 0.7;
@@ -42,20 +55,25 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
   const { personal } = portfolioData;
   const reduce = useReducedMotion();
   const [slogan, setSlogan] = useState(0);
+  const [huscht, setHuscht] = useState(false);
   const [wischt, setWischt] = useState(false);
 
-  // Eine Runde pro Slogan: Wisch bei 4 s, Textwechsel bei 5 s. Der Effekt hängt an
-  // `slogan`, startet also nach jedem Wechsel neu und hält den Takt sauber.
+  // Eine Runde pro Slogan: Glanz bei 3,2 s, Balken bei 4 s, Textwechsel bei 5 s. Der
+  // Effekt hängt an `slogan`, startet also nach jedem Wechsel neu und hält den Takt.
   // Wer weniger Bewegung eingestellt hat, bekommt eine feste Überschrift ohne Wechsel —
   // automatisch bewegter Text wäre sonst nicht anhaltbar (WCAG 2.2.2).
   useEffect(() => {
     if (reduce || !isExiting) return;
+    const h = setTimeout(() => setHuscht(true), HUSCH_BEI);
+    const hAus = setTimeout(() => setHuscht(false), HUSCH_BEI + HUSCH_DAUER);
     const w = setTimeout(() => setWischt(true), WISCH_BEI);
     const t = setTimeout(() => {
       setWischt(false);
       setSlogan((i) => (i + 1) % SLOGANS.length);
     }, WECHSEL_BEI);
     return () => {
+      clearTimeout(h);
+      clearTimeout(hAus);
       clearTimeout(w);
       clearTimeout(t);
     };
@@ -102,12 +120,12 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                 am längsten Slogan („Auf Augenhöhe mit den Großen": 191 px bei 1440,
                 136 px bei 1024, 76 px bei 390) — mehr wäre nur tote Fläche.
                 leading-[0.92] statt enger: sonst schneidet der Farbverlauf Unterlängen ab. */}
-            <h1 className="min-h-[2.05em] text-[clamp(2.5rem,7vw,8rem)] font-black leading-[0.92] tracking-tighter">
+            <h1 className="min-h-[2.24em] text-[clamp(2.5rem,7vw,8rem)] font-black leading-[1] tracking-tighter">
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
                 animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative block overflow-hidden pb-[0.06em] will-change-transform"
+                className="relative block pb-[0.12em] will-change-transform"
               >
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -116,9 +134,18 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -24, transition: { duration: 0.28 } }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="block text-shiny"
+                    className="block"
                   >
-                    {SLOGANS[slogan]}
+                    {SLOGANS[slogan].map((zeile) => (
+                      <span
+                        key={zeile}
+                        className={
+                          'block pb-[0.04em] ' + (huscht ? 'text-shiny-einmal' : 'text-foreground')
+                        }
+                      >
+                        {zeile}
+                      </span>
+                    ))}
                   </motion.span>
                 </AnimatePresence>
 

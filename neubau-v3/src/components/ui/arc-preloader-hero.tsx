@@ -272,7 +272,10 @@ export function ArcRevealHero({
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.24, duration: 0.01 }}
                       className={cn(
-                        "block text-center text-5xl font-semibold tracking-tight text-white",
+                        // Deutlich größer als die ursprünglichen 48 px [Owner 04.09.2026:
+                        // „das Willkommen größer"]. pb hält Unterlängen im sichtbaren
+                        // Bereich, der Wrapper darüber schneidet mit overflow-hidden ab.
+                        "block pb-[0.12em] text-center text-[clamp(3rem,10vw,9rem)] font-black tracking-tight text-white",
                         greetingClassName,
                       )}
                     >
