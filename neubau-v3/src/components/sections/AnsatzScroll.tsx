@@ -38,23 +38,24 @@ function AffiKarte({ karte }: { karte: (typeof KARTEN)[number] }) {
   const Icon = karte.icon;
   const a = akzent[karte.spart];
   return (
-    <div className="group relative flex h-[62vh] max-h-[440px] w-[78vw] max-w-[340px] flex-shrink-0 flex-col justify-end overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-b from-foreground/[0.06] to-foreground/[0.01] p-8 shadow-xl transition-transform duration-500 hover:-translate-y-1 sm:w-[320px] md:w-[340px]">
+    <div className="group relative flex h-[62vh] max-h-[440px] w-[78vw] max-w-[340px] flex-shrink-0 flex-col justify-start overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-b from-foreground/[0.06] to-foreground/[0.01] p-8 shadow-xl transition-transform duration-500 hover:-translate-y-1 sm:w-[320px] md:w-[340px]">
       <div className={`absolute inset-x-0 top-0 h-1.5 ${a.strip}`} />
       <div className={`pointer-events-none absolute -right-14 -top-14 h-44 w-44 rounded-full ${a.glow} blur-2xl`} />
 
-      {/* Das Symbol trägt die Karte als großes, ruhiges Zeichen — statt klein in einem
-          gerahmten Kästchen zu sitzen, wie es jede zweite Seite macht. */}
-      <Icon
-        className={`pointer-events-none absolute -bottom-6 -right-8 h-48 w-48 ${a.icon} opacity-[0.10] transition-transform duration-700 group-hover:scale-105`}
-        strokeWidth={1.1}
-      />
+      {/* Kopfzeile: Ersparnis links, Symbol rechts. Das Symbol steht frei — nicht in
+          einem Kästchen und nicht mehr groß im Hintergrund, wo es unter dem Text lag. */}
+      <div className="relative z-10 flex items-start justify-between gap-4">
+        <span className={`font-mono text-[10px] font-bold uppercase tracking-[0.28em] ${a.kicker}`}>
+          spart {karte.spart}
+        </span>
+        <Icon
+          className={`h-10 w-10 flex-shrink-0 ${a.icon} transition-transform duration-500 group-hover:scale-110`}
+          strokeWidth={1.5}
+        />
+      </div>
 
-      {/* Die Ersparnis als Kicker, nicht als Knopf. */}
-      <span className={`absolute left-8 top-9 font-mono text-[10px] font-bold uppercase tracking-[0.28em] ${a.kicker}`}>
-        spart {karte.spart}
-      </span>
-
-      <div className="relative z-10">
+      {/* Text bündig nach oben, direkt unter der Kopfzeile. */}
+      <div className="relative z-10 mt-8">
         <h3 className="text-2xl font-black leading-[1.1] tracking-tight text-foreground md:text-[27px]">{karte.titel}</h3>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">{karte.text}</p>
       </div>
