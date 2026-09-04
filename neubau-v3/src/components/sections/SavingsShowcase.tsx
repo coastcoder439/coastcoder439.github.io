@@ -11,8 +11,19 @@
  * RECHNUNG: Rechenweg Zeile für Zeile, was heute passiert, was danach passiert, die
  * Annahmen offen benannt, und wie lange die Umsetzung dauert.
  *
- * Alle Zahlen sind Rechenbeispiele mit sichtbarer Grundlage, keine Zusagen — die
- * Annahmen stehen im aufgeklappten Zustand ausdrücklich dabei.
+ * ZU DEN ZAHLEN (überarbeitet 04.09.2026 nach Recherche gegen amtliche Quellen):
+ * Die früheren Werte waren durchweg zu hoch. Korrigiert wurde nach:
+ *  · Stundensatz: 45 € = Arbeitskosten je Arbeitsstunde (Statistisches Bundesamt 2025).
+ *    Gesparte Bürozeit ist KEINE abrechenbare Zeit, deshalb nicht der Verrechnungssatz.
+ *  · Gesamtplausibilität: KfW-Mittelstandspanel 2025 misst 11 Std/Monat Bürokratie bei
+ *    Solo-Selbstständigen, 18 Std bei bis zu vier Mitarbeitern. Die Summe aller Beispiele
+ *    muss darunter bleiben — vorher behaupteten sie zusammen 53 Std/Monat.
+ *  · Zahlungsverzug: Creditreform Zahlungsindikator 2025 misst 7,5 Tage, nicht 12.
+ *  · Steuerberater: Zeitgebühr nach § 13 StBVV (seit 01.07.2025) 66–164 €/Std,
+ *    Mittelwert 115 € — hier bewusst mit 100 € gerechnet.
+ *  · Online-Terminbuchung senkt Anrufe belegt um 10–25 %, nicht auf null: 72–73 % der
+ *    Kunden buchen in Deutschland weiterhin telefonisch.
+ * Wo keine belastbare Quelle existiert, steht das Wort „Annahme" in der Rechnung.
  */
 
 import React from "react";
@@ -32,21 +43,20 @@ const BEISPIELE: ShowcaseInhalt[] = [
     titelZweite: "ohne",
     akzent: "Abtippen.",
     stats: [
-      { value: 20, suffix: " Min", label: "statt 4 Std je Vorgang" },
-      { prefix: "~", value: 2, suffix: " Tage", label: "frei pro Monat" },
-      { value: 0, label: "Zahlendreher" },
+      { value: 25, suffix: " Min", label: "statt 1 Std 45 je Vorgang" },
+      { prefix: "~", value: 1, suffix: " Tag", label: "frei pro Monat" },
+      { prefix: "≈ ", value: 350, suffix: " €", label: "im Monat, bei 45 € je Stunde" },
     ],
     beschreibung:
       "Auftragsdaten wandern von allein ins Angebot, in die Rechnung und in die Buchhaltung. Ein Vorgang, ein Klick.",
     detail: {
       rechnung: [
-        { schritt: "Heute je Vorgang: Angebot, Rechnung, Buchung, Ablage", wert: "4 Std" },
-        { schritt: "Danach je Vorgang: prüfen und freigeben", wert: "20 Min" },
-        { schritt: "Ersparnis je Vorgang", wert: "3 Std 40" },
-        { schritt: "Vorgänge im Monat", wert: "× 5" },
-        { schritt: "Ersparnis im Monat", wert: "18 Std" },
-        { schritt: "Das sind an Arbeitszeit", wert: "≈ 2 Tage", hervor: true },
-        { schritt: "Bei 50 € Stundensatz entspricht das", wert: "≈ 900 €" },
+        { schritt: "Heute je Vorgang: Angebot, Rechnung, Buchung, Ablage", wert: "1 Std 45" },
+        { schritt: "Danach je Vorgang: prüfen und freigeben", wert: "25 Min" },
+        { schritt: "Ersparnis je Vorgang", wert: "1 Std 20" },
+        { schritt: "Vorgänge im Monat", wert: "× 6" },
+        { schritt: "Ersparnis im Monat", wert: "8 Std", hervor: true },
+        { schritt: "Das ist rund ein Arbeitstag; bei 45 € je Stunde", wert: "≈ 350 €" },
       ],
       heute: [
         "Das Angebot entsteht von Hand, oft aus einem alten kopiert.",
@@ -58,12 +68,12 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Die Auftragsdaten werden einmal erfasst.",
         "Angebot, Rechnung und Buchung entstehen daraus automatisch.",
         "Du prüfst und gibst frei, statt zu tippen.",
-        "Weil nichts mehr abgeschrieben wird, gibt es keine Zahlendreher.",
+        "Weil nichts mehr abgeschrieben wird, entfällt die häufigste Fehlerquelle.",
       ],
       annahmen: [
-        "5 Vorgänge im Monat.",
-        "4 Std Handarbeit je Vorgang über alle drei Schritte.",
-        "50 € Stundensatz für die eigene Arbeitszeit.",
+        "6 Vorgänge im Monat.",
+        "1 Std 45 Handarbeit je Vorgang über alle drei Schritte.",
+        "45 € je Stunde — Arbeitskosten je Arbeitsstunde, Statistisches Bundesamt 2025.",
         "Die vorhandenen Programme lassen sich verbinden.",
       ],
       dauer: "2–3 Wochen",
@@ -75,28 +85,28 @@ const BEISPIELE: ShowcaseInhalt[] = [
     kicker: "Beispiel · Kundenanfragen",
     titel: "Jede Anfrage sofort",
     titelZweite: "",
-    akzent: "beantwortet.",
+    akzent: "bestätigt.",
     stats: [
-      { prefix: "< ", value: 1, suffix: " Min", label: "bis zur ersten Antwort" },
-      { value: 24, suffix: " h", label: "am Tag erreichbar" },
-      { value: 0, label: "verpasste Anfragen" },
+      { prefix: "< ", value: 1, suffix: " Min", label: "bis zur automatischen Bestätigung" },
+      { value: 24, suffix: " h", label: "am Tag, auch am Wochenende" },
+      { prefix: "≈ ", value: 800, suffix: " €", label: "Mehrumsatz im Monat, ein Auftrag" },
     ],
     beschreibung:
-      "Eine erste Antwort geht raus, während du noch beim Kunden bist. Passende Termine schlägt das System selbst vor.",
+      "Eine erste Bestätigung geht raus, während du noch beim Kunden bist. Passende Termine schlägt das System gleich mit vor.",
     detail: {
       rechnung: [
         { schritt: "Anfragen im Monat über Formular, Mail und Telefon", wert: "40" },
         { schritt: "Davon außerhalb der Arbeitszeit", wert: "12" },
         { schritt: "Heute im Schnitt bis zur ersten Antwort", wert: "4 Std" },
-        { schritt: "Danach bis zur ersten Antwort", wert: "< 1 Min" },
-        { schritt: "Anfragen, die heute abspringen, weil es zu lange dauert", wert: "3" },
-        { schritt: "Bei 800 € Auftragswert sind das im Monat", wert: "≈ 2.400 €", hervor: true },
+        { schritt: "Danach bis zur automatischen Bestätigung", wert: "< 1 Min" },
+        { schritt: "Vorsichtig gerechnet zusätzlich gewonnen (Annahme)", wert: "1 Auftrag" },
+        { schritt: "Bei 800 € Auftragswert — Umsatz, nicht Ersparnis", wert: "≈ 800 €", hervor: true },
       ],
       heute: [
         "Anfragen laufen über drei Kanäle nebeneinander ein.",
         "Die Antwort kommt abends oder am nächsten Morgen.",
         "Am Wochenende bleibt alles liegen.",
-        "Wer schneller eine Antwort bekommt, bekommt den Auftrag.",
+        "Wer gar nicht antwortet, bekommt den Auftrag sicher nicht.",
       ],
       danach: [
         "Jede Anfrage bekommt sofort eine Bestätigung mit den nächsten Schritten.",
@@ -105,9 +115,11 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Du siehst morgens nur noch, was wirklich deine Antwort braucht.",
       ],
       annahmen: [
+        "Die erste Rückmeldung ist eine automatische Bestätigung, keine inhaltliche Antwort.",
         "40 Anfragen im Monat.",
         "800 € durchschnittlicher Auftragswert.",
-        "3 Anfragen im Monat, die heute wegen der Wartezeit abspringen.",
+        "Ein zusätzlicher Auftrag im Monat — vorsichtige Annahme, keine belegte Quote.",
+        "Der Betrag ist Umsatz, nicht Gewinn und nicht gesparte Kosten.",
       ],
       dauer: "1–2 Wochen",
     },
@@ -120,20 +132,20 @@ const BEISPIELE: ShowcaseInhalt[] = [
     titelZweite: "",
     akzent: "von selbst.",
     stats: [
-      { prefix: "~", value: 6, suffix: " Std", label: "frei pro Woche" },
-      { prefix: "≈ ", value: 1300, suffix: " €", label: "pro Monat, bei 50 € Stundensatz" },
-      { value: 0, label: "Telefonrunden zur Absprache" },
+      { prefix: "~", value: 3, suffix: " Std", label: "frei pro Monat" },
+      { value: 24, suffix: " h", label: "buchbar, auch sonntags" },
+      { value: 25, suffix: " %", label: "weniger Rückrufe (belegter Wert)" },
     ],
     beschreibung:
       "Kunden sehen freie Zeiten und buchen direkt. Erinnerungen gehen automatisch raus, abgesagte Termine rücken nach.",
     detail: {
       rechnung: [
-        { schritt: "Termine pro Woche", wert: "25" },
-        { schritt: "Abstimmung je Termin heute: Anruf, Rückruf, Verschieben", wert: "15 Min" },
-        { schritt: "Aufwand pro Woche", wert: "6 Std 15" },
-        { schritt: "Danach: der Kunde bucht selbst", wert: "0 Min" },
-        { schritt: "Ersparnis im Monat", wert: "≈ 27 Std", hervor: true },
-        { schritt: "Bei 50 € Stundensatz entspricht das", wert: "≈ 1.300 €" },
+        { schritt: "Termine pro Woche (Annahme, stark betriebsabhängig)", wert: "20" },
+        { schritt: "Abstimmung je Termin heute (Annahme, nicht belegt)", wert: "8 Min" },
+        { schritt: "Aufwand pro Woche", wert: "2 Std 40" },
+        { schritt: "Belegter Rückgang durch Online-Buchung", wert: "10–25 %" },
+        { schritt: "Vorsichtig gerechnet mit", wert: "25 %" },
+        { schritt: "Frei pro Monat", wert: "≈ 3 Std", hervor: true },
       ],
       heute: [
         "Der Terminwunsch kommt per Telefon, meist zur Unzeit.",
@@ -142,15 +154,16 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Erinnerungen schickst du von Hand, oder eben nicht.",
       ],
       danach: [
-        "Der Kunde sieht deine freien Zeiten und bucht selbst.",
+        "Der Kunde sieht deine freien Zeiten und kann rund um die Uhr buchen.",
         "Bestätigung und Erinnerung gehen automatisch raus.",
         "Abgesagte Termine werden anderen sofort angeboten.",
-        "Dein Kalender bleibt in jedem Programm derselbe.",
+        "Das Telefon bleibt für alle, die lieber anrufen — es wird nur seltener.",
       ],
       annahmen: [
-        "25 Termine pro Woche.",
-        "15 Min Abstimmung je Termin über alle Rückrufe hinweg.",
-        "50 € Stundensatz für die eigene Arbeitszeit.",
+        "20 Termine pro Woche — hängt stark vom Gewerbe ab.",
+        "8 Min Abstimmung je Termin. Dazu gibt es keine belastbare Quelle, das ist eine Annahme.",
+        "25 % weniger Anrufe. Belegt sind 10–25 %; hier ist der obere Rand gerechnet.",
+        "In Deutschland buchen 72–73 % weiterhin telefonisch — das Telefon bleibt.",
       ],
       dauer: "1 Woche",
     },
@@ -163,37 +176,39 @@ const BEISPIELE: ShowcaseInhalt[] = [
     titelZweite: "",
     akzent: "von allein.",
     stats: [
-      { prefix: "~", value: 8, suffix: " Std", label: "weniger pro Monat" },
-      { prefix: "≈ ", value: 400, suffix: " €", label: "weniger Vorbereitung beim Steuerbüro" },
-      { value: 0, label: "verlorene Belege" },
+      { prefix: "~", value: 30, suffix: " Std", label: "eigene Zeit im Jahr" },
+      { prefix: "≈ ", value: 200, suffix: " €", label: "im Monat, Zeit und Steuerbüro" },
+      { value: 1, suffix: " Std", label: "weniger Nacharbeit beim Steuerbüro" },
     ],
     beschreibung:
       "Ein Foto genügt: Betrag, Datum und Kategorie liest das System aus und legt den Beleg dorthin, wo er hingehört.",
     detail: {
       rechnung: [
-        { schritt: "Belege im Monat", wert: "120" },
-        { schritt: "Heute je Beleg: sortieren, abtippen, ablegen", wert: "4 Min" },
-        { schritt: "Aufwand im Monat", wert: "8 Std", hervor: true },
-        { schritt: "Danach je Beleg: fotografieren", wert: "10 Sek" },
-        { schritt: "Aufbereitung beim Steuerbüro heute", wert: "5 Std" },
-        { schritt: "Bei 80 € Stundensatz entspricht das", wert: "≈ 400 €" },
+        { schritt: "Belege im Monat", wert: "60" },
+        { schritt: "Heute je Beleg: sortieren, ablegen, aufbereiten", wert: "3 Min" },
+        { schritt: "Aufwand im Monat", wert: "3 Std" },
+        { schritt: "Danach je Beleg: fotografieren und prüfen", wert: "30 Sek" },
+        { schritt: "Eigene Ersparnis im Monat", wert: "2 Std 30" },
+        { schritt: "Dazu weniger Nacharbeit beim Steuerbüro", wert: "1 Std" },
+        { schritt: "Zeit und Steuerbüro zusammen", wert: "≈ 200 €", hervor: true },
       ],
       heute: [
         "Belege sammeln sich in der Tasche, im Auto und im Postfach.",
-        "Einmal im Monat wird alles sortiert und abgetippt.",
+        "Einmal im Monat wird alles sortiert und für den Berater aufbereitet.",
         "Was fehlt, fällt erst beim Abschluss auf.",
-        "Das Steuerbüro sortiert nach und stellt das in Rechnung.",
+        "Das Steuerbüro sortiert nach und stellt diese Zeit in Rechnung.",
       ],
       danach: [
         "Ein Foto beim Bezahlen genügt.",
         "Betrag, Datum und Kategorie liest das System aus.",
         "Der Beleg landet sofort am richtigen Platz.",
-        "Das Steuerbüro bekommt alles fertig sortiert.",
+        "Das Steuerbüro bekommt alles vorsortiert und muss weniger nacharbeiten.",
       ],
       annahmen: [
-        "120 Belege im Monat.",
-        "4 Min Handarbeit je Beleg.",
-        "5 Std Aufbereitung beim Steuerbüro zu 80 € je Stunde.",
+        "60 Belege im Monat — Richtwert für Selbstständige und kleine Betriebe.",
+        "3 Min eigene Handarbeit je Beleg.",
+        "1 Std weniger Nacharbeit beim Steuerbüro — das ist ein anderer Arbeitsschritt als die eigene Vorsortierung, also keine Doppelzählung.",
+        "100 € je Stunde beim Steuerbüro. Die Zeitgebühr nach § 13 StBVV liegt seit Juli 2025 bei 66–164 €, im Mittel 115 €.",
       ],
       dauer: "1–2 Wochen",
     },
@@ -206,20 +221,21 @@ const BEISPIELE: ShowcaseInhalt[] = [
     titelZweite: "",
     akzent: "liegen.",
     stats: [
-      { value: 12, suffix: " Tage", label: "schneller bezahlt" },
-      { prefix: "≈ ", value: 2400, suffix: " €", label: "weniger offene Posten im Schnitt" },
-      { value: 0, label: "vergessene Erinnerungen" },
+      { value: 4, suffix: " Tage", label: "weniger Verzug (Annahme)" },
+      { prefix: "≈ ", value: 900, suffix: " €", label: "weniger dauerhaft gebundenes Geld" },
+      { value: 1, suffix: ". Tag", label: "nach Fälligkeit geht die Erinnerung" },
     ],
     beschreibung:
       "Zahlungserinnerungen gehen freundlich und pünktlich raus, ohne dass du jemandem hinterhertelefonierst.",
     detail: {
       rechnung: [
-        { schritt: "Offene Rechnungen im Schnitt", wert: "8" },
+        { schritt: "Offene Rechnungen im Monat", wert: "8" },
         { schritt: "Durchschnittlicher Rechnungsbetrag", wert: "900 €" },
-        { schritt: "Offener Betrag insgesamt", wert: "7.200 €" },
-        { schritt: "Heute im Schnitt über dem Zahlungsziel", wert: "12 Tage" },
-        { schritt: "Danach: Erinnerung am Tag nach Fälligkeit", wert: "0 Tage" },
-        { schritt: "Dauerhaft weniger offen", wert: "≈ 2.400 €", hervor: true },
+        { schritt: "Monatsvolumen", wert: "7.200 €" },
+        { schritt: "Das sind je Tag", wert: "240 €" },
+        { schritt: "Verzug heute (Creditreform 2025: 7,5 Tage)", wert: "8 Tage" },
+        { schritt: "Verzug danach (Annahme: halbiert)", wert: "4 Tage" },
+        { schritt: "4 Tage × 240 € weniger gebundenes Geld", wert: "≈ 900 €", hervor: true },
       ],
       heute: [
         "Die Rechnung geht raus, danach herrscht Stille.",
@@ -234,10 +250,10 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Du siehst auf einen Blick, was offen ist und seit wann.",
       ],
       annahmen: [
-        "8 offene Rechnungen im Schnitt.",
-        "900 € durchschnittlicher Rechnungsbetrag.",
-        "12 Tage Überschreitung des Zahlungsziels heute.",
-        "Ein Drittel davon löst sich durch pünktliche Erinnerungen.",
+        "8 offene Rechnungen, 900 € im Schnitt.",
+        "8 Tage Verzug heute. Der Creditreform-Zahlungsindikator misst für Deutschland 7,5 Tage; bei Privatkunden ist es eher mehr.",
+        "Halbierung des Verzugs durch pünktliche Erinnerungen — dazu gibt es keine unabhängige Wirkungsstudie, das ist eine Annahme.",
+        "Gerechnet wird gebundenes Geld, nicht Gewinn: Es kommt früher, nicht zusätzlich.",
       ],
       dauer: "1 Woche",
     },

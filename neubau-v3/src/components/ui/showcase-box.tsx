@@ -229,7 +229,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          aria-label={`Rechenbeispiel öffnen: ${inhalt.titel} ${inhalt.akzent}`}
+          aria-label={`Rechenbeispiel öffnen: ${inhalt.titel} ${inhalt.titelZweite} ${inhalt.akzent}`.replace(/\s+/g, " ")}
           className="absolute right-8 top-8 z-50 rounded-full bg-black p-4 text-white shadow-2xl dark:bg-white dark:text-black"
         >
           <Maximize2 size={22} />
@@ -256,11 +256,18 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
             <p className="text-lg font-semibold leading-relaxed text-black/50 dark:text-white/40">
               {inhalt.beschreibung}
             </p>
+            {/* Steht IMMER da, nicht nur beim Überfahren: Die Zahlen oben sind
+                Rechenbeispiele mit offenen Annahmen, keine Zusagen. Im zugeklappten
+                Zustand ist die Zahl sonst ungeschützt. */}
+            <p className="mt-6 text-[13px] leading-relaxed text-black/45 dark:text-white/35">
+              Rechenbeispiel mit offen genannten Annahmen — deine Zahlen rechnen wir im
+              Gespräch durch.
+            </p>
             <span
-              className="mt-6 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.24em] opacity-0 transition-opacity duration-500 group-hover/master:opacity-100"
+              className="mt-3 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.24em] opacity-60 transition-opacity duration-500 group-hover/master:opacity-100"
               style={{ color: inhalt.accent }}
             >
-              Rechnung ansehen
+              Rechenweg ansehen
             </span>
           </div>
         </div>
@@ -288,7 +295,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                   onClick={(e) => e.stopPropagation()}
                   role="dialog"
                   aria-modal="true"
-                  aria-label={`Rechenbeispiel: ${inhalt.titel} ${inhalt.akzent}`}
+                  aria-label={`Rechenbeispiel: ${inhalt.titel} ${inhalt.titelZweite} ${inhalt.akzent}`.replace(/\s+/g, " ")}
                   className="relative mx-auto my-10 w-full max-w-[1600px] rounded-[3rem] border border-black/10 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-[#0A0A0A] md:p-12"
                 >
                   <div className="mb-10 max-w-2xl space-y-6 pr-16">{kopf}</div>
