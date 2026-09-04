@@ -72,10 +72,10 @@ const Loader = ({ type = 'disziplinen', activeFace }: LoaderProps) => {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    gsap.set(stageRef.current, { rotateX: -16, rotateY: -18 });
+    gsap.set(stageRef.current, { rotateX: -14, rotateY: 0 });
     const schweben = gsap.to(stageRef.current, {
       y: -16,
-      rotateX: -24,
+      rotateX: -22,
       duration: 2.6,
       ease: 'sine.inOut',
       yoyo: true,
