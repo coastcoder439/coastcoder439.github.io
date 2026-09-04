@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Separator } from '@/components/ui/separator';
 import { ArrowDownRight, CalendarDays, FileText } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
@@ -14,9 +14,23 @@ import { handleAnchorClick } from '@/lib/scroll';
 // die Karte „Das baue ich" ist raus (Owner: doppelt zum zweiten Würfel).
 // Motion des Templates bleibt: Spotlight, Punktraster, text-shiny, isExiting-Reveal,
 // OFFEN-FÜR-AUSTAUSCH-Badge, runder Lebenslauf-Button.
-const LINES = ['Technik', 'mit', 'Auftrag.'];
+// Drei Überschriften im Wechsel [Owner 04.09.2026]. „Technik mit Auftrag" ist raus:
+// Testleser verstanden es erst nach dem Lesen der Texte, weil „Auftrag" zuerst die
+// erteilte Arbeit meint. Die drei hier decken zusammen ab, wofür der Owner steht —
+// Haltung, Gerechtigkeit gegenüber kleinen Betrieben, persönliche Beziehung.
+const SLOGANS = ['IT aus Überzeugung', 'Auf Augenhöhe mit den Großen', 'Mehr als nur ein Auftrag'];
+
+// Zwei GETRENNTE Ereignisse je Runde, ausdrücklich so gewollt [Owner: „ICH WILL DEN
+// TEXT WECHSEL DANACH"]: Bei 4 s wischt der Farbbalken über die STEHENDE Zeile, erst bei
+// 5 s wechselt der Text. Der Wisch maskiert den Wechsel also nicht, er geht ihm voraus.
+const WISCH_BEI = 4000;
+const WECHSEL_BEI = 5000;
+const WISCH_DAUER = 0.7;
+const WISCH_FARBE = '#0ea5e9';
+
 const SUBLINE =
-  'Angefangen hat es mit der Gründung einer gemeinnützigen UG. Für sie habe ich meine ersten Systeme gebaut. Geblieben ist die Frage, was am Ende wirklich zählt. Heute baue ich für andere: erst verstehen, wo du hinwillst, dann den Weg dahin zusammen gehen.';
+  'Die meiste Software nimmt: Zeit, Aufmerksamkeit, Nerven. Ich baue die andere Sorte — und ich baue nur, woran ich glaube. Angefangen hat es bei meinem Herzensprojekt, der NGO World Eden Era, wo niemand Budget für Umwege hatte. Geblieben ist die Überzeugung, dass ein Betrieb mit zwei Leuten dieselbe Qualität und dieselbe Freiheit verdient wie einer mit zweihundert.';
+const SCHLUSSSATZ = 'Große Firmen haben Abteilungen dafür. Kleine haben mich.';
 const NACHWEISE = [
   'EU AI Act Essentials · KI-Campus',
   'SC-900 · Microsoft',
@@ -26,6 +40,26 @@ const NACHWEISE = [
 
 export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
   const { personal } = portfolioData;
+  const reduce = useReducedMotion();
+  const [slogan, setSlogan] = useState(0);
+  const [wischt, setWischt] = useState(false);
+
+  // Eine Runde pro Slogan: Wisch bei 4 s, Textwechsel bei 5 s. Der Effekt hängt an
+  // `slogan`, startet also nach jedem Wechsel neu und hält den Takt sauber.
+  // Wer weniger Bewegung eingestellt hat, bekommt eine feste Überschrift ohne Wechsel —
+  // automatisch bewegter Text wäre sonst nicht anhaltbar (WCAG 2.2.2).
+  useEffect(() => {
+    if (reduce || !isExiting) return;
+    const w = setTimeout(() => setWischt(true), WISCH_BEI);
+    const t = setTimeout(() => {
+      setWischt(false);
+      setSlogan((i) => (i + 1) % SLOGANS.length);
+    }, WECHSEL_BEI);
+    return () => {
+      clearTimeout(w);
+      clearTimeout(t);
+    };
+  }, [slogan, reduce, isExiting]);
 
   return (
     <motion.div
@@ -61,21 +95,56 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               {personal.name} · Leipzig
             </motion.p>
 
-            {/* Eine einzige Hauptüberschrift; die drei Zeilen laufen als Zeilen darin an.
-                leading-[0.92] statt 0.85: enger schnitt der Farbverlauf die Unterlänge
-                von „Auftrag." unten ab. */}
-            <h1 className="text-[clamp(3rem,9vw,10.5rem)] font-black leading-[0.92] tracking-tighter">
-              {LINES.map((line, i) => (
-                <motion.span
-                  key={line}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 1.2, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="block pb-[0.06em] text-shiny will-change-transform"
-                >
-                  {line}
-                </motion.span>
-              ))}
+            {/* Wechselnde Hauptüberschrift. Die Größe ist kleiner als beim festen
+                Dreizeiler „Technik mit Auftrag", weil der längste Slogan sonst vier
+                Zeilen bräuchte; min-h hält die Höhe über alle drei stabil, sonst
+                springt der halbe Hero bei jedem Wechsel. 2,05em = zwei Zeilen, gemessen
+                am längsten Slogan („Auf Augenhöhe mit den Großen": 191 px bei 1440,
+                136 px bei 1024, 76 px bei 390) — mehr wäre nur tote Fläche.
+                leading-[0.92] statt enger: sonst schneidet der Farbverlauf Unterlängen ab. */}
+            <h1 className="min-h-[2.05em] text-[clamp(2.5rem,7vw,8rem)] font-black leading-[0.92] tracking-tighter">
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative block overflow-hidden pb-[0.06em] will-change-transform"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={slogan}
+                    initial={reduce ? false : { opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -24, transition: { duration: 0.28 } }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="block text-shiny"
+                  >
+                    {SLOGANS[slogan]}
+                  </motion.span>
+                </AnimatePresence>
+
+                {/* Der Farbbalken aus dem Template — läuft über die stehende Zeile,
+                    eine Sekunde BEVOR der Text wechselt. */}
+                {wischt && (
+                  <motion.span
+                    initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                    animate={{
+                      clipPath: [
+                        'inset(0 100% 0 0)',
+                        'inset(0 0% 0 0)',
+                        'inset(0 0% 0 0)',
+                        'inset(0 0 0 100%)',
+                      ],
+                    }}
+                    transition={{
+                      duration: WISCH_DAUER,
+                      times: [0, 0.42, 0.58, 1],
+                      ease: [0.85, 0, 0.15, 1],
+                    }}
+                    className="absolute inset-0 z-10 block"
+                    style={{ backgroundColor: WISCH_FARBE }}
+                  />
+                )}
+              </motion.span>
             </h1>
 
             <motion.p
@@ -85,6 +154,17 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               className="mt-8 max-w-[60ch] text-base md:text-xl leading-relaxed text-foreground/80"
             >
               {SUBLINE}
+            </motion.p>
+
+            {/* Der Satz, der die Position in acht Wörtern sagt — deshalb abgesetzt und
+                schwerer als der Absatz darüber, aber kleiner als die Überschrift. */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 max-w-[46ch] text-xl md:text-2xl font-bold leading-snug tracking-tight text-foreground"
+            >
+              {SCHLUSSSATZ}
             </motion.p>
 
             <motion.div
