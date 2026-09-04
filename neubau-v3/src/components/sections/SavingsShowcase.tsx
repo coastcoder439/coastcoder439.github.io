@@ -30,7 +30,7 @@
  */
 
 import React from "react";
-import { FileText, MessageSquareReply, CalendarClock, Receipt, BellRing } from "lucide-react";
+import { FileText, MessageSquareReply, CalendarClock, Receipt, BellRing, PhoneCall } from "lucide-react";
 import { ShowcaseStack } from "@/components/ui/showcase-stack";
 import { ShowcaseBox, type ShowcaseInhalt } from "@/components/ui/showcase-box";
 
@@ -255,6 +255,49 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Halbierter Verzug durch pünktliche Erinnerungen.",
       ],
       dauer: "1 Woche",
+    },
+  },
+  {
+    accent: "#14b8a6",
+    icon: PhoneCall,
+    kicker: "Beispiel · Telefon & WhatsApp",
+    titel: "Jeder Anruf wird",
+    titelZweite: "",
+    akzent: "angenommen.",
+    stats: [
+      { value: 2, suffix: " Sek", label: "bis abgenommen wird, rund um die Uhr" },
+      { prefix: "≈ ", value: 1600, suffix: " €", label: "Mehrumsatz im Monat, zwei Aufträge" },
+      { value: 97, suffix: " %", label: "der Betriebe: Kunden erwarten schnellere Antworten" },
+    ],
+    beschreibung:
+      "Ein Sprachassistent geht ans Telefon, versteht das Anliegen und hält Adresse und Wunschtermin fest. Wer lieber schreibt, bekommt alles per WhatsApp.",
+    detail: {
+      rechnung: [
+        { schritt: "Anrufe im Monat, die heute niemand annehmen kann", wert: "25" },
+        { schritt: "Davon Anfragen mit Auftragspotenzial", wert: "8" },
+        { schritt: "Davon gewonnen, weil sofort abgenommen wird", wert: "2" },
+        { schritt: "Bei 800 € Auftragswert", wert: "≈ 1.600 €", hervor: true },
+      ],
+      heute: [
+        "Das Telefon klingelt, während die Hände im Einsatz sind.",
+        "Die Mailbox nimmt ab — viele legen wortlos wieder auf.",
+        "Wer nicht durchkommt, ruft beim nächsten Betrieb an.",
+        "Abends stapeln sich Rückrufe, die an dem Tag keiner mehr schafft.",
+      ],
+      danach: [
+        "Der Sprachassistent nimmt jeden Anruf an und spricht ganz normal.",
+        "Er hält Anliegen, Adresse und Wunschtermin fest.",
+        "Dringendes stellt er sofort durch, alles andere kommt als Notiz an.",
+        "Auf Wunsch geht die Zusammenfassung als WhatsApp-Nachricht raus.",
+      ],
+      annahmen: [
+        "25 Anrufe im Monat, die heute unbeantwortet bleiben.",
+        "8 davon mit Auftragspotenzial.",
+        "2 zusätzlich gewonnene Aufträge im Monat.",
+        "800 € durchschnittlicher Auftragswert.",
+        "97 % der Handwerksbetriebe berichten, dass Kunden schnellere Antworten erwarten; 63 % tauschen sich bereits über WhatsApp und andere Messenger mit Kunden aus (Bitkom/ZDH 2025, 504 befragte Betriebe).",
+      ],
+      dauer: "2 Wochen",
     },
   },
 ];
