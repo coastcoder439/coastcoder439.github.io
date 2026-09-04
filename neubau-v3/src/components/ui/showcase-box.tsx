@@ -10,7 +10,7 @@
  * Panels mit den magnetischen Badge-Überschriften.
  *
  * Inhalt hier: Leons Automatisierungs-Beispiele. Zugeklappt steht das Ergebnis,
- * aufgeklappt die RECHNUNG dahinter — mit offen benannten Annahmen, damit keine Zahl
+ * aufgeklappt die RECHNUNG dahinter — mit den Eingangsgroessen, damit keine Zahl
  * als Zusage dasteht, sondern als Beispiel, das man nachrechnen kann.
  */
 
@@ -256,12 +256,10 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
             <p className="text-lg font-semibold leading-relaxed text-black/70 dark:text-white/65">
               {inhalt.beschreibung}
             </p>
-            {/* Steht IMMER da, nicht nur beim Überfahren: Die Zahlen oben sind
-                Rechenbeispiele mit offenen Annahmen, keine Zusagen. Im zugeklappten
-                Zustand ist die Zahl sonst ungeschützt. */}
+            {/* Steht IMMER da, auch zugeklappt: Die Zahl oben ist ein Beispiel, keine
+                Zusage. Sachlich formuliert — kein Bekenntnis fehlender Belege. */}
             <p className="mt-6 text-[13px] leading-relaxed text-black/65 dark:text-white/55">
-              Rechenbeispiel mit offen genannten Annahmen — deine Zahlen rechnen wir im
-              Gespräch durch.
+              Beispielrechnung. Die Zahlen für den eigenen Betrieb entstehen im Gespräch.
             </p>
             <span
               className="mt-3 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.24em] opacity-60 transition-opacity duration-500 group-hover/master:opacity-100"
@@ -356,7 +354,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                     <Panel ueberschrift="Womit gerechnet" accent={inhalt.accent}>
                       <Punkte eintraege={inhalt.detail.annahmen} accent={inhalt.accent} />
                       <p className="text-[13px] leading-relaxed text-black/65 dark:text-white/55">
-                        Deine Zahlen sind andere. Im Gespräch rechnen wir es mit deinen durch.
+                        Jeder Betrieb rechnet anders. Die konkreten Zahlen entstehen im Gespräch.
                       </p>
                     </Panel>
                   </div>

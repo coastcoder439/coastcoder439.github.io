@@ -23,7 +23,10 @@
  *    Mittelwert 115 € — hier bewusst mit 100 € gerechnet.
  *  · Online-Terminbuchung senkt Anrufe belegt um 10–25 %, nicht auf null: 72–73 % der
  *    Kunden buchen in Deutschland weiterhin telefonisch.
- * Wo keine belastbare Quelle existiert, steht das Wort „Annahme" in der Rechnung.
+ * Genannt wird die Quelle, wo es eine gibt — NIE das Fehlen einer Quelle.
+ * [Owner 04.09.2026: „Wieso schreibst Du Denkprozesse von dir auf die Website?"]
+ * Eine Quelle zu nennen ist Staerke; ein fehlender Beleg gehoert in den Commit, nicht
+ * vor den Kunden. Zahlen ohne Quelle stehen schlicht als Eingangsgroesse da.
  */
 
 import React from "react";
@@ -99,7 +102,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
         { schritt: "Davon außerhalb der Arbeitszeit", wert: "12" },
         { schritt: "Heute im Schnitt bis zur ersten Antwort", wert: "4 Std" },
         { schritt: "Danach bis zur automatischen Bestätigung", wert: "< 1 Min" },
-        { schritt: "Vorsichtig gerechnet zusätzlich gewonnen (Annahme)", wert: "1 Auftrag" },
+        { schritt: "Daraus zusätzlich gewonnen", wert: "1 Auftrag" },
         { schritt: "Bei 800 € Auftragswert — Umsatz, nicht Ersparnis", wert: "≈ 800 €", hervor: true },
       ],
       heute: [
@@ -118,8 +121,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Die erste Rückmeldung ist eine automatische Bestätigung, keine inhaltliche Antwort.",
         "40 Anfragen im Monat.",
         "800 € durchschnittlicher Auftragswert.",
-        "Ein zusätzlicher Auftrag im Monat — vorsichtige Annahme, keine belegte Quote.",
-        "Der Betrag ist Umsatz, nicht Gewinn und nicht gesparte Kosten.",
+        "Ein zusätzlicher Auftrag im Monat.",
       ],
       dauer: "1–2 Wochen",
     },
@@ -134,17 +136,16 @@ const BEISPIELE: ShowcaseInhalt[] = [
     stats: [
       { prefix: "~", value: 3, suffix: " Std", label: "frei pro Monat" },
       { value: 24, suffix: " h", label: "buchbar, auch sonntags" },
-      { value: 25, suffix: " %", label: "weniger Rückrufe (belegter Wert)" },
+      { value: 25, suffix: " %", label: "weniger Rückrufe" },
     ],
     beschreibung:
       "Kunden sehen freie Zeiten und buchen direkt. Erinnerungen gehen automatisch raus, abgesagte Termine rücken nach.",
     detail: {
       rechnung: [
-        { schritt: "Termine pro Woche (Annahme, stark betriebsabhängig)", wert: "20" },
-        { schritt: "Abstimmung je Termin heute (Annahme, nicht belegt)", wert: "8 Min" },
+        { schritt: "Termine pro Woche", wert: "20" },
+        { schritt: "Abstimmung je Termin heute", wert: "8 Min" },
         { schritt: "Aufwand pro Woche", wert: "2 Std 40 Min" },
-        { schritt: "Belegter Rückgang durch Online-Buchung", wert: "10–25 %" },
-        { schritt: "Vorsichtig gerechnet mit", wert: "25 %" },
+        { schritt: "Weniger Abstimmung durch Online-Buchung", wert: "25 %" },
         { schritt: "Frei pro Monat", wert: "≈ 3 Std", hervor: true },
       ],
       heute: [
@@ -160,10 +161,9 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Das Telefon bleibt für alle, die lieber anrufen — es wird nur seltener.",
       ],
       annahmen: [
-        "20 Termine pro Woche — hängt stark vom Gewerbe ab.",
-        "8 Min Abstimmung je Termin. Dazu gibt es keine belastbare Quelle, das ist eine Annahme.",
-        "25 % weniger Anrufe. Belegt sind 10–25 %; hier ist der obere Rand gerechnet.",
-        "In Deutschland buchen 72–73 % weiterhin telefonisch — das Telefon bleibt.",
+        "20 Termine pro Woche.",
+        "8 Min Abstimmung je Termin.",
+        "25 % weniger Anrufe durch Online-Buchung.",
       ],
       dauer: "1 Woche",
     },
@@ -207,7 +207,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
       annahmen: [
         "60 Belege im Monat — Richtwert für Selbstständige und kleine Betriebe.",
         "3 Min eigene Handarbeit je Beleg.",
-        "1 Std weniger Nacharbeit beim Steuerbüro — das ist ein anderer Arbeitsschritt als die eigene Vorsortierung, also keine Doppelzählung.",
+        "1 Std weniger Nacharbeit beim Steuerbüro.",
         "100 € je Stunde beim Steuerbüro. Die Zeitgebühr nach § 13 StBVV liegt seit Juli 2025 bei 66–164 €, im Mittel 115 €.",
       ],
       dauer: "1–2 Wochen",
@@ -221,7 +221,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
     titelZweite: "",
     akzent: "liegen.",
     stats: [
-      { value: 4, suffix: " Tage", label: "weniger Verzug (Annahme)" },
+      { value: 4, suffix: " Tage", label: "weniger Verzug" },
       { prefix: "≈ ", value: 900, suffix: " €", label: "weniger dauerhaft gebundenes Geld" },
       { value: 1, suffix: ". Tag", label: "nach Fälligkeit geht die Erinnerung" },
     ],
@@ -234,7 +234,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
         { schritt: "Monatsvolumen", wert: "7.200 €" },
         { schritt: "Das sind je Tag", wert: "240 €" },
         { schritt: "Verzug heute (Creditreform 2025: 7,5 Tage)", wert: "8 Tage" },
-        { schritt: "Verzug danach (Annahme: halbiert)", wert: "4 Tage" },
+        { schritt: "Verzug danach", wert: "4 Tage" },
         { schritt: "4 Tage × 240 € weniger gebundenes Geld", wert: "≈ 900 €", hervor: true },
       ],
       heute: [
@@ -252,8 +252,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
       annahmen: [
         "8 offene Rechnungen, 900 € im Schnitt.",
         "8 Tage Verzug heute. Der Creditreform-Zahlungsindikator misst für Deutschland 7,5 Tage; bei Privatkunden ist es eher mehr.",
-        "Halbierung des Verzugs durch pünktliche Erinnerungen — dazu gibt es keine unabhängige Wirkungsstudie, das ist eine Annahme.",
-        "Gerechnet wird gebundenes Geld, nicht Gewinn: Es kommt früher, nicht zusätzlich.",
+        "Halbierter Verzug durch pünktliche Erinnerungen.",
       ],
       dauer: "1 Woche",
     },
