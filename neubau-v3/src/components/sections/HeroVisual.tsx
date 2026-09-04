@@ -23,7 +23,7 @@ import { handleAnchorClick } from '@/lib/scroll';
 // sinngemäß auch, technik / mit auftrag wäre richtig"]. Alle drei zweizeilig, damit die
 // Höhe über den Wechsel stabil bleibt.
 const SLOGANS: string[][] = [
-  ['IT', 'aus Überzeugung'],
+  ['IT aus', 'Überzeugung'],
   ['Auf Augenhöhe', 'mit den Großen'],
   ['Mehr als nur', 'ein Auftrag'],
 ];
@@ -120,7 +120,11 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                 am längsten Slogan („Auf Augenhöhe mit den Großen": 191 px bei 1440,
                 136 px bei 1024, 76 px bei 390) — mehr wäre nur tote Fläche.
                 leading-[0.92] statt enger: sonst schneidet der Farbverlauf Unterlängen ab. */}
-            <h1 className="min-h-[2.24em] text-[clamp(2.5rem,7vw,8rem)] font-black leading-[1] tracking-tighter">
+            {/* leading 1.12 statt 1: Bei font-black reicht eine Zeilenbox von 1em nicht
+                für die Unterlängen — beim Glanz (bg-clip-text) wurde das „g" von
+                „Überzeugung" und „Augenhöhe" unten gekappt, weil der Farbverlauf auf die
+                Box beschnitten wird und nicht auf die Glyphe. */}
+            <h1 className="min-h-[2.4em] text-[clamp(2.5rem,7vw,8rem)] font-black leading-[1.12] tracking-tighter">
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
                 animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -134,15 +138,14 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -24, transition: { duration: 0.28 } }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="block"
+                    // Der Glanz gehört auf DIESEN Block, nicht auf jede Zeile: sonst
+                    // bekommt jede Zeile ihren eigenen Verlauf und der Effekt läuft
+                    // sichtbar zweimal nebeneinander [Owner 04.09.2026: „Das Husch kommt
+                    // zweimal"]. Ein Verlauf über den ganzen Block ergibt einen Durchlauf.
+                    className={'block ' + (huscht ? 'text-shiny-einmal' : 'text-foreground')}
                   >
                     {SLOGANS[slogan].map((zeile) => (
-                      <span
-                        key={zeile}
-                        className={
-                          'block pb-[0.04em] ' + (huscht ? 'text-shiny-einmal' : 'text-foreground')
-                        }
-                      >
+                      <span key={zeile} className="block">
                         {zeile}
                       </span>
                     ))}
