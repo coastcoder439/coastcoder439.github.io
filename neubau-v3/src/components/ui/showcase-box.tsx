@@ -338,7 +338,7 @@ export function ShowcaseBox({ inhalt }: { inhalt: ShowcaseInhalt }) {
                           {inhalt.detail.dauer}
                         </span>
                         <span className="text-[15px] leading-relaxed text-black/75 dark:text-white/70">
-                          von der ersten Aufnahme bis zu dem Punkt, an dem es ohne dich läuft.
+                          von der ersten Aufnahme bis zu dem Punkt, an dem es von allein läuft.
                         </span>
                       </div>
                     </Panel>

@@ -68,11 +68,11 @@ const SHELL = "relative mx-auto max-w-[1180px] px-6 py-24 md:px-12 md:py-32";
 const SCHRITTE = [
   {
     titel: "Prompt Engineering",
-    text: "Ich schaue mir an, wie du arbeitest, und finde das Muster darin. Was einmal sitzt, sitzt beim nächsten Fall wieder.",
+    text: "Ich schaue mir an, wie im Betrieb gearbeitet wird, und finde das Muster darin. Was einmal sitzt, sitzt beim nächsten Fall wieder.",
   },
   {
     titel: "Context Engineering",
-    text: "Die KI bekommt genau das Wissen, das deine Aufgabe braucht. Fehlt ihr etwas, rät sie, und das merkt man am Ergebnis.",
+    text: "Die KI bekommt genau das Wissen, das die Aufgabe braucht. Fehlt ihr etwas, rät sie, und das merkt man am Ergebnis.",
   },
   {
     titel: "Harness Engineering",
@@ -80,7 +80,7 @@ const SCHRITTE = [
   },
   {
     titel: "Skill Engineering",
-    text: "Am Ende steht kein Konzept im Ordner, sondern etwas, das läuft und das du weiterbenutzen kannst, ohne mich zu fragen.",
+    text: "Am Ende steht kein Konzept im Ordner, sondern etwas, das läuft — und das ohne Rückfrage bei mir weiterläuft.",
   },
 ];
 
@@ -240,7 +240,7 @@ export function ProjekteSection() {
       <Copy>
         Neun Projekte aus drei Ecken: die gemeinnützige UG, mit der alles anfing, Prototypen
         für Kundenprobleme, und Keel, mein eigenes System. Wo eine Vorschau möglich ist,
-        siehst du die echte Oberfläche, kein Bild.
+        läuft die echte Oberfläche im Fenster — kein Bild.
       </Copy>
       <div className="mt-10">
         <ProjectHoverShowcase projects={PROJEKTE} />

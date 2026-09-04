@@ -98,7 +98,7 @@ function ShowcasePanel({
                 <div className="grid h-[58vh] min-h-[380px] w-full place-content-center gap-5 bg-foreground/[0.02] px-8 text-center">
                   <p className="mx-auto max-w-[46ch] text-sm leading-relaxed text-muted-foreground">
                     Die Vorschau lädt die Seite des Projekts nach. Ein Klick genügt, danach
-                    wechselst du frei zwischen allen Projekten.
+                    laufen alle Projekte frei durchschaltbar.
                   </p>
                   <button
                     type="button"

@@ -70,7 +70,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
       danach: [
         "Die Auftragsdaten werden einmal erfasst.",
         "Angebot, Rechnung und Buchung entstehen daraus automatisch.",
-        "Du prüfst und gibst frei, statt zu tippen.",
+        "Am Ende steht Prüfen und Freigeben, nicht Tippen.",
         "Weil nichts mehr abgeschrieben wird, entfällt die häufigste Fehlerquelle.",
       ],
       annahmen: [
@@ -95,7 +95,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
       { prefix: "≈ ", value: 800, suffix: " €", label: "Mehrumsatz im Monat, ein Auftrag" },
     ],
     beschreibung:
-      "Eine erste Bestätigung geht raus, während du noch beim Kunden bist. Passende Termine schlägt das System gleich mit vor.",
+      "Die erste Bestätigung ist raus, bevor der Termin beim Kunden zu Ende ist. Passende Zeiten schlägt das System gleich mit vor.",
     detail: {
       rechnung: [
         { schritt: "Anfragen im Monat über Formular, Mail und Telefon", wert: "40" },
@@ -115,7 +115,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Jede Anfrage bekommt sofort eine Bestätigung mit den nächsten Schritten.",
         "Passende Termine schlägt das System gleich mit vor.",
         "Alle Kanäle laufen an einer Stelle zusammen.",
-        "Du siehst morgens nur noch, was wirklich deine Antwort braucht.",
+        "Morgens steht nur noch da, was wirklich eine persönliche Antwort braucht.",
       ],
       annahmen: [
         "Die erste Rückmeldung ist eine automatische Bestätigung, keine inhaltliche Antwort.",
@@ -152,10 +152,10 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Der Terminwunsch kommt per Telefon, meist zur Unzeit.",
         "Der Kalender ist nicht zur Hand, also folgt ein Rückruf.",
         "Jedes Verschieben kostet dieselbe Runde noch einmal.",
-        "Erinnerungen schickst du von Hand, oder eben nicht.",
+        "Erinnerungen gehen von Hand raus — oder eben nicht.",
       ],
       danach: [
-        "Der Kunde sieht deine freien Zeiten und kann rund um die Uhr buchen.",
+        "Der Kunde sieht die freien Zeiten und bucht rund um die Uhr selbst.",
         "Bestätigung und Erinnerung gehen automatisch raus.",
         "Abgesagte Termine werden anderen sofort angeboten.",
         "Das Telefon bleibt für alle, die lieber anrufen — es wird nur seltener.",
@@ -226,7 +226,7 @@ const BEISPIELE: ShowcaseInhalt[] = [
       { value: 1, suffix: ". Tag", label: "nach Fälligkeit geht die Erinnerung" },
     ],
     beschreibung:
-      "Zahlungserinnerungen gehen freundlich und pünktlich raus, ohne dass du jemandem hinterhertelefonierst.",
+      "Zahlungserinnerungen gehen freundlich und pünktlich raus — ganz ohne Hinterhertelefonieren.",
     detail: {
       rechnung: [
         { schritt: "Offene Rechnungen im Monat", wert: "8" },
@@ -241,13 +241,13 @@ const BEISPIELE: ShowcaseInhalt[] = [
         "Die Rechnung geht raus, danach herrscht Stille.",
         "Erst beim Blick aufs Konto fällt auf, wer nicht gezahlt hat.",
         "Die Erinnerung kostet Überwindung und wird verschoben.",
-        "Geld, das dir zusteht, arbeitet beim Kunden statt bei dir.",
+        "Geld, das längst fällig ist, arbeitet beim Kunden statt im eigenen Betrieb.",
       ],
       danach: [
         "Das System gleicht Zahlungseingänge selbst ab.",
         "Am Tag nach Fälligkeit geht eine freundliche Erinnerung raus.",
         "Zweite und dritte Stufe folgen automatisch, im richtigen Ton.",
-        "Du siehst auf einen Blick, was offen ist und seit wann.",
+        "Auf einen Blick sichtbar: was offen ist und seit wann.",
       ],
       annahmen: [
         "8 offene Rechnungen, 900 € im Schnitt.",

@@ -18,12 +18,12 @@ import { Clock, Inbox, ClipboardCheck, LayoutDashboard, ShieldCheck, Sparkles, A
 type Ersparnis = "Zeit" | "Geld" | "Nerven";
 
 const KARTEN: { icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; spart: Ersparnis; titel: string; text: string }[] = [
-  { icon: Clock, spart: "Zeit", titel: "Deine Woche hat wieder Luft", text: "Die immer gleichen Handgriffe erledigt ein Ablauf im Hintergrund. Du kümmerst dich um das, wofür dich niemand ersetzen kann." },
-  { icon: Inbox, spart: "Nerven", titel: "Keine Anfrage bleibt liegen", text: "Jede Nachricht bekommt sofort eine Antwort, auch wenn du beim Kunden bist oder längst Feierabend hast." },
+  { icon: Clock, spart: "Zeit", titel: "Die Woche hat wieder Luft", text: "Die immer gleichen Handgriffe erledigt ein Ablauf im Hintergrund. Übrig bleibt die Arbeit, für die es niemanden sonst gibt." },
+  { icon: Inbox, spart: "Nerven", titel: "Keine Anfrage bleibt liegen", text: "Jede Nachricht bekommt sofort eine Antwort — auch mitten im Termin, auch längst nach Feierabend." },
   { icon: ClipboardCheck, spart: "Zeit", titel: "Schluss mit Abtippen", text: "Was in einem Programm steht, steht von allein auch im nächsten. Kein Copy-Paste, keine Zahlendreher." },
   { icon: LayoutDashboard, spart: "Nerven", titel: "Alles an einem Ort", text: "Statt fünf offener Tabs und drei Zetteln auf dem Tisch ein Bild, das immer stimmt." },
-  { icon: ShieldCheck, spart: "Geld", titel: "Teure Fehler fallen vorher auf", text: "Ein Prüfschritt fängt ab, was dich sonst erst die Rechnung merken lässt." },
-  { icon: Sparkles, spart: "Nerven", titel: "Die lästigste Aufgabe nie wieder", text: "Sag mir, was dich am meisten nervt. Die Chancen stehen gut, dass genau das sich automatisieren lässt." },
+  { icon: ShieldCheck, spart: "Geld", titel: "Teure Fehler fallen vorher auf", text: "Ein Prüfschritt fängt ab, was sonst erst auf der Rechnung auffällt." },
+  { icon: Sparkles, spart: "Nerven", titel: "Die lästigste Aufgabe nie wieder", text: "Die lästigste Aufgabe im Betrieb ist meistens genau die, die sich am besten automatisieren lässt." },
 ];
 
 // akzent = Farbe je Ersparnis. Kein Pill-Stil mehr — die Ersparnis steht als reiner
@@ -111,7 +111,7 @@ function RevealTitel() {
         ))}
       </div>
       <p className="mt-6 max-w-[36ch] text-lg leading-relaxed text-muted-foreground">
-        Das gibt dir eine Automatisierung zurück, die zu deinem Betrieb passt. Ein paar Stellen, an denen wir ansetzen.
+        Am Ende steht eine Automatisierung, die zum Betrieb passt. Ein paar Stellen, an denen wir ansetzen.
       </p>
     </div>
   );

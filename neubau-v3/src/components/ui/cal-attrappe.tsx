@@ -84,7 +84,7 @@ export function CalAttrappe({ onStart }: { onStart: () => void }) {
     <button
       type="button"
       onClick={onStart}
-      aria-label="Kalender laden und Termin buchen. Dabei wird eine Verbindung zu Cal.com aufgebaut und deine IP-Adresse übertragen."
+      aria-label="Kalender laden und Termin buchen. Dabei wird eine Verbindung zu Cal.com aufgebaut und die IP-Adresse übertragen."
       className="group relative block w-full cursor-pointer text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current md:px-8"
     >
       {/* Der echte Embed setzt seinen Kasten mit seitlichem Abstand in die Fläche und

@@ -51,7 +51,7 @@ export default function DatenschutzPage() {
                 <P>
                     Diese Seite lädt von sich aus nichts von fremden Servern und setzt keine Cookies von Dritten.
                     Alles, was Daten an Dritte gibt — der Terminkalender und die Prototypen im Abschnitt „Projekte" —
-                    startet erst, wenn Sie es ausdrücklich anklicken. Wer nur liest, hinterlässt außerhalb der
+                    startet erst auf ausdrücklichen Klick. Wer nur liest, hinterlässt außerhalb der
                     Server-Protokolle des Hosters keine Spur.
                 </P>
 
@@ -68,43 +68,43 @@ export default function DatenschutzPage() {
 
                 <H2>Terminbuchung über Cal.com — erst auf Klick</H2>
                 <P>
-                    Im Abschnitt „Buchen" sehen Sie zunächst nur eine Abbildung des Kalenders, die von dieser Seite
-                    selbst stammt. Erst wenn Sie „Termin buchen" drücken, wird der echte Kalender von Cal.com, Inc.,
+                    Im Abschnitt „Buchen" steht zunächst nur eine Abbildung des Kalenders, die von dieser Seite
+                    selbst stammt. Erst mit dem Klick auf „Termin buchen" wird der echte Kalender von Cal.com, Inc.,
                     2261 Market Street #4382, San Francisco, CA 94114, USA geladen. Rechtsgrundlage für diesen Abruf
-                    und für die dabei gesetzten Cookies ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1
-                    TDDDG), die Sie mit dem Klick erteilen. Da Cal.com in den USA sitzt und nicht nach dem EU-US Data
-                    Privacy Framework zertifiziert ist, stützt sich die Übermittlung dorthin auf Ihre ausdrückliche
+                    und für die dabei gesetzten Cookies ist die mit dem Klick erteilte
+                    Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Da Cal.com in den USA sitzt und nicht nach dem EU-US Data
+                    Privacy Framework zertifiziert ist, stützt sich die Übermittlung dorthin auf die ausdrückliche
                     Einwilligung nach Art. 49 Abs. 1 lit. a DSGVO. Ein solcher Drittlandtransfer erfolgt ohne die
                     Garantien des Art. 46 DSGVO; US-Behörden können unter Umständen auf die Daten zugreifen, und
                     Rechtsbehelfe sind dort schwerer durchzusetzen.
                 </P>
                 <P>
-                    Nach dem Klick erhält Cal.com Ihre IP-Adresse und setzt Cookies. Das Cal.com-Fenster bindet
+                    Nach dem Klick erhält Cal.com die IP-Adresse und setzt Cookies. Das Cal.com-Fenster bindet
                     seinerseits den Fehlerdienst Sentry (Functional Software, Inc., USA — nach dem EU-US Data Privacy
                     Framework zertifiziert) sowie Schriften und Wiedererkennungsdienste von Google ein. Auf diese
                     Einbindungen habe ich keinen Einfluss; sie gehören zum Dienst von Cal.com.
                 </P>
                 <P>
-                    Buchen Sie tatsächlich einen Termin, verarbeitet Cal.com die von Ihnen eingegebenen Angaben (Name,
+                    Wird tatsächlich ein Termin gebucht, verarbeitet Cal.com die dort eingegebenen Angaben (Name,
                     E-Mail-Adresse, gewünschter Termin, optionale Notizen), damit ich den Termin wahrnehmen kann
                     (Art. 6 Abs. 1 lit. b DSGVO). Ich lösche diese Angaben, sobald der Kontakt abgeschlossen ist und
                     keine gesetzliche Aufbewahrungspflicht entgegensteht. Wie lange Cal.com die Daten in seinem System
                     vorhält, richtet sich nach dessen Datenschutzerklärung: <A href="https://cal.com/privacy">cal.com/privacy</A>.
                 </P>
                 <P>
-                    Ihre Einwilligung wirkt für die laufende Sitzung. Sie widerrufen sie, indem Sie die Seite neu
-                    laden — dann steht wieder nur die Abbildung dort. Cookies, die Cal.com bereits gesetzt hat,
-                    löschen Sie in den Einstellungen Ihres Browsers. Der Widerruf gilt für die Zukunft; die
+                    Die Einwilligung wirkt für die laufende Sitzung. Ein Neuladen der Seite widerruft sie — dann
+                    steht wieder nur die Abbildung dort. Bereits gesetzte Cal.com-Cookies lassen sich in den
+                    Einstellungen des Browsers löschen. Der Widerruf gilt für die Zukunft; die
                     Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt (Art. 7 Abs. 3 DSGVO).
                 </P>
 
                 <H2>Eingebettete Prototypen — erst auf Klick</H2>
                 <P>
                     Im Abschnitt „Projekte" können meine eigenen Prototypen als Fenster angezeigt werden. Auch sie
-                    laden erst auf Klick („Vorschau starten"), Rechtsgrundlage ist damit Ihre Einwilligung (Art. 6
+                    laden erst auf Klick („Vorschau starten"), Rechtsgrundlage ist damit die Einwilligung (Art. 6
                     Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Ausgeliefert werden sie von Vercel (siehe oben) und im
                     Fall des Oasis-Simulators von world-eden-era.org, der Seite der von mir mitgegründeten
-                    gemeinnützigen UG. Dabei erhält der jeweilige Server Ihre IP-Adresse. Die Prototypen setzen keine
+                    gemeinnützigen UG. Dabei erhält der jeweilige Server die IP-Adresse. Die Prototypen setzen keine
                     Werbe-Cookies und enthalten keine Analyse-Werkzeuge.
                 </P>
 
@@ -112,10 +112,10 @@ export default function DatenschutzPage() {
                 <P>
                     Schriften werden von dieser Seite selbst ausgeliefert, es findet kein Aufruf bei Google statt.
                     Die Seite setzt keine Werbe- oder Analyse-Cookies und verwendet überhaupt keine eigenen Cookies.
-                    Zwei Angaben bleiben nur in Ihrem Browser: Ihre Wahl von hellem oder dunklem Design und ein
+                    Zwei Angaben bleiben nur im Browser: die Wahl von hellem oder dunklem Design und ein
                     Vermerk, dass die Startanimation in dieser Sitzung bereits gelaufen ist. Beides wird nicht an mich
-                    übertragen, ist nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei und verschwindet, wenn Sie die
-                    Websitedaten löschen.
+                    übertragen, ist nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei und verschwindet beim Löschen der
+                    Websitedaten.
                 </P>
 
                 <H2>Keine automatisierte Entscheidungsfindung</H2>
@@ -130,23 +130,23 @@ export default function DatenschutzPage() {
                     Datenschutzhinweise des jeweiligen Anbieters.
                 </P>
 
-                <H2>Ihre Rechte</H2>
+                <H2>Rechte der betroffenen Person</H2>
                 <P>
-                    Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
+                    Es besteht ein Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
                     Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO) sowie das Recht, eine erteilte
-                    Einwilligung jederzeit zu widerrufen. Wenden Sie sich dafür an die im{' '}
+                    Einwilligung jederzeit zu widerrufen. Dafür genügt eine Nachricht über die im{' '}
                     <Link href="/impressum" className="underline underline-offset-4 hover:text-foreground">
                         Impressum
                     </Link>{' '}
-                    genannten Kontaktwege. Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren;
+                    genannten Kontaktwege. Außerdem steht der Weg zu einer Datenschutz-Aufsichtsbehörde offen;
                     für Sachsen ist das die Sächsische Datenschutz- und Transparenzbeauftragte.
                 </P>
 
                 <H2>Widerspruchsrecht</H2>
                 <P>
                     Soweit ich Daten auf Grundlage meines berechtigten Interesses verarbeite — das betrifft allein die
-                    Server-Protokolle des Hosters —, können Sie dieser Verarbeitung aus Gründen, die sich aus Ihrer
-                    besonderen Situation ergeben, jederzeit widersprechen (Art. 21 Abs. 1 DSGVO).
+                    Server-Protokolle des Hosters —, kann dieser Verarbeitung aus Gründen, die sich aus der
+                    besonderen Situation der betroffenen Person ergeben, jederzeit widersprochen werden (Art. 21 Abs. 1 DSGVO).
                 </P>
 
                 <p className="mt-10 text-sm text-muted-foreground">Stand: September 2026</p>

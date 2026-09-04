@@ -41,7 +41,7 @@ export function CalBooking() {
               Daten gehen. Der Satz steht außerhalb der Attrappe, weil ein echter Link in
               einem <button> nicht erlaubt wäre. */}
           <p className="mx-auto mt-4 max-w-[52ch] text-center text-[12px] leading-relaxed text-muted-foreground">
-            Mit dem Klick lädt der Kalender von Cal.com (USA). Dabei wird deine IP-Adresse
+            Mit dem Klick lädt der Kalender von Cal.com (USA). Dabei wird die IP-Adresse
             dorthin übertragen und Cal.com setzt Cookies — Näheres in der{" "}
             <Link href="/datenschutz" className="underline underline-offset-2 hover:text-foreground">
               Datenschutzerklärung
